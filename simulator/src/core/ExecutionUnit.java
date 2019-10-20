@@ -2,58 +2,29 @@ package core;
 
 import core.instructions.Instruction;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ExecutionUnit {
+public abstract class ExecutionUnit {
 
-    private Integer id;
+    protected Integer id;
 
-    private Integer delayCounter;
+    protected Integer cycleCounter;
 
-    private Instruction currentInstruction;
+    protected Instruction currentInstruction;
 
-    private LinkedList<Instruction> instructionBuffer = new LinkedList<>();
-
-    private RegisterFile registerFile;
+    protected RegisterFile registerFile;
 
     public ExecutionUnit(Integer id, RegisterFile registerFile) {
         this.id = id;
-        this.delayCounter = 0;
+        this.cycleCounter = 0;
         this.currentInstruction = null;
         this.registerFile = registerFile;
     }
 
-    public void execute() {
-        if (delayCounter < 1 && currentInstruction != null) {
-            currentInstruction.writeBack(registerFile);
-            currentInstruction = null;
-        } else {
-            delayCounter--;
-        }
+    public abstract void execute(Processor processor);
 
-        if (currentInstruction == null && !instructionBuffer.isEmpty() && delayCounter <= 0) {
-            // bring in the next instruction from the buffer
-            currentInstruction = instructionBuffer.removeFirst();
-            // set the delay counter to simulate latency e.g load/store instructions
-            if (currentInstruction.getDelay() > 0)
-                delayCounter = currentInstruction.getDelay();
-
-            currentInstruction.setOperands(registerFile);
-            currentInstruction.execute();
-        }
-
-        System.out.println(registerFile.toString());
-
-        return;
-    }
-
-    public void bufferInstruction(Instruction i) {
-        this.instructionBuffer.add(i);
-    }
-
-    public boolean bufferIsEmpty() {
-        return this.instructionBuffer.isEmpty();
-    }
+    public abstract boolean bufferIsEmpty();
 
     public boolean isExecuting() {
         return !(currentInstruction == null);
@@ -61,7 +32,7 @@ public class ExecutionUnit {
 
     public String getStatus() {
         if (currentInstruction != null) {
-            return this.currentInstruction.toString() + " | counter: " + this.delayCounter + "\n";
+            return this.currentInstruction.toString() + " | counter: " + this.cycleCounter + "\n";
         } else {
             return "No instruction executing\n";
         }

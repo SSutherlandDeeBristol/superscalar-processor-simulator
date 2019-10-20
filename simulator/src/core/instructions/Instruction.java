@@ -1,29 +1,30 @@
 package core.instructions;
 
+import core.Processor;
 import core.RegisterFile;
 
 public abstract class Instruction {
-    public enum Opcode {MOV, CMP, JMP, ADD, SUB, LD, ST}
+    public enum Opcode {MOV, CMP, JMP, ADD, SUB, LD, LDI, ST}
 
     private Opcode opcode;
-    private Integer delay;
+    private Integer numCycles;
 
     public Instruction(Opcode opcode, Integer delay) {
         this.opcode = opcode;
-        this.delay = delay;
+        this.numCycles = delay;
     }
 
     public Opcode getOpcode() {
         return this.opcode;
     }
 
-    public Integer getDelay() {
-        return delay;
+    public Integer getNumCycles() {
+        return numCycles;
     }
 
     public abstract void setOperands(RegisterFile registerFile);
 
-    public abstract void execute();
+    public abstract void execute(Processor processor);
 
     public abstract void  writeBack(RegisterFile registerFile);
 

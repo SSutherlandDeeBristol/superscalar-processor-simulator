@@ -1,5 +1,6 @@
 package core.instructions;
 
+import core.Processor;
 import core.Register;
 import core.RegisterFile;
 
@@ -23,12 +24,12 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public void setOperands(RegisterFile registerFile) {
-        this.operandValA = registerFile.getRegister(sourceRegisterA).get();
-        this.operandValB = registerFile.getRegister(sourceRegisterB).get();
+        this.operandValA = (Integer) registerFile.getRegister(sourceRegisterA).get();
+        this.operandValB = (Integer) registerFile.getRegister(sourceRegisterB).get();
     }
 
     @Override
-    public void execute() {
+    public void execute(Processor processor) {
 
     }
 
