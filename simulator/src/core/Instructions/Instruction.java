@@ -1,10 +1,10 @@
-package core.instructions;
+package core.Instructions;
 
 import core.Processor;
 import core.RegisterFile;
 
 public abstract class Instruction {
-    public enum Opcode {MOV, CMP, JMP, ADD, SUB, LD, LDI, ST}
+    public enum Opcode {MOV, CMP, BNE, BEQ, BGT, BLT, BGE, BLE, JMP, ADD, SUB, MUL, DIV, LD, LDI, ST}
 
     private Opcode opcode;
     private Integer numCycles;

@@ -1,8 +1,7 @@
 package core;
 
-import core.instructions.*;
+import core.Instructions.*;
 
-import java.security.DrbgParameters;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +27,8 @@ public class Processor {
 
     private Register PC = new Register();
 
+    private boolean running;
+
     public Processor(Program program) {
         this.instructionParser = new InstructionParser();
         this.memory = new Memory();
@@ -47,54 +48,68 @@ public class Processor {
         this.branchUnits = new ArrayList<>();
         this.loadStoreUnits = new ArrayList<>();
 
-        this.ALUExecutionUnits.add(new ALUnit(0, this.registerFile, this.aluInstructionBuffer));
+        this.ALUExecutionUnits.add(new ALUnit(0, this.registerFile, this.aluInstructionBuffer, this.toWriteBack));
 
-        this.branchUnits.add(new BranchUnit(0, this.registerFile, this.branchInstructionBuffer));
+        this.branchUnits.add(new BranchUnit(0, this.registerFile, this.branchInstructionBuffer, this.toWriteBack));
 
-        this.loadStoreUnits.add(new LoadStoreUnit(0, this.registerFile, this.loadStoreInstructionBuffer));
+        this.loadStoreUnits.add(new LoadStoreUnit(0, this.registerFile, this.loadStoreInstructionBuffer, this.toWriteBack));
 
         System.out.println(program.toString());
 
         this.memory.setMemoryByAddress(10, 45);
 
         this.PC.set(0);
+
+        this.running = true;
     }
 
     public void process() {
+        int step = 0;
+        int numCycles = 0;
 
-        fetch();
-
-        decode();
-
-        while (unitsHaveBufferedInstructions() || unitsAreExecuting()) {
-
-            execute();
-
-            writeBack();
-
-            printStatus();
-
-            fetch();
-
-            decode();
+        while (this.running) {
+            switch (step) {
+                case 0:
+                    fetch();
+                    break;
+                case 1:
+                    decode();
+                    break;
+                case 2:
+                    execute();
+                    break;
+                case 3:
+                    writeBack();
+                    break;
+            }
+            numCycles++;
+            printStatus(numCycles);
+            if (!unitsAreExecuting())
+                step = (step + 1) % 4;
+            this.running = canProcess();
         }
 
-        System.out.println("register 0: " + registerFile.getRegister(0).get());
-        System.out.println("register 4: " + registerFile.getRegister(4).get());
-        System.out.println("memory address 10: " + this.memory.getMemoryByAddress(10));
+        System.out.println("Number of cycles: " + numCycles);
+    }
+
+    private boolean canProcess() {
+        return !this.encodedInstructions.isEmpty() || !this.toWriteBack.isEmpty()
+                || unitsHaveBufferedInstructions() || unitsAreExecuting() || instructionsToFetch();
     }
 
     private void fetch() {
         // fetch instruction from memory and add to buffer
+        String nextEncodedInstruction = this.memory.getInstructionByAddress(this.PC.get());
 
-        String nextEncodedInstruction = (String) this.memory.getInstructionByAddress((Integer) this.PC.get());
-
-        if (nextEncodedInstruction == null)
+        if (nextEncodedInstruction == null) {
             return;
+        }
+
+        System.out.println("Fetched " + nextEncodedInstruction);
 
         this.encodedInstructions.add(nextEncodedInstruction);
 
-        this.PC.set((Integer) this.PC.get() + 1);
+        this.PC.increment();
     }
 
     private void decode() {
@@ -103,14 +118,17 @@ public class Processor {
 
             Instruction nextInstruction = instructionParser.parseInstruction(s);
 
-            nextInstruction.setOperands(this.registerFile);
+            System.out.println("Decoded into: " + nextInstruction.toString());
 
             if (nextInstruction instanceof ALUInstruction) {
                 aluInstructionBuffer.add((ALUInstruction) nextInstruction);
+                System.out.println("Added " + nextInstruction.toString() + " to ALU Instruction buffer");
             } else if (nextInstruction instanceof BranchInstruction) {
                 branchInstructionBuffer.add((BranchInstruction) nextInstruction);
+                System.out.println("Added " + nextInstruction.toString() + " to Branch Instruction buffer");
             } else if (nextInstruction instanceof LoadStoreInstruction) {
                 loadStoreInstructionBuffer.add((LoadStoreInstruction) nextInstruction);
+                System.out.println("Added " + nextInstruction.toString() + " to Load/Store Instruction buffer");
             } else {
                 throw new RuntimeException("Unrecognised instruction.");
             }
@@ -126,40 +144,53 @@ public class Processor {
     }
 
     public void writeBack() {
+        if (this.toWriteBack.isEmpty())
+            return;
 
+        Instruction i = this.toWriteBack.remove(0);
+        i.writeBack(this.registerFile);
+        System.out.println("Wrote back: " + i.toString());
     }
 
-    private void printStatus() {
-        System.out.println("STATUS\n");
+    private void printStatus(Integer cycle) {
+        System.out.println("STATUS CYCLE: " + cycle + "\n");
         System.out.println("Arithmetic Logic Units:");
         this.ALUExecutionUnits.forEach(alUnit -> System.out.println("ID " + alUnit.getId() + " | " + alUnit.getStatus()));
-        System.out.println("");
+        System.out.println();
 
         System.out.println("Branch Units:");
         this.branchUnits.forEach(branchUnit -> System.out.println("ID " + branchUnit.getId() + " | " + branchUnit.getStatus()));
-        System.out.println("");
+        System.out.println();
 
         System.out.println("Load/Store Units:");
         this.loadStoreUnits.forEach(loadStoreUnit -> System.out.println("ID " + loadStoreUnit.getId() + " | " + loadStoreUnit.getStatus()));
-        System.out.println("");
+        System.out.println();
 
         System.out.println(this.registerFile.toString());
     }
 
-    private boolean unitsAreExecuting() {
-        boolean executing = this.ALUExecutionUnits.stream().anyMatch(ExecutionUnit::isExecuting);
-        executing = executing || this.branchUnits.stream().anyMatch(ExecutionUnit::isExecuting);
-        executing = executing || this.loadStoreUnits.stream().anyMatch(ExecutionUnit::isExecuting);
+    private boolean instructionsToFetch() {
+        return this.memory.instructionsRemaining(this.PC.get()) > 0;
+    }
 
-        return executing;
+    public boolean blocked() {
+        return !(unitsAreExecuting() || unitsHaveBufferedInstructions());
+    }
+
+    private boolean unitsAreExecuting() {
+        boolean ALUExecuting = this.ALUExecutionUnits.stream().anyMatch(ExecutionUnit::isExecuting);
+        boolean branchExecuting = this.branchUnits.stream().anyMatch(ExecutionUnit::isExecuting);
+        boolean loadStoreExecuting = this.loadStoreUnits.stream().anyMatch(ExecutionUnit::isExecuting);
+
+        return ALUExecuting || branchExecuting || loadStoreExecuting;
     }
 
     private boolean unitsHaveBufferedInstructions() {
-        boolean haveInstructions = this.ALUExecutionUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
-        haveInstructions = haveInstructions || this.branchUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
-        haveInstructions = haveInstructions || this.loadStoreUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
+        boolean ALUHaveInstructions = this.ALUExecutionUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
+        boolean branchHaveInstructions = this.branchUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
+        boolean loadStoreHaveInstructions = this.loadStoreUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
 
-        return haveInstructions;
+        return ALUHaveInstructions || branchHaveInstructions || loadStoreHaveInstructions;
     }
 
     public Memory getMemory() {

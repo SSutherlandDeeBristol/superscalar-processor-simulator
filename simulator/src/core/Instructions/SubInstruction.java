@@ -1,4 +1,4 @@
-package core.instructions;
+package core.Instructions;
 
 import core.Processor;
 

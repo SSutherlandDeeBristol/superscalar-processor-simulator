@@ -1,7 +1,6 @@
-package core.instructions;
+package core.Instructions;
 
 import core.Processor;
-import core.Register;
 import core.RegisterFile;
 
 public abstract class ALUInstruction extends Instruction {
@@ -24,8 +23,8 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public void setOperands(RegisterFile registerFile) {
-        this.operandValA = (Integer) registerFile.getRegister(sourceRegisterA).get();
-        this.operandValB = (Integer) registerFile.getRegister(sourceRegisterB).get();
+        this.operandValA = registerFile.getRegister(sourceRegisterA).get();
+        this.operandValB = registerFile.getRegister(sourceRegisterB).get();
     }
 
     @Override
@@ -35,6 +34,7 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public void writeBack(RegisterFile registerFile) {
+        System.out.println("ALU writeback " + this.result + " to r" + this.destinationRegister);
         registerFile.getRegister(this.destinationRegister).set(this.result);
     }
 

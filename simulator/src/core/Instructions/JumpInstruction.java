@@ -1,11 +1,11 @@
-package core.instructions;
+package core.Instructions;
 
 import core.Processor;
 import core.RegisterFile;
 
-public class JumpInstruction extends BranchInstruction {
+public class JumpInstruction extends Instruction {
 
-    protected Integer jumpTo;
+    private Integer jumpTo;
 
     public JumpInstruction(Integer jumpTo) {
         super(Opcode.JMP, 1);

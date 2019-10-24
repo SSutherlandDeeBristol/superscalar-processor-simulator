@@ -1,6 +1,7 @@
 package core;
 
-import core.instructions.BranchInstruction;
+import core.Instructions.BranchInstruction;
+import core.Instructions.Instruction;
 
 import java.util.List;
 
@@ -8,20 +9,15 @@ public class BranchUnit extends ExecutionUnit {
 
     private List<BranchInstruction> instructionBuffer;
 
-    public BranchUnit(Integer id, RegisterFile registerFile, List<BranchInstruction> instructionBuffer) {
-        super(id, registerFile);
+    public BranchUnit(Integer id, RegisterFile registerFile, List<BranchInstruction> instructionBuffer, List<Instruction> toWriteBack) {
+        super(id, registerFile, toWriteBack);
         this.instructionBuffer = instructionBuffer;
     }
 
     @Override
     public void execute(Processor processor) {
-        if (this.cycleCounter < 1 && this.currentInstruction != null) {
-            this.currentInstruction.writeBack(this.registerFile);
-            currentInstruction = null;
-        }
-
         // if we can pull in a new instruction from the buffer
-        if (this.currentInstruction == null && !this.instructionBuffer.isEmpty()) {
+        if (this.finishedInstruction && !this.instructionBuffer.isEmpty()) {
 
             // bring in the next instruction from the buffer
             this.currentInstruction = this.instructionBuffer.remove(0);
@@ -30,13 +26,21 @@ public class BranchUnit extends ExecutionUnit {
             this.cycleCounter = this.currentInstruction.getNumCycles();
 
             // set the values of the operands at this point
-            this.currentInstruction.setOperands(registerFile);
+            this.currentInstruction.setOperands(this.registerFile);
 
             //execute the instruction
             this.currentInstruction.execute(processor);
+
+            this.finishedInstruction = false;
         }
 
-        cycleCounter--;
+        if (this.cycleCounter > 0)
+            this.cycleCounter--;
+
+        if (this.cycleCounter < 1 && !this.finishedInstruction) {
+            this.toWriteBack.add(this.currentInstruction);
+            this.finishedInstruction = true;
+        }
     }
 
     @Override

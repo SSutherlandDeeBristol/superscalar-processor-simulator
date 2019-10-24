@@ -1,4 +1,4 @@
-package core.instructions;
+package core.Instructions;
 
 import core.Processor;
 import core.RegisterFile;
@@ -9,7 +9,7 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
     private Integer immediate;
 
     public LoadImmediateInstruction(Integer destinationRegister, Integer immediate) {
-        super(Opcode.LDI, 1);
+        super(Opcode.LDI, 4);
         this.destinationRegister = destinationRegister;
         this.immediate = immediate;
     }
@@ -20,11 +20,12 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
 
     @Override
     public void execute(Processor processor) {
-        processor.getRegisterFile().getRegister(this.destinationRegister).set(this.immediate);
+
     }
 
     @Override
     public void writeBack(RegisterFile registerFile) {
+        registerFile.getRegister(this.destinationRegister).set(this.immediate);
 
     }
 

@@ -2,17 +2,25 @@ package core;
 
 public class Register {
 
-    private Object contents;
+    private Integer contents;
 
     public Register() {
         this.contents = null;
     }
 
-    public Object get() {
+    public Integer get() {
         return contents;
     }
 
-    public void set(Object contents) {
+    public void set(Integer contents) {
         this.contents = contents;
+    }
+
+    public void increment() {
+        this.contents++;
+    }
+
+    public void decrement() {
+        this.contents--;
     }
 }

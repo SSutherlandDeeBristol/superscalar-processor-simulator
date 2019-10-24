@@ -5,5 +5,5 @@ SUB r0 r0 r5
 ADD r0 r0 r3
 MOV r0 r9
 LDI r7 10
-ST r0 r7 0
+ST r7 r0 1
 CMP r4 r5 r6

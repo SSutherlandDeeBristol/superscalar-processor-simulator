@@ -1,4 +1,4 @@
-package core.instructions;
+package core.Instructions;
 
 import core.Processor;
 import core.RegisterFile;
@@ -23,8 +23,8 @@ public class StoreInstruction extends LoadStoreInstruction {
 
     @Override
     public void execute(Processor processor) {
-        Integer toStore = (Integer) processor.getRegisterFile().getRegister(this.sourceRegister).get();
-        Integer baseAddress = (Integer) processor.getRegisterFile().getRegister(this.destinationRegister).get();
+        Integer toStore = processor.getRegisterFile().getRegister(this.sourceRegister).get();
+        Integer baseAddress = processor.getRegisterFile().getRegister(this.destinationRegister).get();
         processor.getMemory().setMemoryByAddress(baseAddress + this.offset, toStore);
     }
 
@@ -35,7 +35,7 @@ public class StoreInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Instruction.Opcode.ST + " r" + this.destinationRegister + " r" + this.sourceRegister + " " + this.offset;
+        return Instruction.Opcode.ST + " r" + this.sourceRegister + " r" + this.destinationRegister + " " + this.offset;
     }
 
 }

@@ -31,6 +31,10 @@ public class Memory {
         return this.mainMemory.get(address);
     }
 
+    public Integer instructionsRemaining(Integer pc) {
+        return (instructionMemory.size()) - pc;
+    }
+
     public void setMemoryByAddress(Integer address, Object object) {
         this.mainMemory.put(address, object);
     }
