@@ -1,0 +1,8 @@
+LDI r7 1
+LDI r0 12
+LDI r1 1
+LDI r2 1
+BGT r2 r0 3
+MUL r1 r1 r2
+ADD r2 r2 r7
+JMP 4

@@ -1,0 +1,5 @@
+LDI r2 4
+LDI r7 16
+MOV r0 r1
+MUL r0 r0 r2
+BNE r0 r7 -2
