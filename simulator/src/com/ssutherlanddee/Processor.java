@@ -91,7 +91,8 @@ public class Processor {
 
         System.out.println("Number of cycles: " + numCycles);
         System.out.println("Number of instructions executed: " + numInstructionsExecuted);
-        System.out.println("Number of cycles per instruction: " + (numCycles / numInstructionsExecuted));
+        if (numInstructionsExecuted > 0)
+            System.out.println("Number of cycles per instruction: " + (numCycles / numInstructionsExecuted));
     }
 
     private boolean canProcess() {
