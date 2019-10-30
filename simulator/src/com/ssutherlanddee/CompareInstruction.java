@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class CompareInstruction extends ALUInstruction {
 
     public CompareInstruction(Integer destinationRegister, Integer sourceRegisterA, Integer sourceRegisterB) {
-        super(Opcode.CMP, destinationRegister, sourceRegisterA, sourceRegisterB, 1);
+        super(Opcode.cmp, destinationRegister, sourceRegisterA, sourceRegisterB, 1);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class CompareInstruction extends ALUInstruction {
 
     @Override
     public String toString() {
-        return Opcode.CMP + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB;
+        return Opcode.cmp + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB;
     }
 }

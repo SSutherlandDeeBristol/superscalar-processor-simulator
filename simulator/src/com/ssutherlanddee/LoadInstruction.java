@@ -8,7 +8,7 @@ public class LoadInstruction extends LoadStoreInstruction {
     private Integer toLoad;
 
     public LoadInstruction(Integer destinationRegister, Integer sourceRegister, Integer offset) {
-        super(Opcode.LD, 1);
+        super(Opcode.ld, 1);
         this.destinationRegister = destinationRegister;
         this.sourceRegister = sourceRegister;
         this.offset = offset;
@@ -33,6 +33,6 @@ public class LoadInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Opcode.LD + " r" + this.destinationRegister + " r" + this.sourceRegister + " " + this.offset;
+        return Opcode.ld + " r" + this.destinationRegister + " r" + this.sourceRegister + " " + this.offset;
     }
 }

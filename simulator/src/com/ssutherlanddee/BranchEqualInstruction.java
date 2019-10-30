@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class BranchEqualInstruction extends BranchInstruction {
 
     public BranchEqualInstruction(Integer sourceRegisterA, Integer sourceRegisterB, Integer offset) {
-        super(Opcode.BEQ, 1, sourceRegisterA, sourceRegisterB, offset);
+        super(Opcode.beq, 1, sourceRegisterA, sourceRegisterB, offset);
     }
 
     @Override

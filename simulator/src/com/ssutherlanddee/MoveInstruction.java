@@ -7,7 +7,7 @@ public class MoveInstruction extends LoadStoreInstruction {
     private Integer moveValue;
 
     public MoveInstruction(Integer destinationRegister, Integer sourceRegister) {
-        super(Opcode.MOV, 1);
+        super(Opcode.mov, 1);
         this.destinationRegister = destinationRegister;
         this.sourceRegister = sourceRegister;
         this.moveValue = 0;
@@ -30,6 +30,6 @@ public class MoveInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Opcode.MOV + " r" + this.destinationRegister + " r" + this.sourceRegister;
+        return Opcode.mov + " r" + this.destinationRegister + " r" + this.sourceRegister;
     }
 }

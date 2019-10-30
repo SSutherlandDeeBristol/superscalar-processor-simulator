@@ -31,7 +31,6 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public void writeBack(RegisterFile registerFile) {
-        System.out.println("ALU writeback " + this.result + " to r" + this.destinationRegister);
         registerFile.getRegister(this.destinationRegister).set(this.result);
     }
 

@@ -4,11 +4,8 @@ import java.util.List;
 
 public class LoadStoreUnit extends ExecutionUnit {
 
-    private List<LoadStoreInstruction> instructionBuffer;
-
-    public LoadStoreUnit(Integer id, RegisterFile registerFile, List<LoadStoreInstruction> instructionBuffer, List<Instruction> toWriteBack) {
+    public LoadStoreUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack) {
         super(id, registerFile, toWriteBack);
-        this.instructionBuffer = instructionBuffer;
     }
 
     @Override
@@ -39,10 +36,4 @@ public class LoadStoreUnit extends ExecutionUnit {
             this.finishedInstruction = true;
         }
     }
-
-    @Override
-    public boolean bufferIsEmpty() {
-        return this.instructionBuffer.isEmpty();
-    }
-
 }

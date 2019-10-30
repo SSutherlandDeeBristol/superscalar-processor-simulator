@@ -1,8 +1,9 @@
-LDI r7 1
-LDI r0 12
-LDI r1 1
-LDI r2 1
-BGT r2 r0 3
-MUL r1 r1 r2
-ADD r2 r2 r7
-JMP 4
+# Calculate the factorial of 5
+ldi r0 5
+ldi r3 1
+ldi r1 1
+ldi r2 1
+bgt r2 r0 3
+mul r1 r1 r2
+add r2 r2 r3
+jmp 4

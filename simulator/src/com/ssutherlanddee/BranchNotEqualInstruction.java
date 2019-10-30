@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class BranchNotEqualInstruction extends BranchInstruction {
 
     public BranchNotEqualInstruction(Integer sourceRegisterA, Integer sourceRegisterB, Integer offset) {
-        super(Opcode.BNE, 1, sourceRegisterA, sourceRegisterB, offset);
+        super(Opcode.bne, 1, sourceRegisterA, sourceRegisterB, offset);
     }
 
     @Override

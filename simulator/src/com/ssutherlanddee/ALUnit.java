@@ -4,11 +4,8 @@ import java.util.List;
 
 public class ALUnit extends ExecutionUnit {
 
-    private List<ALUInstruction> instructionBuffer;
-
-    public ALUnit(Integer id, RegisterFile registerFile, List<ALUInstruction> instructionBuffer, List<Instruction> toWriteBack) {
+    public ALUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack) {
         super(id, registerFile, toWriteBack);
-        this.instructionBuffer = instructionBuffer;
     }
 
     @Override
@@ -39,10 +36,4 @@ public class ALUnit extends ExecutionUnit {
             this.finishedInstruction = true;
         }
     }
-
-    @Override
-    public boolean bufferIsEmpty() {
-        return this.instructionBuffer.isEmpty();
-    }
-
 }

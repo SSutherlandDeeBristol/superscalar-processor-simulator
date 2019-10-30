@@ -5,7 +5,7 @@ public class JumpInstruction extends BranchInstruction {
     private Integer jumpTo;
 
     public JumpInstruction(Integer jumpTo) {
-        super(Opcode.JMP, 1, 0, 0, 0);
+        super(Opcode.jmp, 1, 0, 0, 0);
         this.jumpTo = jumpTo;
     }
 
@@ -26,6 +26,6 @@ public class JumpInstruction extends BranchInstruction {
 
     @Override
     public String toString() {
-        return "JMP " + this.jumpTo;
+        return "jmp " + this.jumpTo;
     }
 }

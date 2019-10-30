@@ -6,7 +6,7 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
     private Integer immediate;
 
     public LoadImmediateInstruction(Integer destinationRegister, Integer immediate) {
-        super(Opcode.LDI, 1);
+        super(Opcode.ldi, 1);
         this.destinationRegister = destinationRegister;
         this.immediate = immediate;
     }
@@ -28,6 +28,6 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Opcode.LDI + " r" + this.destinationRegister + " " + this.immediate;
+        return Opcode.ldi + " r" + this.destinationRegister + " " + this.immediate;
     }
 }

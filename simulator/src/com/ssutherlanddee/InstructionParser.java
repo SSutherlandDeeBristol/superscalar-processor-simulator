@@ -12,68 +12,80 @@ public class InstructionParser {
 
         String trimmed = i.trim();
 
-        if (trimmed.startsWith("ADD ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.ADD,
+        if (trimmed.startsWith("add ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.add,
                     Operand.Register, Operand.Register, Operand.Register);
             return new AddInstruction(operands[0], operands[1], operands[2]);
-        } else if (trimmed.startsWith("SUB ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.SUB,
+        } else if (trimmed.startsWith("sub ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.sub,
                     Operand.Register, Operand.Register, Operand.Register);
             return new SubInstruction(operands[0], operands[1], operands[2]);
-        } else if (trimmed.startsWith("MUL ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.MUL,
+        } else if (trimmed.startsWith("addi ")) {
+            Integer[] operands = parseOperands(trimmed.substring(4), Instruction.Opcode.addi,
+                    Operand.Register, Operand.Register, Operand.Immediate);
+            return new AddImmediateInstruction(operands[0], operands[1], operands[2]);
+        } else if (trimmed.startsWith("subi ")) {
+            Integer[] operands = parseOperands(trimmed.substring(4), Instruction.Opcode.subi,
+                    Operand.Register, Operand.Register, Operand.Immediate);
+            return new SubImmediateInstruction(operands[0], operands[1], operands[2]);
+        } else if (trimmed.startsWith("mul ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.mul,
                     Operand.Register, Operand.Register, Operand.Register);
             return new MultiplyInstruction(operands[0], operands[1], operands[2]);
-        } else if (trimmed.startsWith("DIV ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.DIV,
+        } else if (trimmed.startsWith("div ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.div,
                     Operand.Register, Operand.Register, Operand.Register);
             return new DivideInstruction(operands[0], operands[1], operands[2]);
-        } else if (trimmed.startsWith("JMP ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.JMP,
+        } else if (trimmed.startsWith("jmp ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.jmp,
                     Operand.Immediate);
             return new JumpInstruction(operands[0]);
-        } else if(trimmed.startsWith("LD ")) {
-            Integer[] operands = parseOperands(trimmed.substring(2), Instruction.Opcode.LD,
+        } else if(trimmed.startsWith("ld ")) {
+            Integer[] operands = parseOperands(trimmed.substring(2), Instruction.Opcode.ld,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new LoadInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("ST ")) {
-            Integer[] operands = parseOperands(trimmed.substring(2), Instruction.Opcode.ST,
+        } else if(trimmed.startsWith("st ")) {
+            Integer[] operands = parseOperands(trimmed.substring(2), Instruction.Opcode.st,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new StoreInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("LDI ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.LDI,
+        } else if(trimmed.startsWith("sti ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.sti,
+                    Operand.Register, Operand.Immediate, Operand.Immediate);
+            return new StoreImmediateInstruction(operands[0], operands[1], operands[2]);
+        } else if(trimmed.startsWith("ldi ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.ldi,
                     Operand.Register, Operand.Immediate);
             return new LoadImmediateInstruction(operands[0], operands[1]);
-        } else if(trimmed.startsWith("MOV ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.MOV,
+        } else if(trimmed.startsWith("mov ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.mov,
                     Operand.Register, Operand.Register);
             return new MoveInstruction(operands[0], operands[1]);
-        } else if(trimmed.startsWith("CMP ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.CMP,
+        } else if(trimmed.startsWith("cmp ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.cmp,
                     Operand.Register, Operand.Register, Operand.Register);
             return new CompareInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("BNE ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.BNE,
+        } else if(trimmed.startsWith("bne ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.bne,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new BranchNotEqualInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("BEQ ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.BEQ,
+        } else if(trimmed.startsWith("beq ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.beq,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new BranchEqualInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("BGT ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.BGT,
+        } else if(trimmed.startsWith("bgt ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.bgt,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new BranchGreaterThanInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("BLT ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.BLT,
+        } else if(trimmed.startsWith("blt ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.blt,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new BranchLessThanInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("BGE ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.BGE,
+        } else if(trimmed.startsWith("bge ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.bge,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new BranchGreaterThanEqualInstruction(operands[0], operands[1], operands[2]);
-        } else if(trimmed.startsWith("BLE ")) {
-            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.BLE,
+        } else if(trimmed.startsWith("ble ")) {
+            Integer[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.ble,
                     Operand.Register, Operand.Register, Operand.Immediate);
             return new BranchLessThanEqualInstruction(operands[0], operands[1], operands[2]);
         } else {

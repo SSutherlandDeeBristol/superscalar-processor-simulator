@@ -10,7 +10,7 @@ public class RegisterFile {
     public RegisterFile(Integer numRegisters) {
         for (int i = 0; i < numRegisters; i++) {
             Register r = new Register();
-            r.set(i);
+            r.set(0);
             registers.add(r);
         }
     }

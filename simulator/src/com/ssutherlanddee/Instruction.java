@@ -1,7 +1,7 @@
 package com.ssutherlanddee;
 
 public abstract class Instruction {
-    public enum Opcode {MOV, CMP, BNE, BEQ, BGT, BLT, BGE, BLE, JMP, ADD, SUB, MUL, DIV, LD, LDI, ST}
+    public enum Opcode {mov, cmp, bne, beq, bgt, blt, bge, ble, jmp, add, addi, sub, subi, mul, div, ld, ldi, st, sti}
 
     private Opcode opcode;
     private Integer numCycles;

@@ -7,15 +7,19 @@ import java.util.List;
 public class Memory {
 
     private HashMap<Integer, Object> mainMemory;
+
     private List<String> instructionMemory;
+    private HashMap<String, Integer> labelMap;
 
     public Memory() {
         mainMemory = new HashMap<>();
         instructionMemory = new ArrayList<>();
+        labelMap = new HashMap<>();
     }
 
     public void loadProgramIntoMemory(Program program) {
         instructionMemory.addAll(program.getInstructionList());
+        labelMap.putAll(program.getLabelMap());
     }
 
     public String getInstructionByAddress(Integer address) {

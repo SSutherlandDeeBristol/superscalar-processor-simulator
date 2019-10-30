@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class AddInstruction extends ALUInstruction {
 
     public AddInstruction(Integer destinationRegister, Integer sourceRegisterA, Integer sourceRegisterB) {
-        super(Opcode.ADD, destinationRegister, sourceRegisterA, sourceRegisterB, 1);
+        super(Opcode.add, destinationRegister, sourceRegisterA, sourceRegisterB, 1);
     }
 
     @Override

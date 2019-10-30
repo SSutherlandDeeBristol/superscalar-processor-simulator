@@ -4,11 +4,8 @@ import java.util.List;
 
 public class BranchUnit extends ExecutionUnit {
 
-    private List<BranchInstruction> instructionBuffer;
-
-    public BranchUnit(Integer id, RegisterFile registerFile, List<BranchInstruction> instructionBuffer, List<Instruction> toWriteBack) {
+    public BranchUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack) {
         super(id, registerFile, toWriteBack);
-        this.instructionBuffer = instructionBuffer;
     }
 
     @Override
@@ -38,10 +35,5 @@ public class BranchUnit extends ExecutionUnit {
             this.toWriteBack.add(this.currentInstruction);
             this.finishedInstruction = true;
         }
-    }
-
-    @Override
-    public boolean bufferIsEmpty() {
-        return this.instructionBuffer.isEmpty();
     }
 }

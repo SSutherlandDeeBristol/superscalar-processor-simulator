@@ -1,5 +1,6 @@
 package com.ssutherlanddee;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ExecutionUnit {
@@ -12,6 +13,8 @@ public abstract class ExecutionUnit {
 
     protected RegisterFile registerFile;
 
+    protected List<Instruction> instructionBuffer;
+
     protected List<Instruction> toWriteBack;
 
     protected boolean finishedInstruction;
@@ -22,12 +25,23 @@ public abstract class ExecutionUnit {
         this.currentInstruction = null;
         this.registerFile = registerFile;
         this.toWriteBack = toWriteBack;
+        this.instructionBuffer = new ArrayList<>();
         this.finishedInstruction = true;
     }
 
     public abstract void execute(Processor processor);
 
-    public abstract boolean bufferIsEmpty();
+    public boolean bufferIsEmpty() {
+        return this.instructionBuffer.isEmpty();
+    }
+
+    public Integer getBufferSize() {
+        return this.instructionBuffer.size();
+    }
+
+    public void bufferInstruction(Instruction instruction) {
+        this.instructionBuffer.add(instruction);
+    }
 
     public boolean isExecuting() {
         return !this.finishedInstruction;

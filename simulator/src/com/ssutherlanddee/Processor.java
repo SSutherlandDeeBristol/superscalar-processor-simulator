@@ -2,6 +2,7 @@ package com.ssutherlanddee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Processor {
 
@@ -27,7 +28,9 @@ public class Processor {
 
     private boolean running;
 
-    public Processor(Program program) {
+    private boolean interactive;
+
+    public Processor(Program program, boolean interactive) {
         this.instructionParser = new InstructionParser();
         this.memory = new Memory();
         this.registerFile = new RegisterFile(10);
@@ -36,21 +39,17 @@ public class Processor {
 
         this.encodedInstructions = new ArrayList<>();
 
-        this.aluInstructionBuffer = new ArrayList<>();
-        this.loadStoreInstructionBuffer = new ArrayList<>();
-        this.branchInstructionBuffer = new ArrayList<>();
-
         this.toWriteBack = new ArrayList<>();
 
         this.ALUExecutionUnits = new ArrayList<>();
         this.branchUnits = new ArrayList<>();
         this.loadStoreUnits = new ArrayList<>();
 
-        this.ALUExecutionUnits.add(new ALUnit(0, this.registerFile, this.aluInstructionBuffer, this.toWriteBack));
+        this.ALUExecutionUnits.add(new ALUnit(0, this.registerFile, this.toWriteBack));
 
-        this.branchUnits.add(new BranchUnit(0, this.registerFile, this.branchInstructionBuffer, this.toWriteBack));
+        this.branchUnits.add(new BranchUnit(0, this.registerFile, this.toWriteBack));
 
-        this.loadStoreUnits.add(new LoadStoreUnit(0, this.registerFile, this.loadStoreInstructionBuffer, this.toWriteBack));
+        this.loadStoreUnits.add(new LoadStoreUnit(0, this.registerFile, this.toWriteBack));
 
         System.out.println(program.toString());
 
@@ -59,12 +58,16 @@ public class Processor {
         this.PC.set(0);
 
         this.running = true;
+
+        this.interactive = interactive;
     }
 
     public void process() {
         int step = 0;
         int numCycles = 0;
         int numInstructionsExecuted = 0;
+
+        Scanner input = new Scanner(System.in);
 
         while (this.running) {
             switch (step) {
@@ -82,17 +85,23 @@ public class Processor {
                     writeBack();
                     break;
             }
+
             numCycles++;
-            printStatus(numCycles);
+
             if (!unitsAreExecuting())
                 step = (step + 1) % 4;
+
             this.running = canProcess();
+
+            if (this.interactive) {
+                printStatus(numCycles);
+                input.nextLine();
+            }
         }
 
-        System.out.println("Number of cycles: " + numCycles);
-        System.out.println("Number of instructions executed: " + numInstructionsExecuted);
-        if (numInstructionsExecuted > 0)
-            System.out.println("Number of cycles per instruction: " + (numCycles / numInstructionsExecuted));
+        printFinalStats(numCycles, numInstructionsExecuted);
+
+        input.close();
     }
 
     private boolean canProcess() {
@@ -108,7 +117,8 @@ public class Processor {
             return;
         }
 
-        System.out.println("Fetched " + nextEncodedInstruction);
+        if (this.interactive)
+            System.out.println("Fetched " + nextEncodedInstruction);
 
         this.encodedInstructions.add(nextEncodedInstruction);
 
@@ -121,17 +131,27 @@ public class Processor {
 
             Instruction nextInstruction = instructionParser.parseInstruction(s);
 
-            System.out.println("Decoded into: " + nextInstruction.toString());
+            if (this.interactive)
+                System.out.println("Decoded into: " + nextInstruction.toString());
 
             if (nextInstruction instanceof ALUInstruction) {
-                aluInstructionBuffer.add((ALUInstruction) nextInstruction);
-                System.out.println("Added " + nextInstruction.toString() + " to ALU Instruction buffer");
+                this.ALUExecutionUnits.stream().min((ExecutionUnit a, ExecutionUnit b) -> a.getBufferSize() - b.getBufferSize())
+                    .get().bufferInstruction((ALUInstruction) nextInstruction);
+
+                if (this.interactive)
+                    System.out.println("Added " + nextInstruction.toString() + " to ALU Instruction buffer");
             } else if (nextInstruction instanceof BranchInstruction) {
-                branchInstructionBuffer.add((BranchInstruction) nextInstruction);
-                System.out.println("Added " + nextInstruction.toString() + " to Branch Instruction buffer");
+                this.branchUnits.stream().min((ExecutionUnit a, ExecutionUnit b) -> a.getBufferSize() - b.getBufferSize())
+                .get().bufferInstruction((BranchInstruction) nextInstruction);
+
+                if (this.interactive)
+                    System.out.println("Added " + nextInstruction.toString() + " to Branch Instruction buffer");
             } else if (nextInstruction instanceof LoadStoreInstruction) {
-                loadStoreInstructionBuffer.add((LoadStoreInstruction) nextInstruction);
-                System.out.println("Added " + nextInstruction.toString() + " to Load/Store Instruction buffer");
+                this.loadStoreUnits.stream().min((ExecutionUnit a, ExecutionUnit b) -> a.getBufferSize() - b.getBufferSize())
+                .get().bufferInstruction((LoadStoreInstruction) nextInstruction);
+
+                if (this.interactive)
+                    System.out.println("Added " + nextInstruction.toString() + " to Load/Store Instruction buffer");
             } else {
                 throw new RuntimeException("Unrecognised instruction.");
             }
@@ -151,8 +171,11 @@ public class Processor {
             return;
 
         Instruction i = this.toWriteBack.remove(0);
+
         i.writeBack(this.registerFile);
-        System.out.println("Wrote back: " + i.toString());
+
+        if (this.interactive)
+            System.out.println("Wrote back: " + i.toString());
     }
 
     private void printStatus(Integer cycle) {
@@ -169,6 +192,18 @@ public class Processor {
         this.loadStoreUnits.forEach(loadStoreUnit -> System.out.println("ID " + loadStoreUnit.getId() + " | " + loadStoreUnit.getStatus()));
         System.out.println();
 
+        System.out.println(this.registerFile.toString());
+    }
+
+    private void printFinalStats(Integer numCycles, Integer numInstructionsExecuted) {
+        System.out.println("Number of cycles: " + numCycles);
+        System.out.println("Number of instructions executed: " + numInstructionsExecuted);
+        if (numInstructionsExecuted > 0)
+            System.out.println("Number of cycles per instruction: " + (numCycles / numInstructionsExecuted));
+
+        System.out.println("Number of instructions per cycle: " + ((float) numInstructionsExecuted / numCycles) + "\n");
+
+        System.out.println("Final register state:");
         System.out.println(this.registerFile.toString());
     }
 

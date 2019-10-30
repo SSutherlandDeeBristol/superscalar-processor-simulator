@@ -7,7 +7,7 @@ public class StoreInstruction extends LoadStoreInstruction {
     private Integer offset;
 
     public StoreInstruction(Integer sourceRegister, Integer destinationRegister, Integer offset) {
-        super(Instruction.Opcode.ST, 1);
+        super(Instruction.Opcode.st, 1);
         this.destinationRegister = destinationRegister;
         this.sourceRegister = sourceRegister;
         this.offset = offset;
@@ -32,7 +32,7 @@ public class StoreInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Instruction.Opcode.ST + " r" + this.sourceRegister + " r" + this.destinationRegister + " " + this.offset;
+        return Instruction.Opcode.st + " r" + this.sourceRegister + " r" + this.destinationRegister + " " + this.offset;
     }
 
 }
