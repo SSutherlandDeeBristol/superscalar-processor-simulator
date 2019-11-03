@@ -49,6 +49,8 @@ public class Processor {
         this.branchRS = new ArrayList<>();
         this.loadStoreRS = new ArrayList<>();
 
+        this.interactive = interactive;
+
         constructExecutionUnits(1, 1, 1);
 
         this.memory.setMemoryByAddress(10, 45);
@@ -56,8 +58,6 @@ public class Processor {
         this.PC.set(0);
 
         this.running = true;
-
-        this.interactive = interactive;
 
         System.out.println(program.toString());
     }
@@ -70,21 +70,8 @@ public class Processor {
         Scanner input = new Scanner(System.in);
 
         while (this.running) {
-            // switch (step) {
-            //     case 0:
-            //         fetch();
-            //         break;
-            //     case 1:
-            //         decode();
-            //         break;
-            //     case 2:
-            //         execute();
-            //         numInstructionsExecuted++;
-            //         break;
-            //     case 3:
-            //         writeBack();
-            //         break;
-            // }
+
+            numCycles++;
 
             if (this.interactive)
                 System.out.println("STATUS CYCLE: " + numCycles + "\n");
@@ -96,8 +83,6 @@ public class Processor {
             decode();
 
             fetch();
-
-            numCycles++;
 
             if (!unitsAreExecuting())
                 step = (step + 1) % 4;
@@ -137,6 +122,10 @@ public class Processor {
     }
 
     private void decode() {
+        this.aluRS.forEach(ReservationStation::dispatch);
+        this.branchRS.forEach(ReservationStation::dispatch);
+        this.loadStoreRS.forEach(ReservationStation::dispatch);
+
         while (!this.encodedInstructions.isEmpty()) {
             String s = this.encodedInstructions.remove(0);
 
@@ -161,10 +150,6 @@ public class Processor {
                 throw new RuntimeException("Unrecognised instruction.");
             }
         }
-
-        this.aluRS.forEach(ReservationStation::dispatch);
-        this.branchRS.forEach(ReservationStation::dispatch);
-        this.loadStoreRS.forEach(ReservationStation::dispatch);
     }
 
     private void execute() {
