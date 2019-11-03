@@ -12,15 +12,15 @@ public class Processor {
 
     private List<String> encodedInstructions;
 
-    private List<ALUInstruction> aluInstructionBuffer;
-    private List<LoadStoreInstruction> loadStoreInstructionBuffer;
-    private List<BranchInstruction> branchInstructionBuffer;
+    private List<Instruction> writeBackBuffer;
 
-    private List<Instruction> toWriteBack;
-
-    private List<ALUnit> ALUExecutionUnits;
+    private List<ALUnit> aluExecutionUnits;
     private List<BranchUnit> branchUnits;
     private List<LoadStoreUnit> loadStoreUnits;
+
+    private List<ReservationStation> aluRS;
+    private List<ReservationStation> branchRS;
+    private List<ReservationStation> loadStoreRS;
 
     private RegisterFile registerFile;
 
@@ -39,19 +39,17 @@ public class Processor {
 
         this.encodedInstructions = new ArrayList<>();
 
-        this.toWriteBack = new ArrayList<>();
+        this.writeBackBuffer = new ArrayList<>();
 
-        this.ALUExecutionUnits = new ArrayList<>();
+        this.aluExecutionUnits = new ArrayList<>();
         this.branchUnits = new ArrayList<>();
         this.loadStoreUnits = new ArrayList<>();
 
-        this.ALUExecutionUnits.add(new ALUnit(0, this.registerFile, this.toWriteBack));
+        this.aluRS = new ArrayList<>();
+        this.branchRS = new ArrayList<>();
+        this.loadStoreRS = new ArrayList<>();
 
-        this.branchUnits.add(new BranchUnit(0, this.registerFile, this.toWriteBack));
-
-        this.loadStoreUnits.add(new LoadStoreUnit(0, this.registerFile, this.toWriteBack));
-
-        System.out.println(program.toString());
+        constructExecutionUnits(1, 1, 1);
 
         this.memory.setMemoryByAddress(10, 45);
 
@@ -60,6 +58,8 @@ public class Processor {
         this.running = true;
 
         this.interactive = interactive;
+
+        System.out.println(program.toString());
     }
 
     public void process() {
@@ -70,21 +70,32 @@ public class Processor {
         Scanner input = new Scanner(System.in);
 
         while (this.running) {
-            switch (step) {
-                case 0:
-                    fetch();
-                    break;
-                case 1:
-                    decode();
-                    break;
-                case 2:
-                    execute();
-                    numInstructionsExecuted++;
-                    break;
-                case 3:
-                    writeBack();
-                    break;
-            }
+            // switch (step) {
+            //     case 0:
+            //         fetch();
+            //         break;
+            //     case 1:
+            //         decode();
+            //         break;
+            //     case 2:
+            //         execute();
+            //         numInstructionsExecuted++;
+            //         break;
+            //     case 3:
+            //         writeBack();
+            //         break;
+            // }
+
+            if (this.interactive)
+                System.out.println("STATUS CYCLE: " + numCycles + "\n");
+
+            writeBack();
+
+            execute();
+
+            decode();
+
+            fetch();
 
             numCycles++;
 
@@ -94,18 +105,18 @@ public class Processor {
             this.running = canProcess();
 
             if (this.interactive) {
-                printStatus(numCycles);
+                printStatus();
                 input.nextLine();
             }
         }
 
-        printFinalStats(numCycles, numInstructionsExecuted);
+        printFinalStats(numCycles);
 
         input.close();
     }
 
     private boolean canProcess() {
-        return !this.encodedInstructions.isEmpty() || !this.toWriteBack.isEmpty()
+        return !this.encodedInstructions.isEmpty() || !this.writeBackBuffer.isEmpty()
                 || unitsHaveBufferedInstructions() || unitsAreExecuting() || instructionsToFetch();
     }
 
@@ -118,7 +129,7 @@ public class Processor {
         }
 
         if (this.interactive)
-            System.out.println("Fetched " + nextEncodedInstruction);
+            System.out.println("FETCHED: " + nextEncodedInstruction);
 
         this.encodedInstructions.add(nextEncodedInstruction);
 
@@ -132,34 +143,32 @@ public class Processor {
             Instruction nextInstruction = instructionParser.parseInstruction(s);
 
             if (this.interactive)
-                System.out.println("Decoded into: " + nextInstruction.toString());
+                System.out.println("DECODED: " + nextInstruction.toString());
 
             if (nextInstruction instanceof ALUInstruction) {
-                this.ALUExecutionUnits.stream().min((ExecutionUnit a, ExecutionUnit b) -> a.getBufferSize() - b.getBufferSize())
-                    .get().bufferInstruction((ALUInstruction) nextInstruction);
+                this.aluRS.stream().min((ReservationStation a, ReservationStation b) -> a.getBufferSize() - b.getBufferSize())
+                    .get().issue(nextInstruction);
 
-                if (this.interactive)
-                    System.out.println("Added " + nextInstruction.toString() + " to ALU Instruction buffer");
             } else if (nextInstruction instanceof BranchInstruction) {
-                this.branchUnits.stream().min((ExecutionUnit a, ExecutionUnit b) -> a.getBufferSize() - b.getBufferSize())
-                .get().bufferInstruction((BranchInstruction) nextInstruction);
+                this.branchRS.stream().min((ReservationStation a, ReservationStation b) -> a.getBufferSize() - b.getBufferSize())
+                .get().issue((BranchInstruction) nextInstruction);
 
-                if (this.interactive)
-                    System.out.println("Added " + nextInstruction.toString() + " to Branch Instruction buffer");
             } else if (nextInstruction instanceof LoadStoreInstruction) {
-                this.loadStoreUnits.stream().min((ExecutionUnit a, ExecutionUnit b) -> a.getBufferSize() - b.getBufferSize())
-                .get().bufferInstruction((LoadStoreInstruction) nextInstruction);
+                this.loadStoreRS.stream().min((ReservationStation a, ReservationStation b) -> a.getBufferSize() - b.getBufferSize())
+                .get().issue((LoadStoreInstruction) nextInstruction);
 
-                if (this.interactive)
-                    System.out.println("Added " + nextInstruction.toString() + " to Load/Store Instruction buffer");
             } else {
                 throw new RuntimeException("Unrecognised instruction.");
             }
         }
+
+        this.aluRS.forEach(ReservationStation::dispatch);
+        this.branchRS.forEach(ReservationStation::dispatch);
+        this.loadStoreRS.forEach(ReservationStation::dispatch);
     }
 
     private void execute() {
-        this.ALUExecutionUnits.forEach(alUnit -> alUnit.execute(this));
+        this.aluExecutionUnits.forEach(alUnit -> alUnit.execute(this));
 
         this.branchUnits.forEach(branchUnit -> branchUnit.execute(this));
 
@@ -167,21 +176,21 @@ public class Processor {
     }
 
     public void writeBack() {
-        if (this.toWriteBack.isEmpty())
+        if (this.writeBackBuffer.isEmpty())
             return;
 
-        Instruction i = this.toWriteBack.remove(0);
+        Instruction i = this.writeBackBuffer.remove(0);
 
         i.writeBack(this.registerFile);
+        i.setDestinationValid(this.registerFile, true);
 
         if (this.interactive)
-            System.out.println("Wrote back: " + i.toString());
+            System.out.println("WROTE BACK: " + i.toString());
     }
 
-    private void printStatus(Integer cycle) {
-        System.out.println("STATUS CYCLE: " + cycle + "\n");
-        System.out.println("Arithmetic Logic Units:");
-        this.ALUExecutionUnits.forEach(alUnit -> System.out.println("ID " + alUnit.getId() + " | " + alUnit.getStatus()));
+    private void printStatus() {
+        System.out.println("\nArithmetic Logic Units:");
+        this.aluExecutionUnits.forEach(alUnit -> System.out.println("ID " + alUnit.getId() + " | " + alUnit.getStatus()));
         System.out.println();
 
         System.out.println("Branch Units:");
@@ -195,7 +204,12 @@ public class Processor {
         System.out.println(this.registerFile.toString());
     }
 
-    private void printFinalStats(Integer numCycles, Integer numInstructionsExecuted) {
+    private void printFinalStats(Integer numCycles) {
+        Integer numInstructionsExecuted = 0;
+        numInstructionsExecuted += this.aluExecutionUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
+        numInstructionsExecuted += this.branchUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
+        numInstructionsExecuted += this.loadStoreUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
+
         System.out.println("Number of cycles: " + numCycles);
         System.out.println("Number of instructions executed: " + numInstructionsExecuted);
         if (numInstructionsExecuted > 0)
@@ -216,7 +230,7 @@ public class Processor {
     }
 
     private boolean unitsAreExecuting() {
-        boolean ALUExecuting = this.ALUExecutionUnits.stream().anyMatch(ExecutionUnit::isExecuting);
+        boolean ALUExecuting = this.aluExecutionUnits.stream().anyMatch(ExecutionUnit::isExecuting);
         boolean branchExecuting = this.branchUnits.stream().anyMatch(ExecutionUnit::isExecuting);
         boolean loadStoreExecuting = this.loadStoreUnits.stream().anyMatch(ExecutionUnit::isExecuting);
 
@@ -224,11 +238,36 @@ public class Processor {
     }
 
     private boolean unitsHaveBufferedInstructions() {
-        boolean ALUHaveInstructions = this.ALUExecutionUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
+        boolean ALUHaveInstructions = this.aluExecutionUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
         boolean branchHaveInstructions = this.branchUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
         boolean loadStoreHaveInstructions = this.loadStoreUnits.stream().noneMatch(ExecutionUnit::bufferIsEmpty);
 
         return ALUHaveInstructions || branchHaveInstructions || loadStoreHaveInstructions;
+    }
+
+    private void constructExecutionUnits(Integer alu, Integer branch, Integer loadStore) {
+        Integer rId = 0;
+
+        for (int a = 0; a < alu; a++) {
+            ALUnit e = new ALUnit(a, this.registerFile, this.writeBackBuffer, this.interactive);
+            this.aluExecutionUnits.add(e);
+            this.aluRS.add(new ReservationStation(rId, e, this.registerFile));
+            rId++;
+        }
+
+        for (int b = 0; b < alu; b++) {
+            BranchUnit e = new BranchUnit(b, this.registerFile, this.writeBackBuffer, this.interactive);
+            this.branchUnits.add(e);
+            this.branchRS.add(new ReservationStation(rId, e, this.registerFile));
+            rId++;
+        }
+
+        for (int b = 0; b < alu; b++) {
+            LoadStoreUnit e = new LoadStoreUnit(b, this.registerFile, this.writeBackBuffer, this.interactive);
+            this.loadStoreUnits.add(e);
+            this.loadStoreRS.add(new ReservationStation(rId, e, this.registerFile));
+            rId++;
+        }
     }
 
     public Memory getMemory() {

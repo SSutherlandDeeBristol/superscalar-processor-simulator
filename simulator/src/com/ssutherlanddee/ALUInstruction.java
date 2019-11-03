@@ -1,5 +1,8 @@
 package com.ssutherlanddee;
 
+import java.util.List;
+import java.util.Arrays;
+
 public abstract class ALUInstruction extends Instruction {
 
     protected Integer destinationRegister;
@@ -19,15 +22,25 @@ public abstract class ALUInstruction extends Instruction {
     }
 
     @Override
-    public void setOperands(RegisterFile registerFile) {
-        this.operandValA = registerFile.getRegister(sourceRegisterA).get();
-        this.operandValB = registerFile.getRegister(sourceRegisterB).get();
+    public List<Integer> registerOperands() {
+        return Arrays.asList(destinationRegister, sourceRegisterA, sourceRegisterB);
     }
 
     @Override
-    public void execute(Processor processor) {
-
+    public void setOperands(RegisterFile registerFile) {
+        if (this.sourceRegisterA != -1)
+            this.operandValA = registerFile.getRegister(sourceRegisterA).get();
+        if (this.sourceRegisterB != -1)
+            this.operandValB = registerFile.getRegister(sourceRegisterB).get();
     }
+
+    @Override
+    public void setDestinationValid(RegisterFile registerFile, boolean valid) {
+        registerFile.getRegister(this.destinationRegister).setValid(valid);
+    }
+
+    @Override
+    public void execute(Processor processor) {}
 
     @Override
     public void writeBack(RegisterFile registerFile) {

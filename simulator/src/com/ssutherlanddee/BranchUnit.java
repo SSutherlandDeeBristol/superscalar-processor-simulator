@@ -4,8 +4,8 @@ import java.util.List;
 
 public class BranchUnit extends ExecutionUnit {
 
-    public BranchUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack) {
-        super(id, registerFile, toWriteBack);
+    public BranchUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack, boolean interactive) {
+        super(id, registerFile, toWriteBack, interactive);
     }
 
     @Override
@@ -19,11 +19,13 @@ public class BranchUnit extends ExecutionUnit {
             // set the delay counter to simulate latency e.g load/store instructions
             this.cycleCounter = this.currentInstruction.getNumCycles();
 
-            // set the values of the operands at this point
-            this.currentInstruction.setOperands(this.registerFile);
-
             //execute the instruction
             this.currentInstruction.execute(processor);
+
+            this.numInstructionsExecuted++;
+
+            if (this.interactive)
+                System.out.println("BRANCH EXECUTED: " + this.currentInstruction.toString());
 
             this.finishedInstruction = false;
         }

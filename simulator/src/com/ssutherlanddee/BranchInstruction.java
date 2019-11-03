@@ -1,5 +1,8 @@
 package com.ssutherlanddee;
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class BranchInstruction extends Instruction {
 
     protected Integer valueA;
@@ -17,18 +20,27 @@ public abstract class BranchInstruction extends Instruction {
     }
 
     @Override
+    public List<Integer> registerOperands() {
+        return Arrays.asList(sourceRegisterA, sourceRegisterB);
+    }
+
+    @Override
     public void setOperands(RegisterFile registerFile) {
-        this.valueA = registerFile.getRegister(this.sourceRegisterA).get();
-        this.valueB = registerFile.getRegister(this.sourceRegisterB).get();
+        if (this.sourceRegisterA != -1)
+            this.valueA = registerFile.getRegister(this.sourceRegisterA).get();
+
+        if (this.sourceRegisterB != -1)
+            this.valueB = registerFile.getRegister(this.sourceRegisterB).get();
     }
 
     @Override
-    public void execute(Processor processor) {
-    }
+    public void setDestinationValid(RegisterFile registerFile, boolean valid) {}
 
     @Override
-    public void writeBack(RegisterFile registerFile) {
-    }
+    public void execute(Processor processor) {}
+
+    @Override
+    public void writeBack(RegisterFile registerFile) {}
 
     @Override
     public String toString() {

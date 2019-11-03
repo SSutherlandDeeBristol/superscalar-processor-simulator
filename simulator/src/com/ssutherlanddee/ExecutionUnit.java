@@ -19,7 +19,11 @@ public abstract class ExecutionUnit {
 
     protected boolean finishedInstruction;
 
-    public ExecutionUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack) {
+    protected Integer numInstructionsExecuted;
+
+    protected boolean interactive;
+
+    public ExecutionUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack, boolean interactive) {
         this.id = id;
         this.cycleCounter = 0;
         this.currentInstruction = null;
@@ -27,6 +31,8 @@ public abstract class ExecutionUnit {
         this.toWriteBack = toWriteBack;
         this.instructionBuffer = new ArrayList<>();
         this.finishedInstruction = true;
+        this.numInstructionsExecuted = 0;
+        this.interactive = interactive;
     }
 
     public abstract void execute(Processor processor);
@@ -48,14 +54,18 @@ public abstract class ExecutionUnit {
     }
 
     public String getStatus() {
-        if (!this.finishedInstruction) {
+        if (this.currentInstruction != null) {
             return this.currentInstruction.toString() + " | counter: " + this.cycleCounter + "\n";
         } else {
-            return "No instruction executing\n";
+            return "No Instruction Executing";
         }
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getNumInstructionsExecuted() {
+        return this.numInstructionsExecuted;
     }
 }

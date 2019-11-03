@@ -2,32 +2,23 @@ package com.ssutherlanddee;
 
 public class StoreInstruction extends LoadStoreInstruction {
 
-    private Integer destinationRegister;
-    private Integer sourceRegister;
     private Integer offset;
+    private Integer baseAddress;
 
     public StoreInstruction(Integer sourceRegister, Integer destinationRegister, Integer offset) {
-        super(Instruction.Opcode.st, 1);
-        this.destinationRegister = destinationRegister;
-        this.sourceRegister = sourceRegister;
+        super(Instruction.Opcode.st, 1, destinationRegister, sourceRegister);
         this.offset = offset;
     }
 
     @Override
     public void setOperands(RegisterFile registerFile) {
-
+        this.sourceValue = registerFile.getRegister(this.sourceRegister).get();
+        this.baseAddress = registerFile.getRegister(this.destinationRegister).get();
     }
 
     @Override
     public void execute(Processor processor) {
-        Integer toStore = processor.getRegisterFile().getRegister(this.sourceRegister).get();
-        Integer baseAddress = processor.getRegisterFile().getRegister(this.destinationRegister).get();
-        processor.getMemory().setMemoryByAddress(baseAddress + this.offset, toStore);
-    }
-
-    @Override
-    public void writeBack(RegisterFile registerFile) {
-
+        processor.getMemory().setMemoryByAddress(this.baseAddress + this.offset, this.sourceValue);
     }
 
     @Override

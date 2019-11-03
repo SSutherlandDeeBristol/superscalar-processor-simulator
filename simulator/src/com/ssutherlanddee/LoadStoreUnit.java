@@ -4,12 +4,15 @@ import java.util.List;
 
 public class LoadStoreUnit extends ExecutionUnit {
 
-    public LoadStoreUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack) {
-        super(id, registerFile, toWriteBack);
+    public LoadStoreUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack, boolean interactive) {
+        super(id, registerFile, toWriteBack, interactive);
     }
 
     @Override
     public void execute(Processor processor) {
+        if (this.finishedInstruction)
+            this.currentInstruction = null;
+
         // if we can pull in a new instruction from the buffer
         if (this.finishedInstruction && !this.instructionBuffer.isEmpty()) {
 
@@ -19,11 +22,13 @@ public class LoadStoreUnit extends ExecutionUnit {
             // set the delay counter to simulate latency e.g load/store instructions
             this.cycleCounter = this.currentInstruction.getNumCycles();
 
-            // set the values of the operands at this point
-            this.currentInstruction.setOperands(this.registerFile);
-
             //execute the instruction
             this.currentInstruction.execute(processor);
+
+            this.numInstructionsExecuted++;
+
+            if (this.interactive)
+                System.out.println("LOAD/STORE EXECUTED: " + this.currentInstruction.toString());
 
             this.finishedInstruction = false;
         }
