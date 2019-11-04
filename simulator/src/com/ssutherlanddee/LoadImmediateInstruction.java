@@ -5,7 +5,7 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
     private Integer immediate;
 
     public LoadImmediateInstruction(Integer destinationRegister, Integer immediate) {
-        super(Opcode.ldi, 1, destinationRegister, -1);
+        super(Opcode.ldi, 2, destinationRegister, -1);
         this.immediate = immediate;
     }
 

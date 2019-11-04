@@ -10,6 +10,9 @@ public class BranchUnit extends ExecutionUnit {
 
     @Override
     public void execute(Processor processor) {
+        if (this.finishedInstruction)
+            this.currentInstruction = null;
+
         // if we can pull in a new instruction from the buffer
         if (this.finishedInstruction && !this.instructionBuffer.isEmpty()) {
 

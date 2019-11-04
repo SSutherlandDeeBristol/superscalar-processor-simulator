@@ -23,6 +23,7 @@ public class ReservationStation {
         } else {
             instructionBuffer.add(i);
         }
+        i.setDestinationValid(this.registerFile, false);
     }
 
     public void dispatch() {
@@ -37,12 +38,19 @@ public class ReservationStation {
 
     private void dispatchInstruction(Instruction i) {
         i.setOperands(this.registerFile);
-        i.setDestinationValid(this.registerFile, false);
         this.executionUnit.bufferInstruction(i);
     }
 
     public Integer getBufferSize() {
         return this.instructionBuffer.size();
+    }
+
+    public boolean bufferIsEmpty() {
+        return this.instructionBuffer.isEmpty();
+    }
+
+    public boolean bufferNotEmpty() {
+        return !bufferIsEmpty();
     }
 
     public Integer getId() {

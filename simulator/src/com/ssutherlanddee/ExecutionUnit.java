@@ -41,6 +41,10 @@ public abstract class ExecutionUnit {
         return this.instructionBuffer.isEmpty();
     }
 
+    public boolean bufferNotEmpty() {
+        return !bufferIsEmpty();
+    }
+
     public Integer getBufferSize() {
         return this.instructionBuffer.size();
     }
@@ -53,9 +57,13 @@ public abstract class ExecutionUnit {
         return !this.finishedInstruction;
     }
 
+    public boolean isIdle() {
+        return !isExecuting();
+    }
+
     public String getStatus() {
         if (this.currentInstruction != null) {
-            return this.currentInstruction.toString() + " | counter: " + this.cycleCounter + "\n";
+            return this.currentInstruction.toString() + " | counter: " + this.cycleCounter;
         } else {
             return "No Instruction Executing";
         }

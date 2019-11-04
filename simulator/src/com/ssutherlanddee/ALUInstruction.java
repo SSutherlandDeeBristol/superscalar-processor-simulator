@@ -23,7 +23,7 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public List<Integer> registerOperands() {
-        return Arrays.asList(destinationRegister, sourceRegisterA, sourceRegisterB);
+        return Arrays.asList(sourceRegisterA, sourceRegisterB);
     }
 
     @Override
