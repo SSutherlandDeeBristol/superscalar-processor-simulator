@@ -24,7 +24,7 @@ public class NullInstruction extends Instruction {
     public void setOperands(RegisterFile registerFile) {}
 
     @Override
-    public void writeBack(RegisterFile registerFile) {}
+    public void writeBack(Processor processor) {}
 
     @Override
     public String toString() {

@@ -13,4 +13,9 @@ public class AddImmediateInstruction extends ALUInstruction {
     public void execute(Processor processor) {
         this.result = this.operandValA + this.immediate;
     }
+
+    @Override
+    public String toString() {
+        return String.format(Opcode.addi + " r%d r%d %d", this.destinationRegister, this.sourceRegisterA, this.immediate);
+    }
 }

@@ -5,20 +5,20 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
     private Integer immediate;
     private Integer offset;
 
-    public StoreImmediateInstruction(Integer sourceRegister, Integer offset, Integer immediate) {
-        super(Instruction.Opcode.sti, 1, -1, sourceRegister);
+    public StoreImmediateInstruction(Integer sourceRegisterA, Integer offset, Integer immediate) {
+        super(Instruction.Opcode.sti, 1, -1, sourceRegisterA, -1);
         this.immediate = immediate;
         this.offset = offset;
     }
 
     @Override
-    public void execute(Processor processor) {
-        processor.getMemory().setMemoryByAddress(this.sourceValue + this.offset, this.immediate);
+    public void writeBack(Processor processor) {
+        processor.getMemory().setMemoryByAddress(this.sourceValueA + this.offset, this.immediate);
     }
 
     @Override
     public String toString() {
-        return Instruction.Opcode.sti + " r" + this.destinationRegister + " " + this.offset + " " + this.immediate;
+        return Instruction.Opcode.sti + " r" + this.sourceRegisterA + " " + this.offset + " " + this.immediate;
     }
 
 }

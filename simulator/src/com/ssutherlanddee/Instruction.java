@@ -7,10 +7,20 @@ public abstract class Instruction {
 
     private Opcode opcode;
     private Integer numCycles;
+    private boolean finishedExecuting;
 
     public Instruction(Opcode opcode, Integer delay) {
         this.opcode = opcode;
         this.numCycles = delay;
+        this.finishedExecuting = false;
+    }
+
+    public void setFinishedExecuting(boolean f) {
+        this.finishedExecuting = f;
+    }
+
+    public boolean getFinishedExecuting() {
+        return this.finishedExecuting;
     }
 
     public Opcode getOpcode() {
@@ -29,7 +39,7 @@ public abstract class Instruction {
 
     public abstract void execute(Processor processor);
 
-    public abstract void  writeBack(RegisterFile registerFile);
+    public abstract void  writeBack(Processor processor);
 
     public abstract String toString();
 }

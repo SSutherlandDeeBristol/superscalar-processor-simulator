@@ -32,7 +32,7 @@ addi r1 r1 1 # swapped++
 addi r2 r2 1 # i++
 bne r2 r0 -9 # branch if i != n
 
-bne r1 r9 -12 # repeat the loop if swapped > 0
+bne r1 r9 -13 # repeat the loop if swapped > 0
 
 # Load the array back into the registers
 ld r0 r9 0

@@ -43,8 +43,8 @@ public abstract class ALUInstruction extends Instruction {
     public void execute(Processor processor) {}
 
     @Override
-    public void writeBack(RegisterFile registerFile) {
-        registerFile.getRegister(this.destinationRegister).set(this.result);
+    public void writeBack(Processor processor) {
+        processor.getRegisterFile().getRegister(this.destinationRegister).set(this.result);
     }
 
     @Override

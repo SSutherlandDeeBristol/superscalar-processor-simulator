@@ -14,7 +14,6 @@ public class CompareInstruction extends ALUInstruction {
 
     @Override
     public void execute(Processor processor) {
-
         if (this.operandValA < this.operandValB) {
             this.result = -1;
         } else if (this.operandValA > this.operandValB) {
@@ -23,8 +22,8 @@ public class CompareInstruction extends ALUInstruction {
     }
 
     @Override
-    public void writeBack(RegisterFile registerFile) {
-        registerFile.getRegister(this.destinationRegister).set(this.result);
+    public void writeBack(Processor processor) {
+        processor.getRegisterFile().getRegister(this.destinationRegister).set(this.result);
     }
 
     @Override

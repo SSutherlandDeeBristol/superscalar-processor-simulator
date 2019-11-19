@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ALUnit extends ExecutionUnit {
 
-    public ALUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack, boolean interactive) {
-        super(id, registerFile, toWriteBack, interactive);
+    public ALUnit(Integer id, RegisterFile registerFile, boolean interactive) {
+        super(id, registerFile, interactive);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ALUnit extends ExecutionUnit {
             this.cycleCounter--;
 
         if (this.cycleCounter < 1 && !this.finishedInstruction) {
-            this.toWriteBack.add(this.currentInstruction);
+            this.currentInstruction.setFinishedExecuting(true);
             this.finishedInstruction = true;
         }
     }

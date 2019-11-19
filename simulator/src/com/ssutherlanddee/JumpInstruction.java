@@ -14,7 +14,8 @@ public class JumpInstruction extends BranchInstruction {
 
     @Override
     public void execute(Processor processor) {
-        processor.getPC().set(this.jumpTo);
+        this.shouldBranch = true;
+        this.branchTo = jumpTo;
     }
 
     @Override

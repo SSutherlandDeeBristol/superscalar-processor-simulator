@@ -9,7 +9,11 @@ public abstract class BranchInstruction extends Instruction {
     protected Integer valueB;
     protected Integer sourceRegisterA;
     protected Integer sourceRegisterB;
+    protected Integer PC;
     protected Integer offset;
+
+    protected boolean shouldBranch;
+    protected Integer branchTo;
 
     public BranchInstruction(Opcode opcode, Integer delay, Integer sourceRegisterA,
                              Integer sourceRegisterB, Integer offset) {
@@ -17,6 +21,9 @@ public abstract class BranchInstruction extends Instruction {
         this.sourceRegisterA = sourceRegisterA;
         this.sourceRegisterB = sourceRegisterB;
         this.offset = offset;
+        this.PC = 0;
+        this.shouldBranch = false;
+        this.branchTo = 0;
     }
 
     @Override
@@ -34,13 +41,24 @@ public abstract class BranchInstruction extends Instruction {
     }
 
     @Override
-    public void setDestinationValid(RegisterFile registerFile, boolean valid) {}
+    public void setDestinationValid(RegisterFile registerFile, boolean valid) {
+        registerFile.getPC().setValid(valid);
+    }
 
     @Override
     public void execute(Processor processor) {}
 
     @Override
-    public void writeBack(RegisterFile registerFile) {}
+    public void writeBack(Processor processor) {
+        if (this.shouldBranch) {
+            processor.getRegisterFile().getPC().set(this.branchTo);
+            processor.flushPipeline();
+        }
+    }
+
+    public void setPC(Integer PC) {
+        this.PC = PC;
+    }
 
     @Override
     public String toString() {

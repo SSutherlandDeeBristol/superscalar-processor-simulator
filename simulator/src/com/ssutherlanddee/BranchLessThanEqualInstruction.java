@@ -9,8 +9,8 @@ public class BranchLessThanEqualInstruction extends BranchInstruction {
     @Override
     public void execute(Processor processor) {
         if (valueA <= valueB) {
-            Integer pcValue = processor.getPC().get();
-            processor.getPC().set(pcValue + this.offset);
+            this.branchTo = this.PC + this.offset;
+            this.shouldBranch = true;
         }
     }
 }

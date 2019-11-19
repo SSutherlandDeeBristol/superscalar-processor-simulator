@@ -5,13 +5,13 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
     private Integer immediate;
 
     public LoadImmediateInstruction(Integer destinationRegister, Integer immediate) {
-        super(Opcode.ldi, 2, destinationRegister, -1);
+        super(Opcode.ldi, 2, destinationRegister, -1, -1);
         this.immediate = immediate;
     }
 
     @Override
-    public void writeBack(RegisterFile registerFile) {
-        registerFile.getRegister(this.destinationRegister).set(this.immediate);
+    public void writeBack(Processor processor) {
+        processor.getRegisterFile().getRegister(this.destinationRegister).set(this.immediate);
     }
 
     @Override

@@ -1,11 +1,9 @@
 package com.ssutherlanddee;
 
-import java.util.List;
-
 public class BranchUnit extends ExecutionUnit {
 
-    public BranchUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack, boolean interactive) {
-        super(id, registerFile, toWriteBack, interactive);
+    public BranchUnit(Integer id, RegisterFile registerFile, boolean interactive) {
+        super(id, registerFile, interactive);
     }
 
     @Override
@@ -37,7 +35,7 @@ public class BranchUnit extends ExecutionUnit {
             this.cycleCounter--;
 
         if (this.cycleCounter < 1 && !this.finishedInstruction) {
-            this.toWriteBack.add(this.currentInstruction);
+            this.currentInstruction.setFinishedExecuting(true);
             this.finishedInstruction = true;
         }
     }

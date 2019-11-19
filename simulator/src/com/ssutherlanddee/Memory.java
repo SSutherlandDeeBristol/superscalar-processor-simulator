@@ -42,4 +42,10 @@ public class Memory {
     public void setMemoryByAddress(Integer address, Object object) {
         this.mainMemory.put(address, object);
     }
+
+    public void printContents(Integer maxAddress) {
+        for (int i = 0; i < maxAddress; ++i) {
+            System.out.println(i + "| " + getMemoryByAddress(i).toString());
+        }
+    }
 }

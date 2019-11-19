@@ -15,20 +15,17 @@ public abstract class ExecutionUnit {
 
     protected List<Instruction> instructionBuffer;
 
-    protected List<Instruction> toWriteBack;
-
     protected boolean finishedInstruction;
 
     protected Integer numInstructionsExecuted;
 
     protected boolean interactive;
 
-    public ExecutionUnit(Integer id, RegisterFile registerFile, List<Instruction> toWriteBack, boolean interactive) {
+    public ExecutionUnit(Integer id, RegisterFile registerFile, boolean interactive) {
         this.id = id;
         this.cycleCounter = 0;
         this.currentInstruction = null;
         this.registerFile = registerFile;
-        this.toWriteBack = toWriteBack;
         this.instructionBuffer = new ArrayList<>();
         this.finishedInstruction = true;
         this.numInstructionsExecuted = 0;
@@ -36,6 +33,12 @@ public abstract class ExecutionUnit {
     }
 
     public abstract void execute(Processor processor);
+
+    public void flush() {
+        this.instructionBuffer.clear();
+        this.currentInstruction = null;
+        this.finishedInstruction = true;
+    }
 
     public boolean bufferIsEmpty() {
         return this.instructionBuffer.isEmpty();
