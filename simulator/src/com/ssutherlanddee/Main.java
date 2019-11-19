@@ -10,9 +10,9 @@ public class Main {
             if (args.length > 1)
                 interactive = Boolean.parseBoolean(args[1]);
 
-            Simulator simulator = new Simulator(program, interactive);
+            Processor processor = new Processor(program, interactive);
 
-            simulator.run();
+            processor.process();
         } else {
             System.out.println("No assembly file provided. Nothing to do.");
         }
