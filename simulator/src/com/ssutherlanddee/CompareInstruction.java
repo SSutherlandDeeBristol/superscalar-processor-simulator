@@ -19,15 +19,17 @@ public class CompareInstruction extends ALUInstruction {
         } else if (this.operandValA > this.operandValB) {
             this.result = 1;
         }
+        this.state = State.EXECUTING;
     }
 
     @Override
     public void writeBack(Processor processor) {
         processor.getRegisterFile().getRegister(this.destinationRegister).set(this.result);
+        this.state = State.FINISHED;
     }
 
     @Override
     public String toString() {
-        return Opcode.cmp + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB;
+        return Opcode.cmp + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB + " | " + this.state;
     }
 }

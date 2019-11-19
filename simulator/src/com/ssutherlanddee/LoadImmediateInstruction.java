@@ -16,6 +16,6 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Opcode.ldi + " r" + this.destinationRegister + " " + this.immediate;
+        return Opcode.ldi + " r" + this.destinationRegister + " " + this.immediate + " | " + this.state;
     }
 }

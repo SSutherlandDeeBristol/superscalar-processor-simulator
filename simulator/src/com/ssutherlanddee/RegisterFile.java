@@ -61,9 +61,9 @@ public class RegisterFile {
     }
 
     public String toString() {
-        String s = "PC: " + this.PC.get() + " | Valid: " + this.PC.isValid() + "\n";
+        String s = String.format("Program Counter: %3d | Valid: %d\n\n", this.PC.get(), this.PC.isValid()? 1 : 0);
         for (Register r : this.registers) {
-            s = s.concat("Register " + registers.indexOf(r) + " : " + r.get() + " | Valid: " + r.isValid() + '\n');
+            s = s.concat(String.format("Register %5d : %3d | Valid: %d\n", registers.indexOf(r), r.get(), r.isValid() ? 1 : 0));
         }
         return s;
     }

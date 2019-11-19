@@ -2,6 +2,8 @@ package com.ssutherlanddee;
 
 import java.util.List;
 
+import com.ssutherlanddee.Instruction.State;
+
 public class LoadStoreUnit extends ExecutionUnit {
 
     public LoadStoreUnit(Integer id, RegisterFile registerFile, boolean interactive) {

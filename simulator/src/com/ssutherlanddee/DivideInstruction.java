@@ -9,5 +9,6 @@ public class DivideInstruction extends ALUInstruction {
     @Override
     public void execute(Processor processor) {
         this.result = this.operandValA / this.operandValB;
+        this.state = State.EXECUTING;
     }
 }

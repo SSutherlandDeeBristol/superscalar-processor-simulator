@@ -67,7 +67,7 @@ public class Processor {
             cycle++;
 
             if (this.interactive)
-                System.out.println("STATUS CYCLE: " + cycle + "\n");
+                System.out.println("STATUS | CYCLE: " + cycle + "\n");
 
             writeBack();
 
@@ -212,14 +212,17 @@ public class Processor {
         numInstructionsExecuted += this.branchUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
         numInstructionsExecuted += this.loadStoreUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
 
+        Integer numInstructionsCompleted = this.reorderBuffer.numInstructionsCompleted();
+
         System.out.println("Number of cycles: " + numCycles);
         System.out.println("Number of instructions executed: " + numInstructionsExecuted);
-        if (numInstructionsExecuted > 0)
-            System.out.println(String.format("Number of cycles per instruction: %.2f", ((float) numCycles / numInstructionsExecuted)));
+        System.out.println("Number of instructions completed: " + numInstructionsCompleted);
+        if (numInstructionsCompleted > 0)
+            System.out.println(String.format("Number of cycles per completed instruction: %.2f", ((float) numCycles / numInstructionsCompleted)));
 
-        System.out.println(String.format("Number of instructions per cycle: %.2f\n", ((float) numInstructionsExecuted / numCycles)));
+        System.out.println(String.format("Number of instructions completed per cycle: %.2f\n", ((float) numInstructionsCompleted / numCycles)));
 
-        System.out.println("Final register state:");
+        System.out.println("Final register state:\n");
         System.out.println(this.registerFile.toString());
     }
 

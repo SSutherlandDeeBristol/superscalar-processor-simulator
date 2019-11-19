@@ -71,6 +71,9 @@ public class ReservationStation {
     }
 
     public void printContents() {
-        this.instructionBuffer.forEach(i -> System.out.println(i.toString()));
+        if (this.instructionBuffer.isEmpty()) {
+            System.out.println(String.format("ID %d | EMPTY", this.id));
+        }
+        this.instructionBuffer.forEach(i -> System.out.println(String.format("ID %d | %s", this.id, i.toString())));
     }
 }

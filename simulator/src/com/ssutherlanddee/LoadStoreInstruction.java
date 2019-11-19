@@ -38,7 +38,9 @@ public class LoadStoreInstruction extends Instruction {
     }
 
     @Override
-    public void execute(Processor processor) {}
+    public void execute(Processor processor) {
+        this.state = State.EXECUTING;
+    }
 
     @Override
     public void writeBack(Processor processor) {}

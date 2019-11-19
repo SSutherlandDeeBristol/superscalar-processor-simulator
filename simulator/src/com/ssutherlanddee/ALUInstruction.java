@@ -49,6 +49,6 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return String.format(this.getOpcode() + " r%d r%d r%d", this.destinationRegister, this.sourceRegisterA, this.sourceRegisterB);
+        return String.format(this.getOpcode() + " r%d r%d r%d | %s", this.destinationRegister, this.sourceRegisterA, this.sourceRegisterB, this.state);
     }
 }

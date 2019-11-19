@@ -45,7 +45,7 @@ public class Memory {
 
     public void printContents(Integer maxAddress) {
         for (int i = 0; i < maxAddress; ++i) {
-            System.out.println(i + "| " + getMemoryByAddress(i).toString());
+            System.out.println(String.format("%3d | %s", i, getMemoryByAddress(i).toString()));
         }
     }
 }

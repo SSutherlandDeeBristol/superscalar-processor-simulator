@@ -62,6 +62,6 @@ public abstract class BranchInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return this.getOpcode() + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB + " " + this.offset;
+        return this.getOpcode() + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB + " " + this.offset + " | " + this.state;
     }
 }

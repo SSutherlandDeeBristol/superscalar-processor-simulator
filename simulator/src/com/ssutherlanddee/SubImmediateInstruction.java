@@ -12,10 +12,11 @@ public class SubImmediateInstruction extends ALUInstruction {
     @Override
     public void execute(Processor processor) {
         this.result = this.operandValA - this.immediate;
+        this.state = State.EXECUTING;
     }
 
     @Override
     public String toString() {
-        return String.format(Opcode.subi + " r%d r%d %d", this.destinationRegister, this.sourceRegisterA, this.immediate);
+        return String.format(Opcode.subi + " r%d r%d %d | %s", this.destinationRegister, this.sourceRegisterA, this.immediate, this.state);
     }
 }

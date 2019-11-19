@@ -16,7 +16,7 @@ public class StoreInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Instruction.Opcode.st + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB + " " + this.offset;
+        return Instruction.Opcode.st + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB + " " + this.offset + " | " + this.state;
     }
 
 }

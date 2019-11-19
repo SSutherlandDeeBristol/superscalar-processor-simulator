@@ -12,5 +12,6 @@ public class BranchEqualInstruction extends BranchInstruction {
             this.branchTo = this.PC + this.offset;
             this.shouldBranch = true;
         }
+        this.state = State.EXECUTING;
     }
 }

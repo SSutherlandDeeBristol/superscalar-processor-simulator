@@ -18,7 +18,7 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Instruction.Opcode.sti + " r" + this.sourceRegisterA + " " + this.offset + " " + this.immediate;
+        return Instruction.Opcode.sti + " r" + this.sourceRegisterA + " " + this.offset + " " + this.immediate + " | " + this.state;
     }
 
 }

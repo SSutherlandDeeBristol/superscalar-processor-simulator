@@ -23,6 +23,6 @@ public class LoadInstruction extends LoadStoreInstruction {
 
     @Override
     public String toString() {
-        return Opcode.ld + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " " + this.offset;
+        return Opcode.ld + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " " + this.offset + " | " + this.state;
     }
 }

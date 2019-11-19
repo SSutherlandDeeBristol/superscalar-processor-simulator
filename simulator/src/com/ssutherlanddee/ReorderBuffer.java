@@ -7,12 +7,14 @@ public class ReorderBuffer {
     protected ArrayDeque<Instruction> buffer;
     protected RegisterFile registerFile;
     protected Memory memory;
-    protected Integer retiredPC;
+
+    protected Integer numInstructionsCompleted;
 
     public ReorderBuffer(RegisterFile registerFile, Memory memory) {
         this.buffer = new ArrayDeque<>();
         this.registerFile = registerFile;
         this.memory = memory;
+        this.numInstructionsCompleted = 0;
     }
 
     public void bufferInstruction(Instruction instruction) {
@@ -27,10 +29,15 @@ public class ReorderBuffer {
             Instruction i = this.buffer.removeLast();
             i.writeBack(processor);
             i.setDestinationValid(this.registerFile, true);
+            numInstructionsCompleted++;
 
             if (interactive)
                 System.out.println("WROTE BACK: " + i.toString());
         }
+    }
+
+    public Integer numInstructionsCompleted() {
+        return this.numInstructionsCompleted;
     }
 
     public boolean isEmpty() {
@@ -42,6 +49,9 @@ public class ReorderBuffer {
     }
 
     public void printContents() {
+        if (this.buffer.isEmpty()) {
+            System.out.println("EMPTY");
+        }
         this.buffer.forEach(i -> System.out.println(i.toString()));
     }
 }

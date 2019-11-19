@@ -3,6 +3,8 @@ package com.ssutherlanddee;
 import java.util.Collections;
 import java.util.List;
 
+import com.ssutherlanddee.Instruction.Opcode;
+
 public class JumpInstruction extends BranchInstruction {
 
     private Integer jumpTo;
@@ -16,6 +18,7 @@ public class JumpInstruction extends BranchInstruction {
     public void execute(Processor processor) {
         this.shouldBranch = true;
         this.branchTo = jumpTo;
+        this.state = State.EXECUTING;
     }
 
     @Override
@@ -25,6 +28,6 @@ public class JumpInstruction extends BranchInstruction {
 
     @Override
     public String toString() {
-        return "jmp " + this.jumpTo;
+        return Opcode.jmp + " " + this.jumpTo + " | " + this.state;
     }
 }

@@ -16,6 +16,6 @@ public class AddImmediateInstruction extends ALUInstruction {
 
     @Override
     public String toString() {
-        return String.format(Opcode.addi + " r%d r%d %d", this.destinationRegister, this.sourceRegisterA, this.immediate);
+        return String.format(Opcode.addi + " r%d r%d %d | %s", this.destinationRegister, this.sourceRegisterA, this.immediate, this.state);
     }
 }

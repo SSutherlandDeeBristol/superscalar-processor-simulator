@@ -9,10 +9,11 @@ public class MoveInstruction extends LoadStoreInstruction {
     @Override
     public void writeBack(Processor processor) {
         processor.getRegisterFile().getRegister(this.destinationRegister).set(this.sourceValueA);
+        this.state = State.FINISHED;
     }
 
     @Override
     public String toString() {
-        return Opcode.mov + " r" + this.destinationRegister + " r" + this.sourceRegisterA;
+        return Opcode.mov + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " | " + this.state;
     }
 }
