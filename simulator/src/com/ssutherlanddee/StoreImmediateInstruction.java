@@ -30,11 +30,6 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
     }
 
     @Override
-    public List<Operand> getSourceOperands() {
-        return Arrays.asList(destination);
-    }
-
-    @Override
     public void blockDestination(RegisterFile registerFile) {}
 
     @Override

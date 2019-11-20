@@ -1,8 +1,5 @@
 package com.ssutherlanddee;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.ssutherlanddee.Operand.OperandType;
 
 public class StoreInstruction extends LoadStoreInstruction {
@@ -30,11 +27,6 @@ public class StoreInstruction extends LoadStoreInstruction {
     @Override
     public boolean ready(RegisterFile registerFile) {
         return (this.destination.isReady() && this.sourceA.isReady());
-    }
-
-    @Override
-    public List<Operand> getSourceOperands() {
-        return Arrays.asList(this.destination, this.sourceA);
     }
 
     @Override

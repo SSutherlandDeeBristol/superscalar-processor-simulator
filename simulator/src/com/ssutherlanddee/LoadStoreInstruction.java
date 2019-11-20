@@ -40,11 +40,6 @@ public class LoadStoreInstruction extends Instruction {
     }
 
     @Override
-    public List<Operand> getSourceOperands() {
-        return Arrays.asList(sourceA, sourceB);
-    }
-
-    @Override
     public void blockDestination(RegisterFile registerFile) {
         registerFile.getRegister(this.destination.getContents()).block(this.tag);
     }

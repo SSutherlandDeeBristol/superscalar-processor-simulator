@@ -77,8 +77,6 @@ public abstract class Instruction {
 
     public abstract boolean ready(RegisterFile registerFile);
 
-    public abstract List<Operand> getSourceOperands();
-
     public abstract void blockDestination(RegisterFile registerFile);
 
     public abstract void freeDestination(RegisterFile registerFile);

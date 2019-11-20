@@ -206,7 +206,7 @@ public class Processor {
 
         System.out.println('\n' + this.registerFile.toString());
 
-        System.out.println("\nReservation Stations: ");
+        System.out.println("Reservation Stations: ");
         System.out.println("ALU: ");
         this.aluRS.forEach(ReservationStation::printContents);
         System.out.println("\nBranch: ");

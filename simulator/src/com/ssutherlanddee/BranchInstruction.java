@@ -40,11 +40,6 @@ public abstract class BranchInstruction extends Instruction {
     }
 
     @Override
-    public List<Operand> getSourceOperands() {
-        return Arrays.asList(sourceA, sourceB);
-    }
-
-    @Override
     public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         if (this.sourceA.getType() == OperandType.REGISTER)
             this.sourceA = updateRegisterOperand(this.sourceA, registerFile, reorderBuffer);

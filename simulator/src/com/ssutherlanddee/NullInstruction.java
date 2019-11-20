@@ -16,11 +16,6 @@ public class NullInstruction extends Instruction {
     public void broadcastTag(Integer tag, Integer value) {}
 
     @Override
-    public List<Operand> getSourceOperands() {
-        return Arrays.asList(this.operands);
-    }
-
-    @Override
     public void blockDestination(RegisterFile registerFile) {}
 
     @Override
