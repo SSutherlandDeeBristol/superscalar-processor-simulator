@@ -8,7 +8,7 @@ public class LoadImmediateInstruction extends LoadStoreInstruction {
 
     @Override
     public void writeBack(Processor processor) {
-        //processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.sourceA.getContents());
+        processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.sourceA.getContents());
     }
 
     @Override

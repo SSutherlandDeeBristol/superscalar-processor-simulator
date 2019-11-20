@@ -21,7 +21,7 @@ public class ReservationStation {
 
     public void issue(Instruction i) {
         // Set the operands to tags or values
-        i.updateOperands(this.registerFile);
+        i.updateOperands(this.registerFile, this.reorderBuffer);
         // Block the destination register
         i.blockDestination(this.registerFile);
         // Add the instruciton to the reorder buffer

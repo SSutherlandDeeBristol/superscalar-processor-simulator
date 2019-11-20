@@ -1,7 +1,7 @@
 package com.ssutherlanddee;
 
 public class Operand {
-    public enum OperandType {TAG, VALUE, REGISTER, NONE}
+    public enum OperandType {TAG, ROB, VALUE, REGISTER, NONE}
 
     protected OperandType type;
     protected Integer contents;
@@ -49,6 +49,8 @@ public class Operand {
             return String.valueOf(this.contents);
         } else if (this.type == OperandType.TAG) {
             return "t" + this.contents;
+        } else if (this.type == OperandType.ROB) {
+            return "rob" + this.contents;
         } else {
             return "";
         }

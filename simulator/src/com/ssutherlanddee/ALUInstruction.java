@@ -36,11 +36,11 @@ public abstract class ALUInstruction extends Instruction {
     }
 
     @Override
-    public void updateOperands(RegisterFile registerFile) {
+    public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         if (this.sourceA.getType() == OperandType.REGISTER)
-            this.sourceA = registerFile.getRegister(this.sourceA.getContents()).poll();
+            this.sourceA = updateRegisterOperand(this.sourceA, registerFile, reorderBuffer);
         if (this.sourceB.getType() == OperandType.REGISTER)
-            this.sourceB = registerFile.getRegister(this.sourceB.getContents()).poll();
+            this.sourceB = updateRegisterOperand(this.sourceB, registerFile, reorderBuffer);
     }
 
     @Override
@@ -63,7 +63,7 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public void writeBack(Processor processor) {
-        //processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.result);
+        processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.result);
         this.state = State.FINISHED;
     }
 

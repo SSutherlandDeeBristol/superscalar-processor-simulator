@@ -20,11 +20,11 @@ public class StoreInstruction extends LoadStoreInstruction {
     }
 
     @Override
-    public void updateOperands(RegisterFile registerFile) {
+    public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         if (this.destination.getType() == OperandType.REGISTER)
-            this.destination = registerFile.getRegister(this.destination.getContents()).poll();
+            this.destination = updateRegisterOperand(this.destination, registerFile, reorderBuffer);
         if (this.sourceA.getType() == OperandType.REGISTER)
-            this.sourceA = registerFile.getRegister(this.sourceA.getContents()).poll();
+            this.sourceA = updateRegisterOperand(this.sourceA, registerFile, reorderBuffer);
     }
 
     @Override

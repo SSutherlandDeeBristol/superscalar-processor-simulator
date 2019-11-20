@@ -14,9 +14,11 @@ public class TagManager {
     }
 
     public Integer getFreeTag() {
-        for (Integer i = 0; i < tags.size(); ++i) {
-            if (tags.get(i) == TagState.FREE)
+        for (Integer i = 0; i < tags.size(); i++) {
+            if (tags.get(i) == TagState.FREE) {
+                tags.set(i, TagState.USED);
                 return i;
+            }
         }
 
         Integer tag = tags.size();
@@ -26,5 +28,9 @@ public class TagManager {
 
     public void freeTag(Integer tag) {
         tags.set(tag, TagState.FREE);
+    }
+
+    public void flush() {
+        this.tags.clear();
     }
 }

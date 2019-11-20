@@ -15,7 +15,7 @@ public class LoadInstruction extends LoadStoreInstruction {
 
     @Override
     public void writeBack(Processor processor) {
-        //processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.sourceB.getContents());
+        processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.sourceB.getContents());
     }
 
     @Override

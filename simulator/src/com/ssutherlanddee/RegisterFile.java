@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ssutherlanddee.Operand.OperandType;
+import com.ssutherlanddee.Register.State;
 
 public class RegisterFile {
 
@@ -36,10 +37,7 @@ public class RegisterFile {
     public void broadcast(Integer register, Integer tag, Integer value) {
         Register r = this.registers.get(register);
 
-        if (r.getTag() == tag) {
-            r.free();
-            r.set(value);
-        }
+        r.setState(State.READY);
     }
 
     public void flush() {

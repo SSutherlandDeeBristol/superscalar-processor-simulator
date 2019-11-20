@@ -1,5 +1,7 @@
 package com.ssutherlanddee;
 
+import com.ssutherlanddee.Instruction.State;
+
 public class BranchUnit extends ExecutionUnit {
 
     public BranchUnit(Integer id, RegisterFile registerFile, boolean interactive) {
@@ -16,6 +18,8 @@ public class BranchUnit extends ExecutionUnit {
 
             // bring in the next instruction from the buffer
             this.currentInstruction = this.instructionBuffer.remove(0);
+
+            this.currentInstruction.setState(State.EXECUTING);
 
             // set the delay counter to simulate latency e.g load/store instructions
             this.cycleCounter = this.currentInstruction.getDelay();

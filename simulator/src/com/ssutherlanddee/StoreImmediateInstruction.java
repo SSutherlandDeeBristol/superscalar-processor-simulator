@@ -13,14 +13,15 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
 
     @Override
     public void broadcastTag(Integer tag, Integer value) {
-        if (this.destination.getType() == OperandType.TAG && this.destination.getContents() == tag)
+        if (this.destination.getType() == OperandType.TAG && this.destination.getContents() == tag) {
             this.destination.setType(OperandType.VALUE, value);
+        }
     }
 
     @Override
-    public void updateOperands(RegisterFile registerFile) {
+    public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         if (this.destination.getType() == OperandType.REGISTER)
-            this.destination = registerFile.getRegister(this.destination.getContents()).poll();
+            this.destination = updateRegisterOperand(this.destination, registerFile, reorderBuffer);
     }
 
     @Override

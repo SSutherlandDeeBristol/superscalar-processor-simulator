@@ -52,6 +52,10 @@ public abstract class Instruction {
         return this.state;
     }
 
+    public void setState(State state) {
+        this.state = state;
+    }
+
     public Integer getTag() {
         return this.tag;
     }
@@ -60,9 +64,16 @@ public abstract class Instruction {
         return operands[0].getContents();
     }
 
+    public Operand updateRegisterOperand(Operand o, RegisterFile registerFile, ReorderBuffer reorderBuffer) {
+        Operand operand = registerFile.getRegister(o.getContents()).poll();
+        if (operand.getType() == OperandType.ROB)
+            return reorderBuffer.poll(operand.getContents());
+        return operand;
+    }
+
     public abstract void broadcastTag(Integer tag, Integer value);
 
-    public abstract void updateOperands(RegisterFile registerFile);
+    public abstract void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer);
 
     public abstract boolean ready(RegisterFile registerFile);
 
@@ -79,6 +90,6 @@ public abstract class Instruction {
     public abstract Integer getResult();
 
     public String toString() {
-        return this.stringRepresentation.concat(" | " + this.state);
+        return this.stringRepresentation.concat(" | " + this.state + " | tag: " + this.tag);
     }
 }

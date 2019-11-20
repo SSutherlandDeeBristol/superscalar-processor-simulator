@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class SubImmediateInstruction extends ALUInstruction {
 
     public SubImmediateInstruction(Operand[] operands, Integer tag) {
-        super(Opcode.add, 1, tag, operands);
+        super(Opcode.subi, 1, tag, operands);
     }
 
     @Override

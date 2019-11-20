@@ -8,6 +8,7 @@ public class BranchLessThanEqualInstruction extends BranchInstruction {
 
     @Override
     public void execute(Processor processor) {
+        System.out.print(this.stringRepresentation + " operands " + this.sourceA.toString() + " " + this.sourceB.toString());
         if (this.sourceA.getContents() <= this.sourceB.getContents()) {
             this.branchTo = this.PC + this.offset.getContents();
             this.shouldBranch = true;

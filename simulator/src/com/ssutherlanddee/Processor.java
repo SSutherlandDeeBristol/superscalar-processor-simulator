@@ -173,7 +173,6 @@ public class Processor {
         this.aluRS.forEach(rs -> rs.broadcast(tag, value));
         this.branchRS.forEach(rs -> rs.broadcast(tag, value));
         this.loadStoreRS.forEach(rs -> rs.broadcast(tag, value));
-        this.tagManager.freeTag(tag);
         this.registerFile.broadcast(register, tag, value);
     }
 
@@ -191,6 +190,8 @@ public class Processor {
         this.loadStoreUnits.forEach(ExecutionUnit::flush);
 
         this.reorderBuffer.flush();
+
+        this.tagManager.flush();
     }
 
     private void printStatus() {
@@ -303,5 +304,9 @@ public class Processor {
 
     public RegisterFile getRegisterFile() {
         return this.registerFile;
+    }
+
+    public TagManager getTagManager() {
+        return this.tagManager;
     }
 }

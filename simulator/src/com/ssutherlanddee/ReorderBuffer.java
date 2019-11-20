@@ -2,6 +2,8 @@ package com.ssutherlanddee;
 
 import java.util.ArrayDeque;
 
+import com.ssutherlanddee.Operand.OperandType;
+
 public class ReorderBuffer {
 
     protected ArrayDeque<Instruction> buffer;
@@ -27,13 +29,25 @@ public class ReorderBuffer {
 
         while(this.buffer.size() > 0 && this.buffer.peekLast().getFinishedExecuting()) {
             Instruction i = this.buffer.removeLast();
-            i.writeBack(processor);
+
+            processor.getTagManager().freeTag(i.getTag());
             i.freeDestination(this.registerFile);
+            i.writeBack(processor);
+
             numInstructionsCompleted++;
 
             if (interactive)
                 System.out.println("WROTE BACK: " + i.toString());
         }
+    }
+
+    public Operand poll(Integer tag) {
+        System.out.println("Looking in reorder buffer for tag " + tag);
+        for (Instruction i : this.buffer) {
+            if (i.getTag() == tag && i.getFinishedExecuting())
+                return new Operand(OperandType.VALUE, i.getResult());
+        }
+        return new Operand(OperandType.TAG, tag);
     }
 
     public Integer numInstructionsCompleted() {

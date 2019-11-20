@@ -2,6 +2,8 @@ package com.ssutherlanddee;
 
 import java.util.List;
 
+import com.ssutherlanddee.Instruction.State;
+
 public class ALUnit extends ExecutionUnit {
 
     public ALUnit(Integer id, RegisterFile registerFile, boolean interactive) {
@@ -18,6 +20,8 @@ public class ALUnit extends ExecutionUnit {
 
             // bring in the next instruction from the buffer
             this.currentInstruction = this.instructionBuffer.remove(0);
+
+            this.currentInstruction.setState(State.EXECUTING);
 
             // set the delay counter to simulate latency e.g load/store instructions
             this.cycleCounter = this.currentInstruction.getDelay();
