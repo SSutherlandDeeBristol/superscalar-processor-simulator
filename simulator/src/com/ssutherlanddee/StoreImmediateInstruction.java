@@ -1,24 +1,47 @@
 package com.ssutherlanddee;
 
+import java.util.Arrays;
+import java.util.List;
+
+import com.ssutherlanddee.Operand.OperandType;
+
 public class StoreImmediateInstruction extends LoadStoreInstruction {
 
-    private Integer immediate;
-    private Integer offset;
-
-    public StoreImmediateInstruction(Integer sourceRegisterA, Integer offset, Integer immediate) {
-        super(Instruction.Opcode.sti, 1, -1, sourceRegisterA, -1);
-        this.immediate = immediate;
-        this.offset = offset;
+    public StoreImmediateInstruction(Operand[] operands, Integer tag) {
+        super(Instruction.Opcode.sti, 1, tag, operands);
     }
+
+    @Override
+    public void broadcastTag(Integer tag, Integer value) {
+        if (this.destination.getType() == OperandType.TAG && this.destination.getContents() == tag)
+            this.destination.setType(OperandType.VALUE, value);
+    }
+
+    @Override
+    public void updateOperands(RegisterFile registerFile) {
+        if (this.destination.getType() == OperandType.REGISTER)
+            this.destination = registerFile.getRegister(this.destination.getContents()).poll();
+    }
+
+    @Override
+    public boolean ready(RegisterFile registerFile) {
+        return (this.destination.isReady());
+    }
+
+    @Override
+    public List<Operand> getSourceOperands() {
+        return Arrays.asList(destination);
+    }
+
+    @Override
+    public void blockDestination(RegisterFile registerFile) {}
+
+    @Override
+    public void freeDestination(RegisterFile registerFile) {}
 
     @Override
     public void writeBack(Processor processor) {
-        processor.getMemory().setMemoryByAddress(this.sourceValueA + this.offset, this.immediate);
+        processor.getMemory().setMemoryByAddress(this.destination.getContents() + this.sourceA.getContents(),
+            this.sourceB.getContents());
     }
-
-    @Override
-    public String toString() {
-        return Instruction.Opcode.sti + " r" + this.sourceRegisterA + " " + this.offset + " " + this.immediate + " | " + this.state;
-    }
-
 }

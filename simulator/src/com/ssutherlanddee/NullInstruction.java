@@ -1,13 +1,30 @@
 package com.ssutherlanddee;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+
+import com.ssutherlanddee.Operand.OperandType;
 
 public class NullInstruction extends Instruction {
 
-    public NullInstruction() {
-        super(Opcode.nop, 1);
+    public NullInstruction(Integer tag) {
+        super(Opcode.nop, 1, tag, new Operand[] {new Operand(OperandType.NONE),
+                new Operand(OperandType.NONE), new Operand(OperandType.NONE)});
     }
+
+    @Override
+    public void broadcastTag(Integer tag, Integer value) {}
+
+    @Override
+    public List<Operand> getSourceOperands() {
+        return Arrays.asList(this.operands);
+    }
+
+    @Override
+    public void blockDestination(RegisterFile registerFile) {}
+
+    @Override
+    public void freeDestination(RegisterFile registerFile) {}
 
     @Override
     public void execute(Processor processor) {
@@ -15,18 +32,20 @@ public class NullInstruction extends Instruction {
     }
 
     @Override
-    public List<Integer> registerOperands() {
-        return Collections.emptyList();
+    public void updateOperands(RegisterFile registerFile) {}
+
+    @Override
+    public boolean ready(RegisterFile registerFile) {
+        return true;
     }
 
     @Override
-    public void setDestinationValid(RegisterFile registerFile, boolean valid) {}
-
-    @Override
-    public void setOperands(RegisterFile registerFile) {}
-
-    @Override
     public void writeBack(Processor processor) {}
+
+    @Override
+    public Integer getResult() {
+        return 0;
+    }
 
     @Override
     public String toString() {

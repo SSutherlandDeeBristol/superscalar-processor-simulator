@@ -25,6 +25,8 @@ public class Processor {
 
     private RegisterFile registerFile;
 
+    private TagManager tagManager;
+
     private boolean running;
 
     private boolean interactive;
@@ -47,6 +49,8 @@ public class Processor {
         this.loadStoreRS = new ArrayList<>();
 
         this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory);
+
+        this.tagManager = new TagManager();
 
         this.interactive = interactive;
 
@@ -119,7 +123,9 @@ public class Processor {
         while (!this.encodedInstructions.isEmpty()) {
             String s = this.encodedInstructions.remove(0);
 
-            Instruction nextInstruction = instructionParser.parseInstruction(s);
+            Integer tag = this.tagManager.getFreeTag();
+
+            Instruction nextInstruction = instructionParser.parseInstruction(s, tag);
 
             Comparator<ReservationStation> compareRS = new Comparator<ReservationStation>() {
                 public int compare(ReservationStation a, ReservationStation b) {
@@ -161,6 +167,14 @@ public class Processor {
 
     public void writeBack() {
         this.reorderBuffer.retire(this.interactive, this);
+    }
+
+    public void broadcast(Integer register, Integer tag, Integer value) {
+        this.aluRS.forEach(rs -> rs.broadcast(tag, value));
+        this.branchRS.forEach(rs -> rs.broadcast(tag, value));
+        this.loadStoreRS.forEach(rs -> rs.broadcast(tag, value));
+        this.tagManager.freeTag(tag);
+        this.registerFile.broadcast(register, tag, value);
     }
 
     public void flushPipeline() {

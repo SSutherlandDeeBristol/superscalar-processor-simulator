@@ -2,18 +2,13 @@ package com.ssutherlanddee;
 
 public class MoveInstruction extends LoadStoreInstruction {
 
-    public MoveInstruction(Integer destinationRegister, Integer sourceRegisterA) {
-        super(Opcode.mov, 1, destinationRegister, sourceRegisterA, -1);
+    public MoveInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.mov, 1, tag, operands);
     }
 
     @Override
     public void writeBack(Processor processor) {
-        processor.getRegisterFile().getRegister(this.destinationRegister).set(this.sourceValueA);
+        processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.sourceA.getContents());
         this.state = State.FINISHED;
-    }
-
-    @Override
-    public String toString() {
-        return Opcode.mov + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " | " + this.state;
     }
 }

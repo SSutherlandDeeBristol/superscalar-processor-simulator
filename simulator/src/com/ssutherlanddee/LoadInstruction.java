@@ -1,28 +1,25 @@
 package com.ssutherlanddee;
 
+import com.ssutherlanddee.Operand.OperandType;
+
 public class LoadInstruction extends LoadStoreInstruction {
 
-    private Integer offset;
-    private Integer toLoad;
-
-    public LoadInstruction(Integer destinationRegister, Integer sourceRegisterA, Integer offset) {
-        super(Opcode.ld, 1, destinationRegister, sourceRegisterA, -1);
-        this.offset = offset;
-        this.toLoad = 0;
+    public LoadInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.ld, 1, tag, operands);
     }
 
     @Override
     public void execute(Processor processor) {
-        this.toLoad = (Integer) processor.getMemory().getMemoryByAddress(this.sourceValueA + this.offset);
+        this.sourceB = new Operand(OperandType.VALUE, (Integer) processor.getMemory().getMemoryByAddress(this.sourceA.getContents() + this.sourceB.getContents()));
     }
 
     @Override
     public void writeBack(Processor processor) {
-        processor.getRegisterFile().getRegister(this.destinationRegister).set(this.toLoad);
+        //processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.sourceB.getContents());
     }
 
     @Override
-    public String toString() {
-        return Opcode.ld + " r" + this.destinationRegister + " r" + this.sourceRegisterA + " " + this.offset + " | " + this.state;
+    public Integer getResult() {
+        return this.sourceB.getContents();
     }
 }

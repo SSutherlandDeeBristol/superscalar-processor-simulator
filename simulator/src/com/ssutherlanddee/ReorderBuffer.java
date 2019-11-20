@@ -28,7 +28,7 @@ public class ReorderBuffer {
         while(this.buffer.size() > 0 && this.buffer.peekLast().getFinishedExecuting()) {
             Instruction i = this.buffer.removeLast();
             i.writeBack(processor);
-            i.setDestinationValid(this.registerFile, true);
+            i.freeDestination(this.registerFile);
             numInstructionsCompleted++;
 
             if (interactive)

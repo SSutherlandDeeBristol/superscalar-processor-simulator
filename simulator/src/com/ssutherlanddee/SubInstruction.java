@@ -2,13 +2,13 @@ package com.ssutherlanddee;
 
 public class SubInstruction extends ALUInstruction {
 
-    public SubInstruction(Integer destinationRegister, Integer sourceRegisterA, Integer sourceRegisterB) {
-        super(Opcode.sub, destinationRegister, sourceRegisterA, sourceRegisterB, 1);
+    public SubInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.sub, 1, tag, operands);
     }
 
     @Override
     public void execute(Processor processor) {
-        this.result = this.operandValA - this.operandValB;
+        this.result = this.sourceA.getContents() - this.sourceB.getContents();
         this.state = State.EXECUTING;
     }
 }

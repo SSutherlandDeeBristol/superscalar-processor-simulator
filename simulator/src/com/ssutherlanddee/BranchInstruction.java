@@ -3,46 +3,64 @@ package com.ssutherlanddee;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ssutherlanddee.Operand.OperandType;
+
 public abstract class BranchInstruction extends Instruction {
 
-    protected Integer valueA;
-    protected Integer valueB;
-    protected Integer sourceRegisterA;
-    protected Integer sourceRegisterB;
+    protected Operand sourceA;
+    protected Operand sourceB;
+    protected Operand offset;
+
     protected Integer PC;
-    protected Integer offset;
 
     protected boolean shouldBranch;
     protected Integer branchTo;
 
-    public BranchInstruction(Opcode opcode, Integer delay, Integer sourceRegisterA,
-                             Integer sourceRegisterB, Integer offset) {
-        super(opcode, delay);
-        this.sourceRegisterA = sourceRegisterA;
-        this.sourceRegisterB = sourceRegisterB;
-        this.offset = offset;
+    public BranchInstruction(Opcode opcode, Integer delay, Integer tag, Operand[] operands) {
+        super(opcode, delay, tag, operands);
+        this.sourceA = operands[0];
+        this.sourceB = operands[1];
+        this.offset = operands[2];
+
         this.PC = 0;
         this.shouldBranch = false;
         this.branchTo = 0;
     }
 
     @Override
-    public List<Integer> registerOperands() {
-        return Arrays.asList(sourceRegisterA, sourceRegisterB);
+    public void broadcastTag(Integer tag, Integer value) {
+        if (this.sourceA.getType() == OperandType.TAG && this.sourceA.getContents() == tag)
+            this.sourceA.setType(OperandType.VALUE, value);
+        if (this.sourceB.getType() == OperandType.TAG && this.sourceB.getContents() == tag)
+            this.sourceB.setType(OperandType.VALUE, value);
     }
 
     @Override
-    public void setOperands(RegisterFile registerFile) {
-        if (this.sourceRegisterA != -1)
-            this.valueA = registerFile.getRegister(this.sourceRegisterA).get();
-
-        if (this.sourceRegisterB != -1)
-            this.valueB = registerFile.getRegister(this.sourceRegisterB).get();
+    public List<Operand> getSourceOperands() {
+        return Arrays.asList(sourceA, sourceB);
     }
 
     @Override
-    public void setDestinationValid(RegisterFile registerFile, boolean valid) {
-        registerFile.getPC().setValid(valid);
+    public void updateOperands(RegisterFile registerFile) {
+        if (this.sourceA.getType() == OperandType.REGISTER)
+            this.sourceA = registerFile.getRegister(this.sourceA.getContents()).poll();
+        if (this.sourceB.getType() == OperandType.REGISTER)
+            this.sourceB = registerFile.getRegister(this.sourceB.getContents()).poll();
+    }
+
+    @Override
+    public boolean ready(RegisterFile registerFile) {
+        return (this.sourceA.isReady() && this.sourceB.isReady());
+    }
+
+    @Override
+    public void blockDestination(RegisterFile registerFile) {
+        registerFile.getPC().block(this.tag);
+    }
+
+    @Override
+    public void freeDestination(RegisterFile registerFile) {
+        registerFile.getPC().free();
     }
 
     @Override
@@ -56,12 +74,12 @@ public abstract class BranchInstruction extends Instruction {
         }
     }
 
-    public void setPC(Integer PC) {
-        this.PC = PC;
+    @Override
+    public Integer getResult() {
+        return 0;
     }
 
-    @Override
-    public String toString() {
-        return this.getOpcode() + " r" + this.sourceRegisterA + " r" + this.sourceRegisterB + " " + this.offset + " | " + this.state;
+    public void setPC(Integer PC) {
+        this.PC = PC;
     }
 }

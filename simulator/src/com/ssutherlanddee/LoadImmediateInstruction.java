@@ -2,20 +2,17 @@ package com.ssutherlanddee;
 
 public class LoadImmediateInstruction extends LoadStoreInstruction {
 
-    private Integer immediate;
-
-    public LoadImmediateInstruction(Integer destinationRegister, Integer immediate) {
-        super(Opcode.ldi, 2, destinationRegister, -1, -1);
-        this.immediate = immediate;
+    public LoadImmediateInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.ldi, 2, tag, operands);
     }
 
     @Override
     public void writeBack(Processor processor) {
-        processor.getRegisterFile().getRegister(this.destinationRegister).set(this.immediate);
+        //processor.getRegisterFile().getRegister(this.destination.getContents()).set(this.sourceA.getContents());
     }
 
     @Override
-    public String toString() {
-        return Opcode.ldi + " r" + this.destinationRegister + " " + this.immediate + " | " + this.state;
+    public Integer getResult() {
+        return this.sourceA.getContents();
     }
 }

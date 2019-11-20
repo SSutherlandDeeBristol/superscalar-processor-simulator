@@ -2,14 +2,14 @@ package com.ssutherlanddee;
 
 public class BranchLessThanInstruction extends BranchInstruction {
 
-    public BranchLessThanInstruction(Integer sourceRegisterA, Integer sourceRegisterB, Integer offset) {
-        super(Opcode.blt, 1, sourceRegisterA, sourceRegisterB, offset);
+    public BranchLessThanInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.blt, 1, tag, operands);
     }
 
     @Override
     public void execute(Processor processor) {
-        if (valueA < valueB) {
-            this.branchTo = this.PC + this.offset;
+        if (this.sourceA.getContents() < this.sourceB.getContents()) {
+            this.branchTo = this.PC + this.offset.getContents();
             this.shouldBranch = true;
         }
         this.state = State.EXECUTING;

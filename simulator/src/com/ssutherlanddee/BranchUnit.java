@@ -18,7 +18,7 @@ public class BranchUnit extends ExecutionUnit {
             this.currentInstruction = this.instructionBuffer.remove(0);
 
             // set the delay counter to simulate latency e.g load/store instructions
-            this.cycleCounter = this.currentInstruction.getNumCycles();
+            this.cycleCounter = this.currentInstruction.getDelay();
 
             //execute the instruction
             this.currentInstruction.execute(processor);
@@ -35,7 +35,7 @@ public class BranchUnit extends ExecutionUnit {
             this.cycleCounter--;
 
         if (this.cycleCounter < 1 && !this.finishedInstruction) {
-            this.currentInstruction.setFinishedExecuting(true);
+            this.currentInstruction.setFinishedExecuting();
             this.finishedInstruction = true;
         }
     }

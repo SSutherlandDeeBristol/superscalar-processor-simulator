@@ -2,13 +2,13 @@ package com.ssutherlanddee;
 
 public class MultiplyInstruction extends ALUInstruction {
 
-    public MultiplyInstruction(Integer destinationRegister, Integer sourceRegisterA, Integer sourceRegisterB) {
-        super(Opcode.mul, destinationRegister, sourceRegisterA, sourceRegisterB, 1);
+    public MultiplyInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.mul, 1, tag, operands);
     }
 
     @Override
     public void execute(Processor processor) {
-        this.result = this.operandValA * this.operandValB;
+        this.result = this.sourceA.getContents() * this.sourceB.getContents();
         this.state = State.EXECUTING;
     }
 

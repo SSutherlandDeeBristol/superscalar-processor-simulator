@@ -2,14 +2,14 @@ package com.ssutherlanddee;
 
 public class BranchEqualInstruction extends BranchInstruction {
 
-    public BranchEqualInstruction(Integer sourceRegisterA, Integer sourceRegisterB, Integer offset) {
-        super(Opcode.beq, 1, sourceRegisterA, sourceRegisterB, offset);
+    public BranchEqualInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.beq, 1, tag, operands);
     }
 
     @Override
     public void execute(Processor processor) {
-        if (valueB.equals(valueA)) {
-            this.branchTo = this.PC + this.offset;
+        if (this.sourceA.getContents().equals(this.sourceB.getContents())) {
+            this.branchTo = this.PC + this.offset.getContents();
             this.shouldBranch = true;
         }
         this.state = State.EXECUTING;

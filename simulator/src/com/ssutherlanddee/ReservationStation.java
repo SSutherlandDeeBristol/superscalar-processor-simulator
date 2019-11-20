@@ -20,20 +20,28 @@ public class ReservationStation {
     }
 
     public void issue(Instruction i) {
-        if (this.instructionBuffer.isEmpty() && this.registerFile.validOperands(i.registerOperands())) {
+        // Set the operands to tags or values
+        i.updateOperands(this.registerFile);
+        // Block the destination register
+        i.blockDestination(this.registerFile);
+        // Add the instruciton to the reorder buffer
+        this.reorderBuffer.bufferInstruction(i);
+
+        // If the instruction is ready and can be bypassed then dispatch straight away
+        if (this.instructionBuffer.isEmpty() && i.ready(this.registerFile)) {
             dispatchInstruction(i);
         } else {
             this.instructionBuffer.add(this.instructionBuffer.size(), i);
         }
-        this.reorderBuffer.bufferInstruction(i);
-        i.setDestinationValid(this.registerFile, false);
+
         if (i instanceof BranchInstruction)
             ((BranchInstruction) i).setPC(this.registerFile.getPC().get());
     }
 
     public void dispatch() {
         for (Instruction i : this.instructionBuffer) {
-            if (this.registerFile.validOperands(i.registerOperands())) {
+            // If the instruction is ready to be dispatched then dispatch it
+            if (i.ready(this.registerFile)) {
                 dispatchInstruction(i);
                 this.instructionBuffer.remove(i);
                 break;
@@ -41,8 +49,13 @@ public class ReservationStation {
         }
     }
 
+    public void broadcast(Integer tag, Integer value) {
+        for (Integer i = 0; i < this.instructionBuffer.size(); i++) {
+            this.instructionBuffer.get(i).broadcastTag(tag, value);
+        }
+    }
+
     private void dispatchInstruction(Instruction i) {
-        i.setOperands(this.registerFile);
         this.executionUnit.bufferInstruction(i);
     }
 

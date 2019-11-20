@@ -3,6 +3,8 @@ package com.ssutherlanddee;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ssutherlanddee.Operand.OperandType;
+
 public class RegisterFile {
 
     private List<Register> registers = new ArrayList<>();
@@ -21,35 +23,28 @@ public class RegisterFile {
         return this.registers.get(i);
     }
 
-    public boolean validOperands(List<Integer> regNums) {
-        for (Integer regNum : regNums) {
-            if (regNum == -1)
-                continue;
-
-            if (regNum == -2)
-                if (!this.PC.isValid()) {
+    public boolean validOperands(List<Operand> operands) {
+        for (Operand o : operands) {
+            if (o.getType() == OperandType.REGISTER) {
+                if (!getRegister(o.getContents()).isValid())
                     return false;
-                } else {
-                    continue;
-                }
-
-            if (!getRegister(regNum).isValid())
-                return false;
+            }
         }
         return true;
     }
 
-    public void setValid(List<Integer> regNums, boolean valid) {
-        for (Integer regNum : regNums) {
-            if (regNum != -1) {
-                getRegister(regNum).setValid(valid);
-            }
+    public void broadcast(Integer register, Integer tag, Integer value) {
+        Register r = this.registers.get(register);
+
+        if (r.getTag() == tag) {
+            r.free();
+            r.set(value);
         }
     }
 
     public void flush() {
-        this.registers.forEach(r -> r.setValid(true));
-        this.PC.setValid(true);
+        this.registers.forEach(r -> r.free());
+        this.PC.free();
     }
 
     public void setPC(Integer value) {

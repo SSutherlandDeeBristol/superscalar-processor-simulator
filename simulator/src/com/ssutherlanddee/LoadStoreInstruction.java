@@ -3,38 +3,55 @@ package com.ssutherlanddee;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ssutherlanddee.Operand.OperandType;
+
 public class LoadStoreInstruction extends Instruction {
 
-    protected Integer destinationRegister;
-    protected Integer sourceRegisterA;
-    protected Integer sourceRegisterB;
-    protected Integer sourceValueA;
-    protected Integer sourceValueB;
+    protected Operand destination;
+    protected Operand sourceA;
+    protected Operand sourceB;
 
-    public LoadStoreInstruction(Opcode opcode, Integer delay, Integer destinationRegister, Integer sourceRegisterA, Integer sourceRegisterB) {
-        super(opcode, delay);
-        this.destinationRegister = destinationRegister;
-        this.sourceRegisterA = sourceRegisterA;
-        this.sourceRegisterB = sourceRegisterB;
+    public LoadStoreInstruction(Opcode opcode, Integer delay, Integer tag, Operand[] operands) {
+        super(opcode, delay, tag, operands);
+        this.destination = operands[0];
+        this.sourceA = operands[1];
+        this.sourceB = operands[2];
     }
 
     @Override
-    public void setOperands(RegisterFile registerFile) {
-        if (this.sourceRegisterA != -1)
-            this.sourceValueA = registerFile.getRegister(this.sourceRegisterA).get();
-        if (this.sourceRegisterB != -1)
-            this.sourceValueB = registerFile.getRegister(this.sourceRegisterB).get();
+    public void broadcastTag(Integer tag, Integer value) {
+        if (this.sourceA.getType() == OperandType.TAG && this.sourceA.getContents() == tag)
+            this.sourceA.setType(OperandType.VALUE, value);
+        if (this.sourceB.getType() == OperandType.TAG && this.sourceB.getContents() == tag)
+            this.sourceB.setType(OperandType.VALUE, value);
     }
 
     @Override
-    public List<Integer> registerOperands() {
-        return Arrays.asList(sourceRegisterA, sourceRegisterB);
+    public void updateOperands(RegisterFile registerFile) {
+        if (this.sourceA.getType() == OperandType.REGISTER)
+            this.sourceA = registerFile.getRegister(this.sourceA.getContents()).poll();
+        if (this.sourceB.getType() == OperandType.REGISTER)
+            this.sourceB = registerFile.getRegister(this.sourceB.getContents()).poll();
     }
 
     @Override
-    public void setDestinationValid(RegisterFile registerFile, boolean valid) {
-        if (this.destinationRegister != -1)
-            registerFile.getRegister(this.destinationRegister).setValid(valid);
+    public boolean ready(RegisterFile registerFile) {
+        return (this.sourceA.isReady() && this.sourceB.isReady());
+    }
+
+    @Override
+    public List<Operand> getSourceOperands() {
+        return Arrays.asList(sourceA, sourceB);
+    }
+
+    @Override
+    public void blockDestination(RegisterFile registerFile) {
+        registerFile.getRegister(this.destination.getContents()).block(this.tag);
+    }
+
+    @Override
+    public void freeDestination(RegisterFile registerFile) {
+        registerFile.getRegister(this.destination.getContents()).free();
     }
 
     @Override
@@ -43,10 +60,10 @@ public class LoadStoreInstruction extends Instruction {
     }
 
     @Override
-    public void writeBack(Processor processor) {}
+    public Integer getResult() {
+        return 0;
+    }
 
     @Override
-    public String toString() {
-        return null;
-    }
+    public void writeBack(Processor processor) {}
 }
