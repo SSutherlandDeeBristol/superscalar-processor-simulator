@@ -42,7 +42,6 @@ public class ReorderBuffer {
     }
 
     public Operand poll(Integer tag) {
-        System.out.println("Looking in reorder buffer for tag " + tag);
         for (Instruction i : this.buffer) {
             if (i.getTag() == tag && i.getFinishedExecuting())
                 return new Operand(OperandType.VALUE, i.getResult());
