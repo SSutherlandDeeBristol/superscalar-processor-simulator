@@ -26,7 +26,7 @@ To run the project:
 ant -Dptp=path/to/assembly/file.asm -Di=true
 ```
 
-where `-Dptp ` is the filepath of the assembly file and `-Di` is whether to run the simulator in interactive mode.
+where `-Dptp ` is the filepath of the assembly file and `-Di` is whether to run the simulator in interactive mode. All of the assembly files that are guaranteed to work on this simulator are in the `simulator/programs/` directory.
 
 The build can be cleaned by running:
 
