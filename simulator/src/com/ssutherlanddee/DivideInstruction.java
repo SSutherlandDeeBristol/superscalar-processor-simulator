@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class DivideInstruction extends ALUInstruction {
 
     public DivideInstruction(Operand[] operands, Integer tag) {
-        super(Opcode.div, 1, tag, operands);
+        super(Opcode.div, 10, tag, operands);
     }
 
     @Override

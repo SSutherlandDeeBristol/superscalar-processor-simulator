@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class MultiplyInstruction extends ALUInstruction {
 
     public MultiplyInstruction(Operand[] operands, Integer tag) {
-        super(Opcode.mul, 1, tag, operands);
+        super(Opcode.mul, 2, tag, operands);
     }
 
     @Override

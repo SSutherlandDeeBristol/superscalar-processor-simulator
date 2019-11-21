@@ -27,7 +27,9 @@ public class ReorderBuffer {
         if (this.buffer.size() < 1)
             return;
 
-        while(this.buffer.size() > 0 && this.buffer.peekLast().getFinishedExecuting()) {
+        int numRetired = 0;
+
+        while(this.buffer.size() > 0 && this.buffer.peekLast().getFinishedExecuting() && numRetired < 4) {
             Instruction i = this.buffer.removeLast();
 
             processor.getTagManager().freeTag(i.getTag());
@@ -35,6 +37,7 @@ public class ReorderBuffer {
             i.writeBack(processor);
 
             numInstructionsCompleted++;
+            numRetired++;
 
             if (interactive)
                 System.out.println("WROTE BACK: " + i.toString());

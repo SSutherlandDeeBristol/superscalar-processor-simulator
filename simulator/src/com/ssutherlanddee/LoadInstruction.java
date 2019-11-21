@@ -5,7 +5,7 @@ import com.ssutherlanddee.Operand.OperandType;
 public class LoadInstruction extends LoadStoreInstruction {
 
     public LoadInstruction(Operand[] operands, Integer tag) {
-        super(Opcode.ld, 1, tag, operands);
+        super(Opcode.ld, 3, tag, operands);
     }
 
     @Override

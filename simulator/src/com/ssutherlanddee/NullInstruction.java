@@ -27,7 +27,7 @@ public class NullInstruction extends Instruction {
     }
 
     @Override
-    public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer) {}
+    public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer, Integer pc) {}
 
     @Override
     public boolean ready(RegisterFile registerFile) {

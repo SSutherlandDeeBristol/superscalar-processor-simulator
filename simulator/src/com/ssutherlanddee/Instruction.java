@@ -73,7 +73,7 @@ public abstract class Instruction {
 
     public abstract void broadcastTag(Integer tag, Integer value);
 
-    public abstract void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer);
+    public abstract void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer, Integer pc);
 
     public abstract boolean ready(RegisterFile registerFile);
 

@@ -19,9 +19,9 @@ public class ReservationStation {
         this.reorderBuffer = reorderBuffer;
     }
 
-    public void issue(Instruction i) {
+    public void issue(Instruction i, Integer pc) {
         // Set the operands to tags or values
-        i.updateOperands(this.registerFile, this.reorderBuffer);
+        i.updateOperands(this.registerFile, this.reorderBuffer, pc);
         // Block the destination register
         i.blockDestination(this.registerFile);
         // Add the instruciton to the reorder buffer
@@ -33,9 +33,6 @@ public class ReservationStation {
         } else {
             this.instructionBuffer.add(this.instructionBuffer.size(), i);
         }
-
-        if (i instanceof BranchInstruction)
-            ((BranchInstruction) i).setPC(this.registerFile.getPC().get());
     }
 
     public void dispatch() {

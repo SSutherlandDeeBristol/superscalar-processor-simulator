@@ -5,7 +5,7 @@ import com.ssutherlanddee.Operand.OperandType;
 public class StoreInstruction extends LoadStoreInstruction {
 
     public StoreInstruction(Operand[] operands, Integer tag) {
-        super(Instruction.Opcode.st, 1, tag, operands);
+        super(Instruction.Opcode.st, 3, tag, operands);
     }
 
     @Override
@@ -17,7 +17,7 @@ public class StoreInstruction extends LoadStoreInstruction {
     }
 
     @Override
-    public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
+    public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer, Integer pc) {
         if (this.destination.getType() == OperandType.REGISTER)
             this.destination = updateRegisterOperand(this.destination, registerFile, reorderBuffer);
         if (this.sourceA.getType() == OperandType.REGISTER)

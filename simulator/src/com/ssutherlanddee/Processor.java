@@ -11,7 +11,7 @@ public class Processor {
 
     private Memory memory;
 
-    private List<String> encodedInstructions;
+    private List<Pair<String, Integer>> encodedInstructions;
 
     private List<ALUnit> aluUnits;
     private List<BranchUnit> branchUnits;
@@ -54,7 +54,7 @@ public class Processor {
 
         this.interactive = interactive;
 
-        constructExecutionUnits(2, 2, 2);
+        constructExecutionUnits(2, 1, 2);
 
         this.running = true;
 
@@ -96,23 +96,27 @@ public class Processor {
 
     private boolean canProcess() {
         return !this.encodedInstructions.isEmpty() || !this.reorderBuffer.isEmpty()
-                || unitsHaveBufferedInstructions() || unitsAreExecuting() || instructionsToFetch() || reservationStationsHaveBufferedInstructions();
+                || unitsHaveBufferedInstructions() || unitsAreExecuting() || instructionsToFetch()
+                || reservationStationsHaveBufferedInstructions();
     }
 
     private void fetch() {
         // fetch instruction from memory and add to buffer
-        String nextEncodedInstruction = this.memory.getInstructionByAddress(this.registerFile.getPC().get());
+        for (int i = 0; i < 4; i++) {
+            String nextEncodedInstruction = this.memory.getInstructionByAddress(this.registerFile.getPC().get());
 
-        if (nextEncodedInstruction == null) {
-            return;
+            if (nextEncodedInstruction == null) {
+                return;
+            }
+
+            if (this.interactive)
+                System.out.println("FETCHED: " + nextEncodedInstruction);
+
+            this.encodedInstructions.add(new Pair<String, Integer>(nextEncodedInstruction,
+                                                                    this.registerFile.getPC().get()));
+
+            this.registerFile.getPC().increment();
         }
-
-        if (this.interactive)
-            System.out.println("FETCHED: " + nextEncodedInstruction);
-
-        this.encodedInstructions.add(nextEncodedInstruction);
-
-        this.registerFile.getPC().increment();
     }
 
     private void decode() {
@@ -120,12 +124,15 @@ public class Processor {
         this.branchRS.forEach(ReservationStation::dispatch);
         this.loadStoreRS.forEach(ReservationStation::dispatch);
 
-        while (!this.encodedInstructions.isEmpty()) {
-            String s = this.encodedInstructions.remove(0);
+        for (int i = 0; i < 4; i++) {
+            if (this.encodedInstructions.isEmpty())
+                return;
+
+            Pair<String, Integer> s = this.encodedInstructions.remove(0);
 
             Integer tag = this.tagManager.getFreeTag();
 
-            Instruction nextInstruction = instructionParser.parseInstruction(s, tag);
+            Instruction nextInstruction = instructionParser.parseInstruction(s.first(), tag);
 
             Comparator<ReservationStation> compareRS = new Comparator<ReservationStation>() {
                 public int compare(ReservationStation a, ReservationStation b) {
@@ -144,13 +151,13 @@ public class Processor {
 
             if (nextInstruction instanceof ALUInstruction) {
                 this.aluRS.stream().min(compareRS)
-                    .get().issue(nextInstruction);
+                    .get().issue(nextInstruction, s.second());
             } else if (nextInstruction instanceof BranchInstruction) {
                 this.branchRS.stream().min(compareRS)
-                .get().issue((BranchInstruction) nextInstruction);
+                    .get().issue(nextInstruction, s.second());
             } else if (nextInstruction instanceof LoadStoreInstruction) {
                 this.loadStoreRS.stream().min(compareRS)
-                .get().issue((LoadStoreInstruction) nextInstruction);
+                    .get().issue(nextInstruction, s.second());
             } else {
                 throw new RuntimeException("Unrecognised instruction type.");
             }

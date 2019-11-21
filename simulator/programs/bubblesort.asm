@@ -22,7 +22,7 @@ ldi r2 1 # index = 1
 subi r3 r2 1 # r3 = i - 1
 ld r4 r3 0 # r4 = Array[i - 1]
 ld r5 r2 0 # r5 = Array[i]
-ble r4 r5 3 # branch if Array[i - 1] <= Array[i]
+ble r4 r5 4 # branch if Array[i - 1] <= Array[i]
 
 # Swap Array[i] and Array[i-1]
 st r5 r3 0 # Array[i - 1] = r5
@@ -30,9 +30,9 @@ st r4 r2 0 # Array[i] = r4
 addi r1 r1 1 # swapped++
 
 addi r2 r2 1 # i++
-bne r2 r0 -9 # branch if i != n
+bne r2 r0 -8 # branch if i != n
 
-bne r1 r9 -13 # repeat the loop if swapped > 0
+bne r1 r9 -11 # repeat the loop if swapped > 0
 
 # Load the array back into the registers
 ld r0 r9 0
