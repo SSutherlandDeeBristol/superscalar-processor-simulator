@@ -40,6 +40,8 @@ public class Processor {
 
     private Integer flushCounter;
 
+    private Integer numFlushes;
+
     public Processor(Program program, boolean interactive) {
         this.instructionParser = new InstructionParser();
         this.memory = new Memory();
@@ -74,6 +76,8 @@ public class Processor {
         this.fetchWidth = 4;
 
         this.flushCounter = 0;
+
+        this.numFlushes = 0;
 
         System.out.println(program.toString());
     }
@@ -255,6 +259,10 @@ public class Processor {
         this.reorderBuffer.flush();
 
         this.tagManager.flush();
+
+        this.flushCounter = 10;
+
+        this.numFlushes++;
     }
 
     private void printStatus() {
@@ -307,6 +315,10 @@ public class Processor {
             System.out.println(String.format("Number of cycles per completed instruction: %.2f", ((float) numCycles / numInstructionsCompleted)));
 
         System.out.println(String.format("Number of instructions completed per cycle: %.2f\n", ((float) numInstructionsCompleted / numCycles)));
+
+        System.out.println(String.format("Number of mispredicted branches: %d", this.numFlushes));
+        System.out.println(String.format("Number of branches completed: %d", this.reorderBuffer.getNumBranchInstructionsCompleted()));
+        System.out.println(String.format("Misprediction ratio: %.2f\n", ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted())));
 
         System.out.println("Final register state:\n");
         System.out.println(this.registerFile.toString());

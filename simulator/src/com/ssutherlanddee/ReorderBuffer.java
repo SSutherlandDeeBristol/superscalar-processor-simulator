@@ -12,6 +12,7 @@ public class ReorderBuffer {
     protected Memory memory;
 
     protected Integer numInstructionsCompleted;
+    private Integer numBranchInstructionsCompleted;
 
     private Integer capacity;
 
@@ -20,6 +21,7 @@ public class ReorderBuffer {
         this.registerFile = registerFile;
         this.memory = memory;
         this.numInstructionsCompleted = 0;
+        this.numBranchInstructionsCompleted = 0;
         this.capacity = capacity;
     }
 
@@ -39,6 +41,9 @@ public class ReorderBuffer {
             processor.getTagManager().freeTag(i.getTag());
             i.writeBack(processor);
             i.freeDestination(this.registerFile);
+
+            if (i instanceof BranchInstruction)
+                numBranchInstructionsCompleted++;
 
             numInstructionsCompleted++;
             numRetired++;
@@ -83,6 +88,10 @@ public class ReorderBuffer {
 
     public Integer numInstructionsCompleted() {
         return this.numInstructionsCompleted;
+    }
+
+    public Integer getNumBranchInstructionsCompleted() {
+        return this.numBranchInstructionsCompleted;
     }
 
     public boolean isEmpty() {
