@@ -39,7 +39,7 @@ public abstract class ALUInstruction extends Instruction {
     }
 
     @Override
-    public boolean ready(RegisterFile registerFile) {
+    public boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         return (this.sourceA.isReady() && this.sourceB.isReady());
     }
 
@@ -50,7 +50,7 @@ public abstract class ALUInstruction extends Instruction {
 
     @Override
     public void freeDestination(RegisterFile registerFile) {
-        registerFile.getRegister(this.destination.getContents()).free();
+        registerFile.getRegister(this.destination.getContents()).free(this.tag);
     }
 
     @Override
@@ -65,5 +65,10 @@ public abstract class ALUInstruction extends Instruction {
     @Override
     public Integer getResult() {
         return this.result;
+    }
+
+    @Override
+    public String getSourceOperandStatus() {
+        return this.sourceA.toString() + " " + this.sourceB.toString();
     }
 }

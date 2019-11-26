@@ -10,6 +10,7 @@ public class JumpInstruction extends BranchInstruction {
     public void execute(Processor processor) {
         this.shouldBranch = true;
         this.branchTo = this.offset.getContents();
+        this.branchTarget = this.branchTo;
         this.state = State.EXECUTING;
     }
 }

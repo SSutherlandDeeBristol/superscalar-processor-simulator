@@ -13,6 +13,9 @@ public abstract class BranchInstruction extends Instruction {
     protected boolean shouldBranch;
     protected Integer branchTo;
 
+    protected boolean predictedTaken;
+    protected Integer branchTarget;
+
     public BranchInstruction(Opcode opcode, Integer delay, Integer tag, Operand[] operands) {
         super(opcode, delay, tag, operands);
         this.sourceA = operands[0];
@@ -22,6 +25,7 @@ public abstract class BranchInstruction extends Instruction {
         this.PC = 0;
         this.shouldBranch = false;
         this.branchTo = 0;
+        this.branchTarget = 0;
     }
 
     @Override
@@ -42,7 +46,7 @@ public abstract class BranchInstruction extends Instruction {
     }
 
     @Override
-    public boolean ready(RegisterFile registerFile) {
+    public boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         return (this.sourceA.isReady() && this.sourceB.isReady());
     }
 
@@ -53,7 +57,7 @@ public abstract class BranchInstruction extends Instruction {
 
     @Override
     public void freeDestination(RegisterFile registerFile) {
-        registerFile.getPC().free();
+        registerFile.getPC().free(this.tag);
     }
 
     @Override
@@ -61,9 +65,11 @@ public abstract class BranchInstruction extends Instruction {
 
     @Override
     public void writeBack(Processor processor) {
-        if (this.shouldBranch) {
-            processor.getRegisterFile().getPC().set(this.branchTo);
+        processor.getBranchPredictor().update(this.PC, this.branchTarget, this.shouldBranch);
+
+        if (this.predictedTaken != this.shouldBranch) {
             processor.flushPipeline();
+            processor.getRegisterFile().getPC().set(this.branchTo);
         }
     }
 
@@ -72,7 +78,16 @@ public abstract class BranchInstruction extends Instruction {
         return 0;
     }
 
+    @Override
+    public String getSourceOperandStatus() {
+        return this.sourceA.toString() + " " + this.sourceB.toString();
+    }
+
     public void setPC(Integer PC) {
         this.PC = PC;
+    }
+
+    public void setPrediction(boolean predictedTaken) {
+        this.predictedTaken = predictedTaken;
     }
 }

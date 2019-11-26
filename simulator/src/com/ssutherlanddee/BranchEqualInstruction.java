@@ -11,6 +11,8 @@ public class BranchEqualInstruction extends BranchInstruction {
         if (this.sourceA.getContents().equals(this.sourceB.getContents())) {
             this.branchTo = this.PC + this.offset.getContents();
             this.shouldBranch = true;
+        } else {
+            this.branchTo = this.PC + 1;
         }
         this.state = State.EXECUTING;
     }

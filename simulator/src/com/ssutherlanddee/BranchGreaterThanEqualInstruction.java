@@ -8,9 +8,12 @@ public class BranchGreaterThanEqualInstruction extends BranchInstruction {
 
     @Override
     public void execute(Processor processor) {
+        this.branchTarget = this.PC + this.offset.getContents();
         if (this.sourceA.getContents() >= this.sourceB.getContents()) {
-            this.branchTo = this.PC + this.offset.getContents();
+            this.branchTo = this.branchTarget;
             this.shouldBranch = true;
+        } else {
+            this.branchTo = this.PC + 1;
         }
         this.state = State.EXECUTING;
     }

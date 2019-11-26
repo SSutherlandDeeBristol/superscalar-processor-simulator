@@ -30,7 +30,7 @@ public class NullInstruction extends Instruction {
     public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer, Integer pc) {}
 
     @Override
-    public boolean ready(RegisterFile registerFile) {
+    public boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         return true;
     }
 
@@ -40,6 +40,11 @@ public class NullInstruction extends Instruction {
     @Override
     public Integer getResult() {
         return 0;
+    }
+
+    @Override
+    public String getSourceOperandStatus() {
+        return "";
     }
 
     @Override

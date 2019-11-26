@@ -2,6 +2,7 @@ package com.ssutherlanddee;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.ssutherlanddee.Operand.OperandType;
 
@@ -25,7 +26,7 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
     }
 
     @Override
-    public boolean ready(RegisterFile registerFile) {
+    public boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         return (this.destination.isReady());
     }
 
@@ -39,5 +40,21 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
     public void writeBack(Processor processor) {
         processor.getMemory().setMemoryByAddress(this.destination.getContents() + this.sourceA.getContents(),
             this.sourceB.getContents());
+    }
+
+    @Override
+    protected void calculateAddress() {
+        if (this.destination.isReady())
+            this.address = Optional.of(this.destination.getContents() + this.sourceA.getContents());
+    }
+
+    @Override
+    public Optional<Integer> getStoreAddress() {
+        return this.address;
+    }
+
+    @Override
+    public String getSourceOperandStatus() {
+        return this.destination.toString();
     }
 }

@@ -3,17 +3,16 @@ package com.ssutherlanddee;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ssutherlanddee.Operand.OperandType;
 import com.ssutherlanddee.Register.State;
 
 public class RegisterFile {
 
     private List<Register> registers = new ArrayList<>();
-    private Register PC = new Register();
+    private Register PC = new Register(-1);
 
     public RegisterFile(Integer numRegisters) {
         for (int i = 0; i < numRegisters; i++) {
-            Register r = new Register();
+            Register r = new Register(i);
             r.set(0);
             registers.add(r);
         }
@@ -24,16 +23,6 @@ public class RegisterFile {
         return this.registers.get(i);
     }
 
-    public boolean validOperands(List<Operand> operands) {
-        for (Operand o : operands) {
-            if (o.getType() == OperandType.REGISTER) {
-                if (!getRegister(o.getContents()).isValid())
-                    return false;
-            }
-        }
-        return true;
-    }
-
     public void broadcast(Integer register, Integer tag, Integer value) {
         Register r = this.registers.get(register);
 
@@ -41,8 +30,8 @@ public class RegisterFile {
     }
 
     public void flush() {
-        this.registers.forEach(r -> r.free());
-        this.PC.free();
+        this.registers.forEach(r -> r.setState(State.AVAILABLE));
+        this.PC.setState(State.AVAILABLE);
     }
 
     public void setPC(Integer value) {
@@ -54,9 +43,9 @@ public class RegisterFile {
     }
 
     public String toString() {
-        String s = String.format("Program Counter: %3d | Valid: %d\n\n", this.PC.get(), this.PC.isValid()? 1 : 0);
+        String s = String.format("Program Counter: %3d | Status: %s\n\n", this.PC.get(), this.PC.getState().toString());
         for (Register r : this.registers) {
-            s = s.concat(String.format("Register %5d : %3d | Valid: %d\n", registers.indexOf(r), r.get(), r.isValid() ? 1 : 0));
+            s = s.concat(String.format("Register %5d : %3d | Status: %s\n", registers.indexOf(r), r.get(), r.getState().toString()));
         }
         return s;
     }

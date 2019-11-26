@@ -75,7 +75,7 @@ public abstract class Instruction {
 
     public abstract void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer, Integer pc);
 
-    public abstract boolean ready(RegisterFile registerFile);
+    public abstract boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer);
 
     public abstract void blockDestination(RegisterFile registerFile);
 
@@ -87,7 +87,9 @@ public abstract class Instruction {
 
     public abstract Integer getResult();
 
+    public abstract String getSourceOperandStatus();
+
     public String toString() {
-        return this.stringRepresentation.concat(" | " + this.state + " | tag: " + this.tag);
+        return this.stringRepresentation.concat(" | " + this.state + " | tag: " + this.tag + " | " + getSourceOperandStatus());
     }
 }

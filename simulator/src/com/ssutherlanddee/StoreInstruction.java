@@ -1,5 +1,7 @@
 package com.ssutherlanddee;
 
+import java.util.Optional;
+
 import com.ssutherlanddee.Operand.OperandType;
 
 public class StoreInstruction extends LoadStoreInstruction {
@@ -25,7 +27,7 @@ public class StoreInstruction extends LoadStoreInstruction {
     }
 
     @Override
-    public boolean ready(RegisterFile registerFile) {
+    public boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         return (this.destination.isReady() && this.sourceA.isReady());
     }
 
@@ -39,5 +41,21 @@ public class StoreInstruction extends LoadStoreInstruction {
     public void writeBack(Processor processor) {
         processor.getMemory().setMemoryByAddress(this.sourceA.getContents() + this.sourceB.getContents(),
             this.destination.getContents());
+    }
+
+    @Override
+    public Optional<Integer> getStoreAddress() {
+        return this.address;
+    }
+
+    @Override
+    protected void calculateAddress() {
+        if (this.sourceA.isReady() && this.sourceB.isReady())
+            this.address = Optional.of(this.sourceA.getContents() + this.sourceB.getContents());
+    }
+
+    @Override
+    public String getSourceOperandStatus() {
+        return this.destination.toString() + " " + this.sourceA.toString();
     }
 }

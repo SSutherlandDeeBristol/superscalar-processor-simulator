@@ -1,7 +1,6 @@
 package com.ssutherlanddee;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Optional;
 
 import com.ssutherlanddee.Operand.OperandType;
 
@@ -11,11 +10,14 @@ public class LoadStoreInstruction extends Instruction {
     protected Operand sourceA;
     protected Operand sourceB;
 
+    protected Optional<Integer> address;
+
     public LoadStoreInstruction(Opcode opcode, Integer delay, Integer tag, Operand[] operands) {
         super(opcode, delay, tag, operands);
         this.destination = operands[0];
         this.sourceA = operands[1];
         this.sourceB = operands[2];
+        this.address = Optional.empty();
     }
 
     @Override
@@ -24,6 +26,7 @@ public class LoadStoreInstruction extends Instruction {
             this.sourceA.setType(OperandType.VALUE, value);
         if (this.sourceB.getType() == OperandType.TAG && this.sourceB.getContents() == tag)
             this.sourceB.setType(OperandType.VALUE, value);
+        calculateAddress();
     }
 
     @Override
@@ -32,10 +35,11 @@ public class LoadStoreInstruction extends Instruction {
             this.sourceA = updateRegisterOperand(this.sourceA, registerFile, reorderBuffer);
         if (this.sourceB.getType() == OperandType.REGISTER)
             this.sourceB = updateRegisterOperand(this.sourceB, registerFile, reorderBuffer);
+        calculateAddress();
     }
 
     @Override
-    public boolean ready(RegisterFile registerFile) {
+    public boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
         return (this.sourceA.isReady() && this.sourceB.isReady());
     }
 
@@ -46,7 +50,7 @@ public class LoadStoreInstruction extends Instruction {
 
     @Override
     public void freeDestination(RegisterFile registerFile) {
-        registerFile.getRegister(this.destination.getContents()).free();
+        registerFile.getRegister(this.destination.getContents()).free(this.tag);
     }
 
     @Override
@@ -60,5 +64,16 @@ public class LoadStoreInstruction extends Instruction {
     }
 
     @Override
+    public String getSourceOperandStatus() {
+        return this.sourceA.toString() + " " + this.sourceB.toString();
+    }
+
+    @Override
     public void writeBack(Processor processor) {}
+
+    protected void calculateAddress() {}
+
+    public Optional<Integer> getStoreAddress() {
+        return Optional.empty();
+    }
 }

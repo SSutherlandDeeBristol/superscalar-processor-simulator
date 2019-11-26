@@ -3,7 +3,10 @@ package com.ssutherlanddee;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
+
+import com.ssutherlanddee.BranchPredictorFactory.PredictorType;
 
 public class Processor {
 
@@ -11,7 +14,7 @@ public class Processor {
 
     private Memory memory;
 
-    private List<Pair<String, Integer>> encodedInstructions;
+    private List<EncodedInstruction> encodedInstructions;
 
     private List<ALUnit> aluUnits;
     private List<BranchUnit> branchUnits;
@@ -27,9 +30,15 @@ public class Processor {
 
     private TagManager tagManager;
 
+    private BranchPredictor branchPredictor;
+
     private boolean running;
 
     private boolean interactive;
+
+    private Integer fetchWidth;
+
+    private Integer flushCounter;
 
     public Processor(Program program, boolean interactive) {
         this.instructionParser = new InstructionParser();
@@ -48,15 +57,23 @@ public class Processor {
         this.branchRS = new ArrayList<>();
         this.loadStoreRS = new ArrayList<>();
 
-        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory);
+        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, 64);
 
         this.tagManager = new TagManager();
+
+        BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
+
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
 
         this.interactive = interactive;
 
         constructExecutionUnits(2, 1, 2);
 
         this.running = true;
+
+        this.fetchWidth = 4;
+
+        this.flushCounter = 0;
 
         System.out.println(program.toString());
     }
@@ -73,13 +90,17 @@ public class Processor {
             if (this.interactive)
                 System.out.println("STATUS | CYCLE: " + cycle + "\n");
 
-            writeBack();
+            if (flushCounter == 0) {
+                writeBack();
 
-            execute();
+                execute();
 
-            decode();
+                decode();
 
-            fetch();
+                fetch();
+            } else {
+                flushCounter--;
+            }
 
             if (this.interactive) {
                 printStatus();
@@ -101,21 +122,32 @@ public class Processor {
     }
 
     private void fetch() {
-        // fetch instruction from memory and add to buffer
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < this.fetchWidth; i++) {
             String nextEncodedInstruction = this.memory.getInstructionByAddress(this.registerFile.getPC().get());
 
-            if (nextEncodedInstruction == null) {
+            if (nextEncodedInstruction == null)
                 return;
-            }
+
+            if (this.reorderBuffer.getSize() + this.encodedInstructions.size() > this.reorderBuffer.getCapacity())
+                return;
 
             if (this.interactive)
                 System.out.println("FETCHED: " + nextEncodedInstruction);
 
-            this.encodedInstructions.add(new Pair<String, Integer>(nextEncodedInstruction,
-                                                                    this.registerFile.getPC().get()));
+            Optional<Pair<Integer, Boolean>> branchInfo = this.branchPredictor.predict(nextEncodedInstruction, this.registerFile.getPC().get());
 
-            this.registerFile.getPC().increment();
+            // If the instruction is a conditional branch and we should branch
+            if (branchInfo.isPresent()) {
+                this.encodedInstructions.add(new EncodedInstruction(this.registerFile.getPC().get(),
+                    nextEncodedInstruction, true));
+
+                this.registerFile.getPC().set(branchInfo.get().first());
+            } else {
+                this.encodedInstructions.add(new EncodedInstruction(this.registerFile.getPC().get(),
+                    nextEncodedInstruction, false));
+
+                this.registerFile.getPC().increment();
+            }
         }
     }
 
@@ -128,19 +160,19 @@ public class Processor {
             if (this.encodedInstructions.isEmpty())
                 return;
 
-            Pair<String, Integer> s = this.encodedInstructions.remove(0);
+            EncodedInstruction encodedInstruction = this.encodedInstructions.remove(0);
 
             Integer tag = this.tagManager.getFreeTag();
 
-            Instruction nextInstruction = instructionParser.parseInstruction(s.first(), tag);
+            Instruction nextInstruction = instructionParser.parseInstruction(encodedInstruction.getInstruction(), tag);
 
             Comparator<ReservationStation> compareRS = new Comparator<ReservationStation>() {
                 public int compare(ReservationStation a, ReservationStation b) {
                     boolean aIsExecuting = a.getExecutionUnit().isExecuting();
                     boolean bIsExecuting = b.getExecutionUnit().isExecuting();
 
-                    int aVal = (aIsExecuting ? 1 : -1) + (a.getBufferSize() + a.getExecutionUnit().getBufferSize());
-                    int bVal = (bIsExecuting ? 1 : -1) + (b.getBufferSize() + b.getExecutionUnit().getBufferSize());
+                    int aVal = (a.getBufferSize() + a.getExecutionUnit().getBufferSize());
+                    int bVal = (b.getBufferSize() + b.getExecutionUnit().getBufferSize());
 
                     return aVal - bVal;
                 }
@@ -149,18 +181,42 @@ public class Processor {
             if (this.interactive)
                 System.out.println("DECODED: " + nextInstruction.toString());
 
+            boolean noCapacity = false;
+
             if (nextInstruction instanceof ALUInstruction) {
-                this.aluRS.stream().min(compareRS)
-                    .get().issue(nextInstruction, s.second());
+                ReservationStation rs = this.aluRS.stream().min(compareRS).get();
+
+                if (!rs.hasCapacity()) {
+                    noCapacity = true;
+                } else {
+                    rs.issue(nextInstruction, encodedInstruction.getPC());
+                }
             } else if (nextInstruction instanceof BranchInstruction) {
-                this.branchRS.stream().min(compareRS)
-                    .get().issue(nextInstruction, s.second());
+                ReservationStation rs = this.branchRS.stream().min(compareRS).get();
+
+                if (!rs.hasCapacity()) {
+                    noCapacity = true;
+                } else {
+                    ((BranchInstruction) nextInstruction).setPrediction(encodedInstruction.getPredictedBranch());
+                    rs.issue(nextInstruction, encodedInstruction.getPC());
+                }
             } else if (nextInstruction instanceof LoadStoreInstruction) {
-                this.loadStoreRS.stream().min(compareRS)
-                    .get().issue(nextInstruction, s.second());
+                ReservationStation rs = this.loadStoreRS.stream().min(compareRS).get();
+
+                if (!rs.hasCapacity()) {
+                    noCapacity = true;
+                } else {
+                    rs.issue(nextInstruction, encodedInstruction.getPC());
+                }
             } else {
                 throw new RuntimeException("Unrecognised instruction type.");
             }
+
+            if (noCapacity) {
+                this.encodedInstructions.add(0, encodedInstruction);
+                break;
+            }
+
         }
     }
 
@@ -202,6 +258,11 @@ public class Processor {
     }
 
     private void printStatus() {
+        if (flushCounter > 0) {
+            System.out.println("FLUSHING PIPELINE");
+            return;
+        }
+
         System.out.println("\nArithmetic Logic Units:");
         this.aluUnits.forEach(alUnit -> System.out.println("ID " + alUnit.getId() + " | " + alUnit.getStatus()));
 
@@ -223,6 +284,9 @@ public class Processor {
 
         System.out.println("\nReorder Buffer: ");
         this.reorderBuffer.printContents();
+
+        System.out.println("\nBranch Target Address Cache: ");
+        this.branchPredictor.printCache();
 
         System.out.println("\nMemory: ");
         this.memory.printContents(10);
@@ -282,21 +346,21 @@ public class Processor {
         for (int a = 0; a < alu; a++) {
             ALUnit e = new ALUnit(a, this.registerFile, this.interactive);
             this.aluUnits.add(e);
-            this.aluRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer));
+            this.aluRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 32));
             rId++;
         }
 
         for (int b = 0; b < branch; b++) {
             BranchUnit e = new BranchUnit(b, this.registerFile, this.interactive);
             this.branchUnits.add(e);
-            this.branchRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer));
+            this.branchRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 32));
             rId++;
         }
 
         for (int l = 0; l < loadStore; l++) {
             LoadStoreUnit e = new LoadStoreUnit(l, this.registerFile, this.interactive);
             this.loadStoreUnits.add(e);
-            this.loadStoreRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer));
+            this.loadStoreRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 32));
             rId++;
         }
     }
@@ -315,5 +379,9 @@ public class Processor {
 
     public TagManager getTagManager() {
         return this.tagManager;
+    }
+
+    public BranchPredictor getBranchPredictor() {
+        return this.branchPredictor;
     }
 }
