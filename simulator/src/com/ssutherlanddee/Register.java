@@ -23,7 +23,7 @@ public class Register {
     }
 
     public void free(Integer tag) {
-        if (this.state == State.READY || this.tag == tag)
+        if ((this.state == State.READY || this.state == State.INFLIGHT) && this.tag == tag)
             this.state = State.AVAILABLE;
     }
 

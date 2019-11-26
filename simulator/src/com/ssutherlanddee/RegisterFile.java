@@ -26,7 +26,8 @@ public class RegisterFile {
     public void broadcast(Integer register, Integer tag, Integer value) {
         Register r = this.registers.get(register);
 
-        r.setState(State.READY);
+        if (r.getTag() == tag)
+            r.setState(State.READY);
     }
 
     public void flush() {
