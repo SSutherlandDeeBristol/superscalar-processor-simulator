@@ -32,7 +32,7 @@ public class Program {
     }
 
     public boolean hasContent(String line) {
-        return !line.isBlank();
+        return !line.trim().isEmpty();
     }
 
     public String removeComment(String line) {

@@ -66,7 +66,7 @@ public class ReorderBuffer {
             if (i.getTag() == tag)
                 return false;
             if (i instanceof StoreInstruction) {
-                if (((StoreInstruction) i).getStoreAddress().isEmpty()) {
+                if (!((StoreInstruction) i).getStoreAddress().isPresent()) {
                     return true;
                 } else {
                     if (address == ((StoreInstruction) i).getStoreAddress().get()) {
@@ -74,7 +74,7 @@ public class ReorderBuffer {
                     }
                 }
             } else if (i instanceof StoreImmediateInstruction) {
-                if (((StoreImmediateInstruction) i).getStoreAddress().isEmpty()) {
+                if (!((StoreImmediateInstruction) i).getStoreAddress().isPresent()) {
                     return true;
                 } else {
                     if (address == ((StoreImmediateInstruction) i).getStoreAddress().get()) {
