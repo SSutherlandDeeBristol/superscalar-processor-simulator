@@ -38,8 +38,6 @@ public class Processor {
 
     private Integer fetchWidth;
 
-    private Integer flushCounter;
-
     private Integer numFlushes;
 
     public Processor(Program program, boolean interactive) {
@@ -75,8 +73,6 @@ public class Processor {
 
         this.fetchWidth = 4;
 
-        this.flushCounter = 0;
-
         this.numFlushes = 0;
 
         System.out.println(program.toString());
@@ -94,17 +90,13 @@ public class Processor {
             if (this.interactive)
                 System.out.println("STATUS | CYCLE: " + cycle + "\n");
 
-            if (flushCounter == 0) {
-                writeBack();
+            writeBack();
 
-                execute();
+            execute();
 
-                decode();
+            decode();
 
-                fetch();
-            } else {
-                flushCounter--;
-            }
+            fetch();
 
             if (this.interactive) {
                 printStatus();
@@ -260,17 +252,10 @@ public class Processor {
 
         this.tagManager.flush();
 
-        this.flushCounter = 10;
-
         this.numFlushes++;
     }
 
     private void printStatus() {
-        if (flushCounter > 0) {
-            System.out.println("FLUSHING PIPELINE");
-            return;
-        }
-
         System.out.println("\nArithmetic Logic Units:");
         this.aluUnits.forEach(alUnit -> System.out.println("ID " + alUnit.getId() + " | " + alUnit.getStatus()));
 
