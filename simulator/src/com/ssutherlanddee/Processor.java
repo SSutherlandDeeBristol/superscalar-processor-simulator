@@ -63,7 +63,7 @@ public class Processor {
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.STATIC);
 
         this.interactive = interactive;
 
@@ -305,9 +305,10 @@ public class Processor {
 
         System.out.println(String.format("Number of mispredicted branches: %d", this.numFlushes));
         System.out.println(String.format("Number of branches completed: %d", this.reorderBuffer.getNumBranchInstructionsCompleted()));
-        System.out.println(String.format("Misprediction rate: %.2f%%\n", ((float) 100.0f * ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted()))));
+        if (this.reorderBuffer.getNumBranchInstructionsCompleted() > 0)
+            System.out.println(String.format("Misprediction rate: %.2f%%", ((float) 100.0f * ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted()))));
 
-        System.out.println("Final register state:\n");
+        System.out.println("\nFinal register state:\n");
         System.out.println(this.registerFile.toString());
     }
 
