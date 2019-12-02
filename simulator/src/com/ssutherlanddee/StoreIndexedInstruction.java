@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import com.ssutherlanddee.Operand.OperandType;
 
-public class StoreInstruction extends LoadStoreInstruction {
+public class StoreIndexedInstruction extends LoadStoreInstruction {
 
-    public StoreInstruction(Operand[] operands, Integer tag) {
-        super(Instruction.Opcode.st, 2, tag, operands);
+    public StoreIndexedInstruction(Operand[] operands, Integer tag) {
+        super(Instruction.Opcode.stx, 2, tag, operands);
     }
 
     @Override
@@ -16,6 +16,8 @@ public class StoreInstruction extends LoadStoreInstruction {
             this.destination.setType(OperandType.VALUE, value);
         if (this.sourceA.getType() == OperandType.TAG && this.sourceA.getContents() == tag)
             this.sourceA.setType(OperandType.VALUE, value);
+        if (this.sourceB.getType() == OperandType.TAG && this.sourceB.getContents() == tag)
+            this.sourceB.setType(OperandType.VALUE, value);
         calculateAddress();
     }
 
@@ -25,12 +27,14 @@ public class StoreInstruction extends LoadStoreInstruction {
             this.destination = updateRegisterOperand(this.destination, registerFile, reorderBuffer);
         if (this.sourceA.getType() == OperandType.REGISTER)
             this.sourceA = updateRegisterOperand(this.sourceA, registerFile, reorderBuffer);
+        if (this.sourceB.getType() == OperandType.REGISTER)
+            this.sourceB = updateRegisterOperand(this.sourceB, registerFile, reorderBuffer);
         calculateAddress();
     }
 
     @Override
     public boolean ready(RegisterFile registerFile, ReorderBuffer reorderBuffer) {
-        return (this.destination.isReady() && this.sourceA.isReady());
+        return (this.destination.isReady() && this.sourceA.isReady() && this.sourceB.isReady());
     }
 
     @Override
@@ -58,6 +62,6 @@ public class StoreInstruction extends LoadStoreInstruction {
 
     @Override
     public String getSourceOperandStatus() {
-        return this.destination.toString() + " " + this.sourceA.toString();
+        return this.destination.toString() + " " + this.sourceA.toString() + " " + this.sourceB.toString();
     }
 }

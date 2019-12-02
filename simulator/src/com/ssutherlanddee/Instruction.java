@@ -6,7 +6,7 @@ import com.ssutherlanddee.Operand.OperandType;
 
 public abstract class Instruction {
     public enum State {WAITING, EXECUTING, FINISHED}
-    public enum Opcode {nop, mov, cmp, bne, beq, bgt, blt, bge, ble, jmp, add, addi, sub, subi, mul, div, ld, ldi, st, sti}
+    public enum Opcode {nop, mov, cmp, bne, beq, bgt, blt, bge, ble, jmp, add, addi, sub, subi, mul, div, ld, ldi, ldx, st, sti, stx}
 
     private Opcode opcode;
     private Integer delay;

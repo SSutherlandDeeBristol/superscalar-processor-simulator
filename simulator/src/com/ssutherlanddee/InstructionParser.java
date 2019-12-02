@@ -52,11 +52,19 @@ public class InstructionParser {
             return new StoreImmediateInstruction(operands, tag);
         } else if(trimmed.startsWith("ldi ")) {
             Operand[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.ldi,
-            OperandType.REGISTER, OperandType.VALUE, OperandType.NONE);
+                    OperandType.REGISTER, OperandType.VALUE, OperandType.NONE);
             return new LoadImmediateInstruction(operands, tag);
+        } else if(trimmed.startsWith("ldx ")) {
+            Operand[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.ldx,
+                    OperandType.REGISTER, OperandType.REGISTER, OperandType.REGISTER);
+            return new LoadIndexedInstruction(operands, tag);
+        } else if(trimmed.startsWith("stx ")) {
+            Operand[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.stx,
+                    OperandType.REGISTER, OperandType.REGISTER, OperandType.REGISTER);
+            return new StoreIndexedInstruction(operands, tag);
         } else if(trimmed.startsWith("mov ")) {
             Operand[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.mov,
-                OperandType.REGISTER, OperandType.REGISTER, OperandType.NONE);
+                    OperandType.REGISTER, OperandType.REGISTER, OperandType.NONE);
             return new MoveInstruction(operands, tag);
         } else if(trimmed.startsWith("cmp ")) {
             Operand[] operands = parseOperands(trimmed.substring(3), Instruction.Opcode.cmp,

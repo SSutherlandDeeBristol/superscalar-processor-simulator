@@ -1,11 +1,11 @@
 package com.ssutherlanddee;
 
-public class LoadInstruction extends LoadStoreInstruction {
+public class LoadIndexedInstruction extends LoadStoreInstruction {
 
     private Integer result;
 
-    public LoadInstruction(Operand[] operands, Integer tag) {
-        super(Opcode.ld, 2, tag, operands);
+    public LoadIndexedInstruction(Operand[] operands, Integer tag) {
+        super(Opcode.ldx, 2, tag, operands);
         this.result = 0;
     }
 

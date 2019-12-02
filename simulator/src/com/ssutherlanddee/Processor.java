@@ -57,7 +57,7 @@ public class Processor {
         this.branchRS = new ArrayList<>();
         this.loadStoreRS = new ArrayList<>();
 
-        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, 64);
+        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, 48);
 
         this.tagManager = new TagManager();
 
@@ -295,15 +295,17 @@ public class Processor {
 
         System.out.println("Number of cycles: " + numCycles);
         System.out.println("Number of instructions executed: " + numInstructionsExecuted);
-        System.out.println("Number of instructions completed: " + numInstructionsCompleted);
+        System.out.println("Number of instructions completed: " + numInstructionsCompleted + "\n");
+
         if (numInstructionsCompleted > 0)
             System.out.println(String.format("Number of cycles per completed instruction: %.2f", ((float) numCycles / numInstructionsCompleted)));
 
-        System.out.println(String.format("Number of instructions completed per cycle: %.2f\n", ((float) numInstructionsCompleted / numCycles)));
+        System.out.println(String.format("Number of instructions completed per cycle: %.2f", ((float) numInstructionsCompleted / numCycles)));
+        System.out.println(String.format("Number of instructions executed per cycle: %.2f\n", ((float) numInstructionsExecuted / numCycles)));
 
         System.out.println(String.format("Number of mispredicted branches: %d", this.numFlushes));
         System.out.println(String.format("Number of branches completed: %d", this.reorderBuffer.getNumBranchInstructionsCompleted()));
-        System.out.println(String.format("Misprediction ratio: %.2f\n", ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted())));
+        System.out.println(String.format("Misprediction rate: %.2f%%\n", ((float) 100.0f * ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted()))));
 
         System.out.println("Final register state:\n");
         System.out.println(this.registerFile.toString());
