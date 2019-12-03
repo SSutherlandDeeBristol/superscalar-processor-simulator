@@ -41,7 +41,7 @@ public class ReservationStation {
     public void dispatch() {
         for (Instruction i : this.instructionBuffer) {
             // If the instruction is ready to be dispatched then dispatch it
-            if (i.ready(this.registerFile, this.reorderBuffer)) {
+            if (i.ready(this.registerFile, this.reorderBuffer) && !this.executionUnit.isExecuting()) {
                 dispatchInstruction(i);
                 this.instructionBuffer.remove(i);
                 break;

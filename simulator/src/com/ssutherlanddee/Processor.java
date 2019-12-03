@@ -63,7 +63,7 @@ public class Processor {
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.STATIC);
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.FIXEDNT);
 
         this.interactive = interactive;
 
