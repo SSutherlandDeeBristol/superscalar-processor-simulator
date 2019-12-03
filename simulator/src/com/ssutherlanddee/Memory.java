@@ -3,6 +3,7 @@ package com.ssutherlanddee;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class Memory {
 
@@ -33,6 +34,12 @@ public class Memory {
         if (!this.mainMemory.containsKey(address))
             return 0;
         return this.mainMemory.get(address);
+    }
+
+    public Optional<Integer> getPCForLabel(String label) {
+        if (this.labelMap.containsKey(label))
+            return Optional.of(this.labelMap.get(label));
+        return Optional.empty();
     }
 
     public Integer instructionsRemaining(Integer pc) {

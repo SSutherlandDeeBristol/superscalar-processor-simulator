@@ -41,9 +41,9 @@ public class Processor {
     private Integer numFlushes;
 
     public Processor(Program program, boolean interactive) {
-        this.instructionParser = new InstructionParser();
         this.memory = new Memory();
         this.registerFile = new RegisterFile(16);
+        this.instructionParser = new InstructionParser(this.memory);
 
         this.memory.loadProgramIntoMemory(program);
 
@@ -57,17 +57,17 @@ public class Processor {
         this.branchRS = new ArrayList<>();
         this.loadStoreRS = new ArrayList<>();
 
-        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, 48);
+        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, 32);
 
         this.tagManager = new TagManager();
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.FIXEDNT);
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
 
         this.interactive = interactive;
 
-        constructExecutionUnits(2, 1, 2);
+        constructExecutionUnits(2, 1, 1);
 
         this.running = true;
 
@@ -160,13 +160,10 @@ public class Processor {
 
             Integer tag = this.tagManager.getFreeTag();
 
-            Instruction nextInstruction = instructionParser.parseInstruction(encodedInstruction.getInstruction(), tag);
+            Instruction nextInstruction = instructionParser.parseInstruction(encodedInstruction, tag);
 
             Comparator<ReservationStation> compareRS = new Comparator<ReservationStation>() {
                 public int compare(ReservationStation a, ReservationStation b) {
-                    boolean aIsExecuting = a.getExecutionUnit().isExecuting();
-                    boolean bIsExecuting = b.getExecutionUnit().isExecuting();
-
                     int aVal = (a.getBufferSize() + a.getExecutionUnit().getBufferSize());
                     int bVal = (b.getBufferSize() + b.getExecutionUnit().getBufferSize());
 
@@ -346,21 +343,21 @@ public class Processor {
         for (int a = 0; a < alu; a++) {
             ALUnit e = new ALUnit(a, this.registerFile, this.interactive);
             this.aluUnits.add(e);
-            this.aluRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 32));
+            this.aluRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 4));
             rId++;
         }
 
         for (int b = 0; b < branch; b++) {
             BranchUnit e = new BranchUnit(b, this.registerFile, this.interactive);
             this.branchUnits.add(e);
-            this.branchRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 32));
+            this.branchRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 4));
             rId++;
         }
 
         for (int l = 0; l < loadStore; l++) {
             LoadStoreUnit e = new LoadStoreUnit(l, this.registerFile, this.interactive);
             this.loadStoreUnits.add(e);
-            this.loadStoreRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 32));
+            this.loadStoreRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 4));
             rId++;
         }
     }

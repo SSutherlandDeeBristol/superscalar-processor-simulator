@@ -29,6 +29,16 @@ public class Program {
 
         this.instructionList = instructionList.stream().map(this::removeComment)
                                         .filter(this::hasContent).collect(Collectors.toList());
+
+        Integer numLabels = 0;
+        for (int i = 0; i < this.instructionList.size(); i++) {
+            if (isLabel(this.instructionList.get(i))) {
+                this.labelMap.put(this.instructionList.get(i).substring(0, this.instructionList.get(i).length() - 1), i - numLabels);
+                numLabels++;
+            }
+        }
+
+        this.instructionList = this.instructionList.stream().filter(this::isNotLabel).collect(Collectors.toList());
     }
 
     public boolean hasContent(String line) {
@@ -37,6 +47,14 @@ public class Program {
 
     public String removeComment(String line) {
         return line.split("#")[0].trim();
+    }
+
+    public boolean isLabel(String line) {
+        return line.endsWith(":");
+    }
+
+    public boolean isNotLabel(String line) {
+        return !isLabel(line);
     }
 
     public List<String> getInstructionList() {
