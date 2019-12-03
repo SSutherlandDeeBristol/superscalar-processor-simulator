@@ -103,7 +103,7 @@ public class Processor {
                 input.nextLine();
             }
 
-            this.running = canProcess();
+            //this.running = canProcess();
         }
 
         printFinalStats(cycle);
@@ -223,6 +223,10 @@ public class Processor {
 
     public void writeBack() {
         this.reorderBuffer.retire(this.interactive, this);
+    }
+
+    public void halt() {
+        this.running = false;
     }
 
     public void broadcast(Integer register, Integer tag, Integer value) {

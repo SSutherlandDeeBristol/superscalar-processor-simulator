@@ -14,7 +14,6 @@ public class InstructionParser {
     public Instruction parseInstruction(EncodedInstruction i, Integer tag) {
 
         String trimmed = i.getInstruction().trim();
-        System.out.println(trimmed);
 
         if (trimmed.startsWith("add ")) {
             Operand[] operands = parseOperands(trimmed.substring(3), i.getPC(), Instruction.Opcode.add,
@@ -100,7 +99,9 @@ public class InstructionParser {
             Operand[] operands = parseOperands(trimmed.substring(3), i.getPC(), Instruction.Opcode.ble,
                     OperandType.REGISTER, OperandType.REGISTER, OperandType.VALUE);
             return new BranchLessThanEqualInstruction(operands, tag);
-        } else {
+        } else if(trimmed.startsWith("halt")) {
+            return new HaltInstruction(tag);
+        }else {
             throw new RuntimeException("No such instruction as " + trimmed);
         }
     }
@@ -111,8 +112,6 @@ public class InstructionParser {
         input = input.trim();
         String[] operands = input.split("\\s+");
         Integer operandsCounter = 0;
-
-        System.out.println(input);
 
         for (int i = 0; i < operandTypes.length; i++) {
             if (operandTypes[i] == OperandType.NONE) {

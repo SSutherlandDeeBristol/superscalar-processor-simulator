@@ -9,3 +9,4 @@ loop:
     add r2 r2 r3    # w = w + 1
     jmp loop           # end
 end:
+    halt

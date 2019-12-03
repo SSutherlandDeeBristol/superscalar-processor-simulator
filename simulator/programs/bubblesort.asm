@@ -48,3 +48,4 @@ ld r6 r9 6
 ld r7 r9 7
 ld r8 r9 8
 ld r9 r9 9
+halt
