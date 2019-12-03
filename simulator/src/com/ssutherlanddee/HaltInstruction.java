@@ -1,8 +1,5 @@
 package com.ssutherlanddee;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.ssutherlanddee.Operand.OperandType;
 
 public class HaltInstruction extends ALUInstruction {

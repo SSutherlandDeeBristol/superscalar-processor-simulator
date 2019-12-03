@@ -63,7 +63,7 @@ public class Processor {
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC1);
 
         this.interactive = interactive;
 
@@ -103,18 +103,11 @@ public class Processor {
                 input.nextLine();
             }
 
-            //this.running = canProcess();
         }
 
         printFinalStats(cycle);
 
         input.close();
-    }
-
-    private boolean canProcess() {
-        return !this.encodedInstructions.isEmpty() || !this.reorderBuffer.isEmpty()
-                || unitsHaveBufferedInstructions() || unitsAreExecuting() || instructionsToFetch()
-                || reservationStationsHaveBufferedInstructions();
     }
 
     private void fetch() {
@@ -311,34 +304,6 @@ public class Processor {
 
         System.out.println("\nFinal register state:\n");
         System.out.println(this.registerFile.toString());
-    }
-
-    private boolean instructionsToFetch() {
-        return this.memory.instructionsRemaining(this.getRegisterFile().getPC().get()) > 0;
-    }
-
-    private boolean unitsAreExecuting() {
-        boolean ALUExecuting = this.aluUnits.stream().anyMatch(ExecutionUnit::isExecuting);
-        boolean branchExecuting = this.branchUnits.stream().anyMatch(ExecutionUnit::isExecuting);
-        boolean loadStoreExecuting = this.loadStoreUnits.stream().anyMatch(ExecutionUnit::isExecuting);
-
-        return ALUExecuting || branchExecuting || loadStoreExecuting;
-    }
-
-    private boolean unitsHaveBufferedInstructions() {
-        boolean ALUHaveInstructions = this.aluUnits.stream().anyMatch(ExecutionUnit::bufferNotEmpty);
-        boolean branchHaveInstructions = this.branchUnits.stream().anyMatch(ExecutionUnit::bufferNotEmpty);
-        boolean loadStoreHaveInstructions = this.loadStoreUnits.stream().anyMatch(ExecutionUnit::bufferNotEmpty);
-
-        return ALUHaveInstructions || branchHaveInstructions || loadStoreHaveInstructions;
-    }
-
-    private boolean reservationStationsHaveBufferedInstructions() {
-        boolean aluRSHaveInstructions = this.aluRS.stream().anyMatch(ReservationStation::bufferNotEmpty);
-        boolean branchRSHaveInstructions = this.branchRS.stream().anyMatch(ReservationStation::bufferNotEmpty);
-        boolean loadStoreRSHaveInstructions = this.loadStoreRS.stream().anyMatch(ReservationStation::bufferNotEmpty);
-
-        return aluRSHaveInstructions || branchRSHaveInstructions || loadStoreRSHaveInstructions;
     }
 
     private void constructExecutionUnits(Integer alu, Integer branch, Integer loadStore) {
