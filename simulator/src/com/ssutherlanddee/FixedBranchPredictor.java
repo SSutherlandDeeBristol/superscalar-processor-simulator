@@ -15,6 +15,8 @@ public class FixedBranchPredictor extends BranchPredictor {
         Optional<BranchTargetAddressCacheEntry> btacEntry = this.BTAC.getEntry(PC);
 
         if (btacEntry.isPresent()) {
+            if (encodedInstruction.startsWith("jmp"))
+                return Optional.of(new Pair<Integer, Boolean>(btacEntry.get().getTargetAddress(), true));
             if (!this.taken)
                 return Optional.empty();
             return Optional.of(new Pair<Integer, Boolean>(btacEntry.get().getTargetAddress(), this.taken));

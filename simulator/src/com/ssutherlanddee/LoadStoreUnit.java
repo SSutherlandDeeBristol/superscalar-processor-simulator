@@ -41,7 +41,7 @@ public class LoadStoreUnit extends ExecutionUnit {
         if (this.cycleCounter < 1 && !this.finishedInstruction) {
             this.currentInstruction.setFinishedExecuting();
             if (this.currentInstruction instanceof LoadImmediateInstruction ||
-                this.currentInstruction instanceof LoadInstruction) {
+                this.currentInstruction instanceof LoadInstruction || this.currentInstruction instanceof LoadIndexedInstruction) {
                     processor.broadcast(this.currentInstruction.getWriteRegister(), this.currentInstruction.getTag(), this.currentInstruction.getResult());
                 }
             this.finishedInstruction = true;

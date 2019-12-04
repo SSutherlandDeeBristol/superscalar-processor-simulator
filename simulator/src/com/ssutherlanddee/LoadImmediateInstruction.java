@@ -3,7 +3,7 @@ package com.ssutherlanddee;
 public class LoadImmediateInstruction extends LoadStoreInstruction {
 
     public LoadImmediateInstruction(Operand[] operands, Integer tag) {
-        super(Opcode.ldi, 2, tag, operands);
+        super(Opcode.ldi, 1, tag, operands);
     }
 
     @Override

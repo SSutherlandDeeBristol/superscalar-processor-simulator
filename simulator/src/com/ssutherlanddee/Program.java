@@ -12,22 +12,24 @@ import java.util.stream.Collectors;
 
 public class Program {
 
+    private List<String> sourceCode;
     private List<String> instructionList;
     private HashMap<String, Integer> labelMap;
 
     public Program(String filepath) {
         Path path = Paths.get(filepath);
 
+        this.sourceCode = new ArrayList<>();
         this.instructionList = new ArrayList<>();
         this.labelMap = new HashMap<>();
 
         try {
-            this.instructionList = Files.readAllLines(path, StandardCharsets.UTF_8);
+            this.sourceCode = Files.readAllLines(path, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException("Cannot open or read from: " + filepath);
         }
 
-        this.instructionList = instructionList.stream().map(this::removeComment)
+        this.instructionList = this.sourceCode.stream().map(this::removeComment)
                                         .filter(this::hasContent).collect(Collectors.toList());
 
         Integer numLabels = 0;
@@ -67,7 +69,7 @@ public class Program {
 
     public String toString() {
         String s = "";
-        for (String i : this.instructionList) {
+        for (String i : this.sourceCode) {
             s = s.concat(i + '\n');
         }
         return s;

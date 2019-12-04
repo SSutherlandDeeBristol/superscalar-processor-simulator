@@ -63,7 +63,7 @@ public class Processor {
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC1);
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
 
         this.interactive = interactive;
 
@@ -200,6 +200,7 @@ public class Processor {
 
             if (noCapacity) {
                 this.encodedInstructions.add(0, encodedInstruction);
+                this.tagManager.freeTag(tag);
                 break;
             }
 
@@ -300,7 +301,7 @@ public class Processor {
         System.out.println(String.format("Number of mispredicted branches: %d", this.numFlushes));
         System.out.println(String.format("Number of branches completed: %d", this.reorderBuffer.getNumBranchInstructionsCompleted()));
         if (this.reorderBuffer.getNumBranchInstructionsCompleted() > 0)
-            System.out.println(String.format("Misprediction rate: %.2f%%", ((float) 100.0f * ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted()))));
+            System.out.println(String.format("Correct branch prediction rate: %.2f%%", 100.0f - ((float) 100.0f * ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted()))));
 
         System.out.println("\nFinal register state:\n");
         System.out.println(this.registerFile.toString());
@@ -312,21 +313,21 @@ public class Processor {
         for (int a = 0; a < alu; a++) {
             ALUnit e = new ALUnit(a, this.registerFile, this.interactive);
             this.aluUnits.add(e);
-            this.aluRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 4));
+            this.aluRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 8));
             rId++;
         }
 
         for (int b = 0; b < branch; b++) {
             BranchUnit e = new BranchUnit(b, this.registerFile, this.interactive);
             this.branchUnits.add(e);
-            this.branchRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 4));
+            this.branchRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 8));
             rId++;
         }
 
         for (int l = 0; l < loadStore; l++) {
             LoadStoreUnit e = new LoadStoreUnit(l, this.registerFile, this.interactive);
             this.loadStoreUnits.add(e);
-            this.loadStoreRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 4));
+            this.loadStoreRS.add(new ReservationStation(rId, e, this.registerFile, this.reorderBuffer, 8));
             rId++;
         }
     }

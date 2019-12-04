@@ -1,18 +1,4803 @@
-ldi r9 1000
-ldi r15 500
-
-loop:
-    addi r1 r1 1
-    sub r5 r4 r3
-    ldi r6 9
-    subi r10 r11 1
-    ble r1 r15 random
-    addi r7 r8 1
-    bne r1 r9 loop
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
+ldi r0 1
+addi r1 r1 0
+subi r2 r2 0
+bne r14 r15 end
+ldi r3 1
+addi r4 r4 0
+subi r5 r5 0
+bne r12 r13 end
+ldi r6 1
+addi r7 r7 0
+subi r8 r8 0
+bne r10 r11 end
 
 end:
     halt
-
-random:
-    addi r14 r13 1
-    jmp loop
