@@ -24,7 +24,7 @@ compare:
     subi r3 r2 1 # r3 = i - 1
     ld r4 r3 0 # r4 = Array[i - 1]
     ld r5 r2 0 # r5 = Array[i]
-    ble r4 r5 4 # branch if Array[i - 1] <= Array[i]
+    ble r4 r5 advance # branch if Array[i - 1] <= Array[i]
 
 # Swap Array[i] and Array[i-1]
 swap:
@@ -32,8 +32,9 @@ swap:
     st r4 r2 0 # Array[i] = r4
     addi r1 r1 1 # swapped++
 
-addi r2 r2 1 # i++
-bne r2 r0 compare # branch if i != n
+advance:
+    addi r2 r2 1 # i++
+    bne r2 r0 compare # branch if i != n
 
 bne r1 r9 loop # repeat the loop if swapped > 0
 

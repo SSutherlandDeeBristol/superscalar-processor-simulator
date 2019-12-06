@@ -10,7 +10,13 @@ public class Main {
             if (args.length > 1)
                 interactive = Boolean.parseBoolean(args[1]);
 
-            Processor processor = new Processor(program, interactive);
+            Integer width = 4;
+            if (args.length > 2)
+                width = Integer.valueOf(args[2]);
+
+            System.out.println(width);
+
+            Processor processor = new Processor(program, interactive, width);
 
             processor.process();
         } else {

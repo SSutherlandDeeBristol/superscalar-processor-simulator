@@ -36,13 +36,13 @@ public class Processor {
 
     private boolean interactive;
 
-    private Integer fetchWidth;
+    private Integer width;
 
     private Integer numFlushes;
 
-    public Processor(Program program, boolean interactive) {
+    public Processor(Program program, boolean interactive, Integer width) {
         this.memory = new Memory();
-        this.registerFile = new RegisterFile(16);
+        this.registerFile = new RegisterFile(32);
         this.instructionParser = new InstructionParser(this.memory);
 
         this.memory.loadProgramIntoMemory(program);
@@ -57,21 +57,21 @@ public class Processor {
         this.branchRS = new ArrayList<>();
         this.loadStoreRS = new ArrayList<>();
 
-        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, 32);
+        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, width * 8, width);
 
         this.tagManager = new TagManager();
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.FIXEDT);
 
         this.interactive = interactive;
 
-        constructExecutionUnits(2, 1, 1);
+        constructExecutionUnits(width);
 
         this.running = true;
 
-        this.fetchWidth = 4;
+        this.width = width;
 
         this.numFlushes = 0;
 
@@ -113,7 +113,7 @@ public class Processor {
     }
 
     private void fetch() {
-        for (int i = 0; i < this.fetchWidth; i++) {
+        for (int i = 0; i < this.width; i++) {
             String nextEncodedInstruction = this.memory.getInstructionByAddress(this.registerFile.getPC().get());
 
             if (nextEncodedInstruction == null)
@@ -177,7 +177,7 @@ public class Processor {
                 if (!rs.hasCapacity()) {
                     noCapacity = true;
                 } else {
-                    rs.issue(nextInstruction, encodedInstruction.getPC());
+                    issueInstruction(rs, nextInstruction, encodedInstruction.getPC());
                 }
             } else if (nextInstruction instanceof BranchInstruction) {
                 ReservationStation rs = this.branchRS.stream().min(compareRS).get();
@@ -186,7 +186,8 @@ public class Processor {
                     noCapacity = true;
                 } else {
                     ((BranchInstruction) nextInstruction).setPrediction(encodedInstruction.getPredictedBranch());
-                    rs.issue(nextInstruction, encodedInstruction.getPC());
+
+                    issueInstruction(rs, nextInstruction, encodedInstruction.getPC());
                 }
             } else if (nextInstruction instanceof LoadStoreInstruction) {
                 ReservationStation rs = this.loadStoreRS.stream().min(compareRS).get();
@@ -194,7 +195,7 @@ public class Processor {
                 if (!rs.hasCapacity()) {
                     noCapacity = true;
                 } else {
-                    rs.issue(nextInstruction, encodedInstruction.getPC());
+                    issueInstruction(rs, nextInstruction, encodedInstruction.getPC());
                 }
             } else {
                 throw new RuntimeException("Unrecognised instruction type.");
@@ -207,6 +208,17 @@ public class Processor {
             }
 
         }
+    }
+
+    private void issueInstruction(ReservationStation rs, Instruction i, Integer PC) {
+        // Set the operands to tags or values
+        i.updateOperands(this.registerFile, this.reorderBuffer, PC);
+        // Block the destination register
+        i.blockDestination(this.registerFile);
+        // Add the instruciton to the reorder buffer
+        this.reorderBuffer.bufferInstruction(i);
+
+        rs.issue(i, PC);
     }
 
     private void execute() {
@@ -332,10 +344,38 @@ public class Processor {
         System.out.println(String.format("Number of mispredicted branches: %d", this.numFlushes));
         System.out.println(String.format("Number of branches completed: %d", this.reorderBuffer.getNumBranchInstructionsCompleted()));
         if (this.reorderBuffer.getNumBranchInstructionsCompleted() > 0)
-            System.out.println(String.format("Correct branch prediction rate: %.2f%%", 100.0f - ((float) 100.0f * ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted()))));
+            System.out.println(String.format("Correct branch prediction ratio: %.2f%%", 100.0f - ((float) 100.0f * ((float) this.numFlushes / this.reorderBuffer.getNumBranchInstructionsCompleted()))));
 
         System.out.println("\nFinal register state:\n");
         System.out.println(this.registerFile.toString());
+    }
+
+    private void constructExecutionUnits(Integer width) {
+        switch (width) {
+            case 3:
+                constructExecutionUnits(1, 1, 1);
+                break;
+            case 4:
+                constructExecutionUnits(2, 1, 1);
+                break;
+            case 5:
+                constructExecutionUnits(2, 1, 2);
+                break;
+            case 6:
+                constructExecutionUnits(2, 2, 2);
+                break;
+            case 7:
+                constructExecutionUnits(3, 2, 2);
+                break;
+            case 8:
+                constructExecutionUnits(4, 2, 2);
+                break;
+            case 9:
+                constructExecutionUnits(4, 2, 3);
+                break;
+            default:
+                constructExecutionUnits(2, 1, 1);
+        }
     }
 
     private void constructExecutionUnits(Integer alu, Integer branch, Integer loadStore) {

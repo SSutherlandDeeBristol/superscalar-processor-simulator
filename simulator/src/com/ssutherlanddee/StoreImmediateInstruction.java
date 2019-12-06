@@ -17,14 +17,12 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
         if (this.destination.getType() == OperandType.TAG && this.destination.getContents() == tag) {
             this.destination.setType(OperandType.VALUE, value);
         }
-        calculateAddress();
     }
 
     @Override
     public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer, Integer pc) {
         if (this.destination.getType() == OperandType.REGISTER)
             this.destination = updateRegisterOperand(this.destination, registerFile, reorderBuffer);
-        calculateAddress();
     }
 
     @Override
@@ -37,6 +35,11 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
 
     @Override
     public void freeDestination(RegisterFile registerFile) {}
+
+    @Override
+    public void execute(Processor processor) {
+        calculateAddress();
+    }
 
     @Override
     public void writeBack(Processor processor) {

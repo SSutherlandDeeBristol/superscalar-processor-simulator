@@ -15,14 +15,16 @@ public class ReorderBuffer {
     private Integer numBranchInstructionsCompleted;
 
     private Integer capacity;
+    private Integer width;
 
-    public ReorderBuffer(RegisterFile registerFile, Memory memory, Integer capacity) {
+    public ReorderBuffer(RegisterFile registerFile, Memory memory, Integer capacity, Integer width) {
         this.buffer = new ArrayDeque<>();
         this.registerFile = registerFile;
         this.memory = memory;
         this.numInstructionsCompleted = 0;
         this.numBranchInstructionsCompleted = 0;
         this.capacity = capacity;
+        this.width = width;
     }
 
     public void bufferInstruction(Instruction instruction) {
@@ -35,7 +37,7 @@ public class ReorderBuffer {
 
         int numRetired = 0;
 
-        while(this.buffer.size() > 0 && this.buffer.peekFirst().getFinishedExecuting() && numRetired < 4) {
+        while(this.buffer.size() > 0 && this.buffer.peekFirst().getFinishedExecuting() && numRetired < this.width) {
             Instruction i = this.buffer.removeFirst();
 
             processor.getTagManager().freeTag(i.getTag());

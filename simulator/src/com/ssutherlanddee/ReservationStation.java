@@ -23,13 +23,6 @@ public class ReservationStation {
     }
 
     public void issue(Instruction i, Integer pc) {
-        // Set the operands to tags or values
-        i.updateOperands(this.registerFile, this.reorderBuffer, pc);
-        // Block the destination register
-        i.blockDestination(this.registerFile);
-        // Add the instruciton to the reorder buffer
-        this.reorderBuffer.bufferInstruction(i);
-
         // If the instruction is ready and can be bypassed then dispatch straight away
         if (this.instructionBuffer.isEmpty() && i.ready(this.registerFile, this.reorderBuffer)) {
             dispatchInstruction(i);

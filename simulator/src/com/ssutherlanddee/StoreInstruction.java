@@ -16,7 +16,6 @@ public class StoreInstruction extends LoadStoreInstruction {
             this.destination.setType(OperandType.VALUE, value);
         if (this.sourceA.getType() == OperandType.TAG && this.sourceA.getContents() == tag)
             this.sourceA.setType(OperandType.VALUE, value);
-        calculateAddress();
     }
 
     @Override
@@ -25,7 +24,6 @@ public class StoreInstruction extends LoadStoreInstruction {
             this.destination = updateRegisterOperand(this.destination, registerFile, reorderBuffer);
         if (this.sourceA.getType() == OperandType.REGISTER)
             this.sourceA = updateRegisterOperand(this.sourceA, registerFile, reorderBuffer);
-        calculateAddress();
     }
 
     @Override
@@ -38,6 +36,11 @@ public class StoreInstruction extends LoadStoreInstruction {
 
     @Override
     public void freeDestination(RegisterFile registerFile) {}
+
+    @Override
+    public void execute(Processor processor) {
+        calculateAddress();
+    }
 
     @Override
     public void writeBack(Processor processor) {

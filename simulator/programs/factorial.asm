@@ -1,5 +1,5 @@
-# Calculate the factorial of 5
-ldi r0 5          # x = 5
+# Calculate the factorial of 11
+ldi r0 11         # x = 11
 ldi r3 1          # y = 1
 ldi r1 1          # z = 1
 ldi r2 1          # w = 1
