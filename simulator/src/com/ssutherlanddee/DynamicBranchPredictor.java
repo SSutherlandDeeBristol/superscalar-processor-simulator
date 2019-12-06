@@ -4,10 +4,8 @@ import java.util.Optional;
 
 public class DynamicBranchPredictor extends BranchPredictor {
 
-    private Integer historySize;
-
     public DynamicBranchPredictor(Integer historySize) {
-        this.historySize = historySize;
+        super(historySize);
     }
 
     @Override
@@ -16,7 +14,7 @@ public class DynamicBranchPredictor extends BranchPredictor {
         if (entry.isPresent()) {
             if (encodedInstruction.startsWith("jmp"))
                 return Optional.of(new Pair<Integer, Boolean>(entry.get().getTargetAddress(), true));
-            Pair<Integer, Boolean> branchInfo = entry.get().shouldTakeBranch(this.historySize);
+            Pair<Integer, Boolean> branchInfo = entry.get().shouldTakeBranch();
             if (branchInfo.second())
                 return Optional.of(branchInfo);
         }

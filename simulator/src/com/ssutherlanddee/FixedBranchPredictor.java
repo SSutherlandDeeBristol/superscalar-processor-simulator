@@ -7,6 +7,7 @@ public class FixedBranchPredictor extends BranchPredictor {
     private boolean taken;
 
     public FixedBranchPredictor(boolean taken) {
+        super(1);
         this.taken = taken;
     }
 

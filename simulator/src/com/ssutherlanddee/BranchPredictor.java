@@ -6,8 +6,8 @@ public abstract class BranchPredictor {
 
     protected BranchTargetAddressCache BTAC;
 
-    public BranchPredictor() {
-        this.BTAC = new BranchTargetAddressCache();
+    public BranchPredictor(Integer historySize) {
+        this.BTAC = new BranchTargetAddressCache(historySize);
     }
 
     public abstract Optional<Pair<Integer, Boolean>> predict(String encodedInstruction, Integer PC);

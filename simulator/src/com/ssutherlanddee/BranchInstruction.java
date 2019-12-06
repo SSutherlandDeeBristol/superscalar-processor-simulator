@@ -43,6 +43,7 @@ public abstract class BranchInstruction extends Instruction {
         if (this.sourceB.getType() == OperandType.REGISTER)
             this.sourceB = updateRegisterOperand(this.sourceB, registerFile, reorderBuffer);
         this.PC = pc;
+        this.branchTarget = pc + this.offset.getContents();
     }
 
     @Override

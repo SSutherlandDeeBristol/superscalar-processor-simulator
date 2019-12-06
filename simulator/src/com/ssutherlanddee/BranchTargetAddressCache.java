@@ -6,16 +6,18 @@ import java.util.Optional;
 public class BranchTargetAddressCache {
 
     private HashMap<Integer, BranchTargetAddressCacheEntry> cache;
+    private Integer historySize;
 
-    public BranchTargetAddressCache() {
+    public BranchTargetAddressCache(Integer historySize) {
         this.cache = new HashMap<>();
+        this.historySize = historySize;
     }
 
     public void update(Integer PC, Integer targetAddress, boolean taken) {
         if (this.cache.containsKey(PC)) {
             this.cache.get(PC).update(taken);
         } else {
-            this.cache.put(PC, new BranchTargetAddressCacheEntry(PC, targetAddress, taken));
+            this.cache.put(PC, new BranchTargetAddressCacheEntry(PC, targetAddress, taken, historySize));
         }
     }
 

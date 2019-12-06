@@ -10,6 +10,8 @@ import com.ssutherlanddee.BranchPredictorFactory.PredictorType;
 
 public class Processor {
 
+    private Program program;
+
     private InstructionParser instructionParser;
 
     private Memory memory;
@@ -40,10 +42,14 @@ public class Processor {
 
     private Integer numFlushes;
 
-    public Processor(Program program, boolean interactive, Integer width) {
+    private Integer numCycles;
+
+    public Processor(Program program, boolean interactive, Integer width, Integer reorderBufferSize) {
         this.memory = new Memory();
         this.registerFile = new RegisterFile(32);
         this.instructionParser = new InstructionParser(this.memory);
+
+        this.program = program;
 
         this.memory.loadProgramIntoMemory(program);
 
@@ -57,13 +63,13 @@ public class Processor {
         this.branchRS = new ArrayList<>();
         this.loadStoreRS = new ArrayList<>();
 
-        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, width * 8, width);
+        this.reorderBuffer = new ReorderBuffer(this.registerFile, this.memory, reorderBufferSize, width);
 
         this.tagManager = new TagManager();
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.FIXEDT);
+        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
 
         this.interactive = interactive;
 
@@ -75,20 +81,18 @@ public class Processor {
 
         this.numFlushes = 0;
 
-        System.out.println(program.toString());
+        this.numCycles = 0;
     }
 
     public void process() {
-        int cycle = 0;
-
         Scanner input = new Scanner(System.in);
 
         while (this.running) {
 
-            cycle++;
+            numCycles++;
 
             if (this.interactive)
-                System.out.println("STATUS | CYCLE: " + cycle + "\n");
+                System.out.println("STATUS | CYCLE: " + numCycles + "\n");
 
             writeBack();
 
@@ -106,8 +110,6 @@ public class Processor {
             this.running = canProcess();
 
         }
-
-        printFinalStats(cycle);
 
         input.close();
     }
@@ -323,15 +325,12 @@ public class Processor {
         this.memory.printContents(10);
     }
 
-    private void printFinalStats(Integer numCycles) {
-        Integer numInstructionsExecuted = 0;
-        numInstructionsExecuted += this.aluUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
-        numInstructionsExecuted += this.branchUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
-        numInstructionsExecuted += this.loadStoreUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
+    public void printFinalStats() {
+        Integer numInstructionsExecuted = getNumInstructionsExecuted();
 
         Integer numInstructionsCompleted = this.reorderBuffer.numInstructionsCompleted();
 
-        System.out.println("Number of cycles: " + numCycles);
+        System.out.println("Number of cycles: " + this.numCycles);
         System.out.println("Number of instructions executed: " + numInstructionsExecuted);
         System.out.println("Number of instructions completed: " + numInstructionsCompleted + "\n");
 
@@ -348,6 +347,22 @@ public class Processor {
 
         System.out.println("\nFinal register state:\n");
         System.out.println(this.registerFile.toString());
+    }
+
+    private void printProgram() {
+        System.out.println(this.program.toString());
+    }
+
+    private Integer getNumInstructionsExecuted() {
+        Integer numInstructionsExecuted = 0;
+        numInstructionsExecuted += this.aluUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
+        numInstructionsExecuted += this.branchUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
+        numInstructionsExecuted += this.loadStoreUnits.stream().mapToInt(ExecutionUnit::getNumInstructionsExecuted).sum();
+        return numInstructionsExecuted;
+    }
+
+    public float getIntructionsPerCycle() {
+        return ((float) getNumInstructionsExecuted() / this.numCycles);
     }
 
     private void constructExecutionUnits(Integer width) {

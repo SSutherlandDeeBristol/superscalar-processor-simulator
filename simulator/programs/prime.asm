@@ -1,4 +1,4 @@
-ldi r0 10023 # x
+ldi r0 207 # x
 
 # mod return codes
 ldi r6 0

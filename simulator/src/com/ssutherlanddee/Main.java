@@ -14,11 +14,19 @@ public class Main {
             if (args.length > 2)
                 width = Integer.valueOf(args[2]);
 
-            System.out.println(width);
-
-            Processor processor = new Processor(program, interactive, width);
+            Processor processor = new Processor(program, interactive, width, 8 * width);
 
             processor.process();
+
+            processor.printFinalStats();
+
+            // for (int i = 2; i <= 64; i+=2) {
+            //     Processor processor = new Processor(program, interactive, width, i);
+
+            //     processor.process();
+
+            //     System.out.println(String.format("%.2f", processor.getIntructionsPerCycle()));
+            // }
         } else {
             System.out.println("No assembly file provided. Nothing to do.");
         }

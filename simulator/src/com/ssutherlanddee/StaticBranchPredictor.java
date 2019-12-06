@@ -4,7 +4,9 @@ import java.util.Optional;
 
 public class StaticBranchPredictor extends BranchPredictor {
 
-    public StaticBranchPredictor() {}
+    public StaticBranchPredictor() {
+        super(1);
+    }
 
     @Override
     public Optional<Pair<Integer, Boolean>> predict(String encodedInstruction, Integer PC) {

@@ -20,12 +20,7 @@ public class BranchPredictorFactory {
             case DYNAMIC3:
                 return new DynamicBranchPredictor(3);
             case NONE:
-                return new BranchPredictor(){
-                    @Override
-                    public Optional<Pair<Integer, Boolean>> predict(String encodedInstruction, Integer PC) {
-                        return Optional.empty();
-                    }
-                };
+                return new StaticBranchPredictor();
         }
         return new DynamicBranchPredictor(3);
     }
