@@ -1,4 +1,4 @@
-ldi r0 207 # x
+ldi r0 3457345 # x
 
 # mod return codes
 ldi r6 0
@@ -58,6 +58,7 @@ mul r12 r8 r8 # r12 = i * i
 ble r12 r0 nmodi # if (i * i) <= n then loop
 jmp true # else return true
 
+# r14 = r3 % r4
 mod:
     mov r13 r3 # z = x
 
