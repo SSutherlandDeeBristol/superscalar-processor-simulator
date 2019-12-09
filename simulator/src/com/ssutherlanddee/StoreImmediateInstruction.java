@@ -15,12 +15,14 @@ public class StoreImmediateInstruction extends LoadStoreInstruction {
         if (this.destination.getType() == OperandType.TAG && this.destination.getContents() == tag) {
             this.destination.setType(OperandType.VALUE, value);
         }
+        calculateAddress();
     }
 
     @Override
     public void updateOperands(RegisterFile registerFile, ReorderBuffer reorderBuffer, Integer pc) {
         if (this.destination.getType() == OperandType.REGISTER)
             this.destination = updateRegisterOperand(this.destination, registerFile, reorderBuffer);
+        calculateAddress();
     }
 
     @Override
