@@ -1,27 +1,23 @@
 package com.ssutherlanddee;
 
-import java.util.Optional;
-
 public class BranchPredictorFactory {
-    public enum PredictorType {NONE, FIXEDT, FIXEDNT, STATIC, DYNAMIC1, DYNAMIC3}
 
     public BranchPredictorFactory() {}
 
-    public BranchPredictor create(PredictorType type) {
+    public BranchPredictor create(Integer type) {
         switch (type) {
-            case FIXEDT:
+            case 0:
                 return new FixedBranchPredictor(true);
-            case FIXEDNT:
+            case 1:
                 return new FixedBranchPredictor(false);
-            case STATIC:
+            case 2:
                 return new StaticBranchPredictor();
-            case DYNAMIC1:
+            case 3:
                 return new DynamicBranchPredictor(1);
-            case DYNAMIC3:
+            case 4:
                 return new DynamicBranchPredictor(3);
-            case NONE:
+            default:
                 return new StaticBranchPredictor();
         }
-        return new DynamicBranchPredictor(3);
     }
 }

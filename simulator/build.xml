@@ -31,6 +31,7 @@
             <arg value="${ptp}" if:set="ptp"/>
             <arg value="${i}" if:set="i"/>
             <arg value="${width}" if:set="width"/>
+            <arg value="${bp}" if:set="bp"/>
         </java>
     </target>
 

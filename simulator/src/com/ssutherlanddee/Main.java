@@ -14,7 +14,11 @@ public class Main {
             if (args.length > 2)
                 width = Integer.valueOf(args[2]);
 
-            Processor processor = new Processor(program, interactive, width, 8 * width);
+            Integer bp = 2;
+            if (args.length > 3)
+                bp = Integer.valueOf(args[3]);
+
+            Processor processor = new Processor(program, interactive, width, 8 * width, bp);
 
             processor.process();
 

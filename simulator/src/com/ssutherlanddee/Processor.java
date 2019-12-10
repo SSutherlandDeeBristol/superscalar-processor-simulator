@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import com.ssutherlanddee.BranchPredictorFactory.PredictorType;
-
 public class Processor {
 
     private Program program;
@@ -44,7 +42,7 @@ public class Processor {
 
     private Integer numCycles;
 
-    public Processor(Program program, boolean interactive, Integer width, Integer reorderBufferSize) {
+    public Processor(Program program, boolean interactive, Integer width, Integer reorderBufferSize, Integer bp) {
         this.memory = new Memory();
         this.registerFile = new RegisterFile(32);
         this.instructionParser = new InstructionParser(this.memory);
@@ -69,7 +67,7 @@ public class Processor {
 
         BranchPredictorFactory branchPredictorFactory = new BranchPredictorFactory();
 
-        this.branchPredictor = branchPredictorFactory.create(PredictorType.DYNAMIC3);
+        this.branchPredictor = branchPredictorFactory.create(bp);
 
         this.interactive = interactive;
 

@@ -23,10 +23,18 @@ ant compile
 To run the project:
 
 ```bash
-ant -Dptp=path/to/assembly/file.asm -Di=true
+ant -Dptp=path/to/assembly/file.asm -Di=true -Dwidth=4 -Dbp=2
 ```
 
-where `-Dptp ` is the relative filepath of the assembly file and `-Di` is whether to run the simulator in interactive mode. All of the assembly files that are guaranteed to work on this simulator are in the `simulator/programs/` directory.
+where `-Dptp ` is the relative filepath of the assembly file, `-Di` is whether to run the simulator in interactive mode, `-Dwidth` is the superscalar width and `-Dbp` is the branch predictor.
+
+`0` : Fixed Taken
+`1` : Fixed Not Taken
+`2` : Static (Backwards Taken, Forwards Not Taken)
+`3` : Dynamic 1-bit History
+`4` : Dynamic 3-bit History
+
+All of the assembly files that are guaranteed to work on this simulator are in the `simulator/programs/` directory.
 
 The build can be cleaned by running:
 
