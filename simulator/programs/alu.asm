@@ -1,4 +1,4 @@
-# Test basic arithmetic instructions
+# test basic arithmetic instructions
 ldi r0 3
 ldi r1 4
 ldi r2 5

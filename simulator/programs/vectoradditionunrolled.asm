@@ -1,8 +1,8 @@
-ldi r1 0 # x = 0
+ldi r1 0     # x = 0
 
-ldi r2 0 # base address of vector a
-ldi r3 100 # base address of vector b
-ldi r4 200 # base address of vector c
+ldi r2 0     # base address of vector a
+ldi r3 100   # base address of vector b
+ldi r4 200   # base address of vector c
 
 # while x < 100
 # c[x] = a[x] + b[x]

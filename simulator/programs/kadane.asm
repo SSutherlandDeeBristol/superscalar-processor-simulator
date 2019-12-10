@@ -1,15 +1,15 @@
-# def max_subarray(numbers):
-#    best_sum = 0
-#    current_sum = 0
-#    for x in numbers:
-#        best_sum = max(best_sum, current_sum)
-#        current_sum = max(0, current_sum + x)
-#    return best_sum
+                    # def max_subarray(numbers):
+                    #    best_sum = 0
+                    #    current_sum = 0
+                    #    for x in numbers:
+                    #        best_sum = max(best_sum, current_sum)
+                    #        current_sum = max(0, current_sum + x)
+                    #    return best_sum
 
 ldi r30 0           # base address of array
 ldi r29 10          # length of the array
 
-# store the array
+                    # store the array
 sti r30 0 1
 sti r30 1 1
 sti r30 2 -3
@@ -26,11 +26,11 @@ ldi r1 1            # current_sum = 0
 
 ldi r2 0            # i = 0
 
-# return counters
+                    # return counters
 ldi r8 0
 ldi r9 1
 
-# return from max
+                    # return from max
 ldi r10 0
 
 loop:
@@ -53,9 +53,9 @@ max2:
     blt r2 r29 loop # if i < 10 then loop
     jmp end         # else finish
 
-# x = r3
-# y = r4
-# r5 = max(x, y)
+                    # x = r3
+                    # y = r4
+                    # r5 = max(x, y)
 max:
     bgt r3 r4 maxx  # if x > y
     jmp maxy        # else
@@ -68,7 +68,7 @@ maxy:
     mov r5 r4       # r5 = y
     jmp maxres
 
-# return from max function to correct point
+                    # return from max function to correct point
 maxres:
     beq r10 r8 max1
     beq r10 r9 max2
